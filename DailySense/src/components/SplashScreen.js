@@ -7,11 +7,14 @@ import {
     StyleSheet,
     Dimensions,
     Animated,
+    Alert,
 } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 const SplashScreen = () => {
+
+    const navigation = useNavigation();
 
     const moveAnim = useRef(new Animated.Value(0)).current;
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -42,7 +45,8 @@ const SplashScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.contentContainer}>
+            <View style={styles.contentContainer}
+                onStartShouldSetResponder={() => navigation.navigate("Login")}>
                 <Animated.Image
                     style={[styles.image, { opacity: fadeAnim }]}
                     source={require("../assets/img/png_logo_simplificado.png")}
