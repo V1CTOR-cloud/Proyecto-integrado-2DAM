@@ -15,3 +15,19 @@ RAMAS EN LAS QUE SE TRABAJARÁ:
 	Personal: tu nombre ej:. Victor
 	axure: axure
 
+
+
+
+
+
+
+
+REQUERIMIENTOS: 
+1. npm install
+2. npm install react-navigation/native
+3. npm install react-navigation/stack
+4. npm install react-native/paper
+5. npm install react-native-gesture-handler
+6. npm install react-native-screens
+
+
