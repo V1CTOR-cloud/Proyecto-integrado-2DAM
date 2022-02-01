@@ -58,6 +58,7 @@ const Login = () => {
           source={require('../assets/img/png_logo_simplificado.png')}
           style={styles.imagen}
         />
+        <Text style={{fontSize:25, color:"black"}}>Log In</Text>
         <TextInput
           placeholder='Username'
           style={styles.box}
@@ -113,8 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   imagen: {
-    height: 180,
-    width: 180,
+    height: "15%",
+     width: "30%",
   },
   box: {
     height: 45,
