@@ -1,57 +1,50 @@
-CREATE DATABASE IF NOT EXISTS Proyecto;
+CREATE DATABASE IF NOT EXISTS DailySense;
 
-USE Proyecto;
+USE DailySense;
 
-CREATE TABLE Dependiente(
-Id INT(4) NOT NULL auto_increment,
-Usuario VARCHAR(30) NOT NULL,
-Contrasenya VARCHAR(30) NOT NULL,
-Nombre VARCHAR(40) NOT NULL,
-Apellidos VARCHAR(40)NOT NULL,
-Direccion VARCHAR(40)NOT NULL,
-Sexo VARCHAR(10)NOT NULL,
-Edad INT(3) NOT NULL,
-Telefono_Familiar INT(9),
-Enfermedades VARCHAR(200),
-Alergias VARCHAR(200),
-Nivel_Dependencia VARCHAR(200),
-Id_Cuidador INT(3),
-PRIMARY KEY(Id),
-FOREIGN KEY(Id_Cuidador) references Cuidador(Id)
+CREATE TABLE Grandpa(
+IdGrandpa INT() NOT NULL auto_increment,
+Name VARCHAR(45) NOT NULL,
+LastName VARCHAR(90)NOT NULL,
+Address VARCHAR(45)NOT NULL,
+Gender VARCHAR(10)NOT NULL,
+Age INT(3) NOT NULL,
+FamilyContact INT(20),
+Diseases VARCHAR(200),
+Allergies VARCHAR(200),
+DependencyLevel VARCHAR(200),                    
+PRIMARY KEY(IdGrandpa),
+FOREIGN KEY(IdGrandpa) references Atributes(Grandpa)   
 );
 
-CREATE TABLE Cuidador(
-Id INT(4) NOT NULL auto_increment,
-Usuario VARCHAR(30) NOT NULL,
-Contrasenya VARCHAR(30) NOT NULL,
-Nombre VARCHAR(40),
-Sexo VARCHAR(10),
-PRIMARY KEY(Id)
+CREATE TABLE Relation(
+IdAssitant INT() NOT NULL ,
+IdGrandpa INT() NOT NULL,
+PRIMARY KEY(IdAssitant,IdGrandpa),
+FOREIGN KEY(IdAssitant) references Assistant(IdAssitant),   
+FOREIGN KEY(IdGrandpa) references Grandpa(IdGrandpa)        
 );
 
-CREATE TABLE Tareas(
-Id INT(4) NOT NULL auto_increment,
-Id_Dependiente INT(4) NOT NULL,
-Titulo VARCHAR(40) NOT NULL,
-DEscripcion VARCHAR(200) NOT NULL,
-PRIMARY KEY(Id),
-foreign key(Id_Dependiente) references Dependiente(Id)
+CREATE TABLE Assistant(
+IdAssitant INT() NOT NULL auto_increment,
+User VARCHAR(30) NOT NULL,
+Password VARCHAR(30) NOT NULL,
+Dependents INT(3),
+Gender VARCHAR(10),
+Email VARCHAR(45),
+PRIMARY KEY(IdAssitant)
 );
 
-CREATE TABLE Pastillas(
-Id INT(4) NOT NULL auto_increment,
-Id_Pastilla INT(4) NOT NULL,
-Pastilla VARCHAR(200) NOT NULL,
-PRIMARY KEY(Id),
-foreign key(Id_Pastilla) references Dependiente(Id_Pastillas)
+CREATE TABLE Atributes(
+IdAtribute INT() NOT NULL auto_increment,
+Type INT NOT NULL,
+Name VARCHAR(30) NOT NULL,
+Description VARCHAR(400),
+Grandpa VARCHAR(10),           
+Date DATETIME(),
+PRIMARY KEY(IdAtribute)
 );
 
-CREATE TABLE Recordatorio(
-Id INT(4) NOT NULL auto_increment,
-Id_Recordatorio INT(4) NOT NULL,
-Recordatorio VARCHAR(200) NOT NULL,
-PRIMARY KEY(Id),
-foreign key(Id_Recordatorio) references Dependiente(Id_Recordatorio)
-);
-
-
+INSERT INTO Assistant(User,Password,Dependents,Gender,Email )
+VALUES ("admin","admin",0,"male","admin@gmail.com")
+;
