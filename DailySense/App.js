@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from "./src/components/Start/Login";
 import CrearCuenta from "./src/components/Start/Creacuenta";
 import IndexAssistant from "./src/components/Assistant/IndexAssistant";
+import Tareas from './src/components/Assistant/Tareas';
 
 import { LogBox } from 'react-native';
 
