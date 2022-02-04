@@ -27,7 +27,7 @@
      <View style={styles.cont}>
        <View style={styles.content}>
          <Image
-         source={require('../assets/img/png_logo_simplificado.png')}
+         source={require('../../assets/img/logo1.png')}
          style={styles.imagen}
          />
          <Text style={{fontSize:25, color:"black"}}>Create Account</Text>
@@ -80,7 +80,8 @@
          </View>
          <Button
          mode='contained'
-         color='#27AE60'
+         color='#99c8de'
+         style={{position:"absolute",bottom:40}}
          >
            Create Account
          </Button>
@@ -92,7 +93,7 @@
  const styles = StyleSheet.create({
    cont: {
      flex: 1, 
-     backgroundColor: '#27AE60',
+     backgroundColor: '#99c8de',
      opacity: 0.98,
      justifyContent:'center',
      alignItems: 'center',
@@ -103,18 +104,18 @@
      backgroundColor: '#f7f7f7',
      borderRadius: 8,
      flexDirection: 'column',
-     justifyContent: "space-evenly",
      alignItems: 'center',
      padding: "2%"
    },
    imagen: {
-     height: "15%",
+     height: "20%",
      width: "30%",
      
    },
    box: {
      height: 45,
-     width: 250
+     width: 250,
+     margin:10,
    },
    titulo: {
      fontSize: 20
@@ -123,7 +124,8 @@
     width: 250,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row', 
+    margin:15,
    },
    chip: {
      padding: 1    

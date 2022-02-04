@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import SplashScreen from "./src/components/SplashScreen.js";
+import SplashScreen from "./src/components/Start/SplashScreen.js";
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from "./src/components/Login";
-import CrearCuenta from "./src/components/Creacuenta";
+import Login from "./src/components/Start/Login";
+import CrearCuenta from "./src/components/Start/Creacuenta";
 
 import { LogBox } from 'react-native';
 

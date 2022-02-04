@@ -49,7 +49,7 @@ const SplashScreen = () => {
                 onStartShouldSetResponder={() => navigation.navigate("Login")}>
                 <Animated.Image
                     style={[styles.image, { opacity: fadeAnim }]}
-                    source={require("../assets/img/png_logo_simplificado.png")}
+                    source={require("../../assets/img/logo1.png")}
                 />
                 <Animated.View style={[styles.logoContainer, { marginLeft: moveAnim }]}>
                     <Text style={[styles.logoText]}>D</Text>
