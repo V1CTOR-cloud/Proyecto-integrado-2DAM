@@ -33,6 +33,7 @@ const IndexAssistant = () => {
                         <Text style={{ color: "black" }}>VIvva adada</Text>
                     </View>
                 </Swiper>
+                
             </View>
         </View>
     );

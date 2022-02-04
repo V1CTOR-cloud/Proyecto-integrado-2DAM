@@ -20,9 +20,9 @@
  
    return (
      <View style={styles.cont}>
-       <Text style={styles.titulo}>Hacer yoga</Text>
-       <Text style={styles.sub_titulo}>En el gimnasio</Text>
-       <TouchableOpacity onPress={() => alert('Borrado perfectamente')}>
+       <Text style={styles.titulo}>{this}</Text>
+       <Text style={styles.sub_titulo}>in the upstairs gymnasium</Text>
+       <TouchableOpacity onPress={() => alert('Deleted Correctly')}>
         <View style={styles.delimitador}>
             <Image
                 source={require('../../assets/img/icono_basura.png')}

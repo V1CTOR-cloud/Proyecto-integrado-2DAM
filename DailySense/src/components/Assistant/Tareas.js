@@ -16,10 +16,11 @@ import {
 } from 'react-native';
 
 import Tarjeta from './Tarjeta';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Tareas = () => {
-
+  const navigation = useNavigation();
   return (
     <View style={styles.cont}>
       <View style={styles.header}>
@@ -32,13 +33,13 @@ const Tareas = () => {
         <Tarjeta/>
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => alert('hola')}>
+        <TouchableOpacity onPress={() => { navigation.navigate("IndexAssistant") }}>
           <Image
             source={require('../../assets/img/home_icon.png')}
             style={styles.img}
           />
         </TouchableOpacity>
-        <TouchableOpacity  onPress={() => alert('adios')}>
+        <TouchableOpacity  onPress={() => { navigation.navigate("AnyadirTarea") }}>
           <Image
             source={require('../../assets/img/plus_icon.png')}
             style={styles.img}

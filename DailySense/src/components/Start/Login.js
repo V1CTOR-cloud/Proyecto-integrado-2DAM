@@ -31,13 +31,18 @@ const Login = () => {
 
   function Validation() {
     setVal(true)
-    if (User == "") {
+
+    if (User == "" && Password == "") {
       setVal(false)
-    } else {
-      if (Password == "") {
+    }else{
+      if (User == "") {
         setVal(false)
+      } else {
+        if (Password == "") {
+          setVal(false)
+        }
       }
-    }
+    }    
   }
 
   function Login(){
@@ -88,10 +93,12 @@ const Login = () => {
         <Button
           mode='contained'
           color='#99c8de'
-          style={{position:"absolute",bottom:60}}
-          onPress={()=> navigation.navigate("IndexAssistant")}
+          style={{position:"absolute",bottom:60, width: 180}}
+          onPress={()=> navigation.navigate("Tareas")}
+          labelStyle={{color: 'white'}}
+          
         >
-          Iniciar sesión
+          Sign In
          </Button>
       </View>
     </View >

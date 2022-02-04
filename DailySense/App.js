@@ -7,6 +7,7 @@ import Login from "./src/components/Start/Login";
 import CrearCuenta from "./src/components/Start/Creacuenta";
 import IndexAssistant from "./src/components/Assistant/IndexAssistant";
 import Tareas from './src/components/Assistant/Tareas';
+import AnyadirTarea from './src/components/Assistant/AnyadirTarea';
 
 import { LogBox } from 'react-native';
 
@@ -33,6 +34,12 @@ class App extends Component {
             </Stack.Group>
             <Stack.Group>
               <Stack.Screen name="IndexAssistant" component={IndexAssistant} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="Tareas" component={Tareas} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="AnyadirTarea" component={AnyadirTarea} />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>

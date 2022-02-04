@@ -35,43 +35,43 @@
            placeholder='Mail account'
            style={styles.box}  
            label='Mail account'
-           selectionColor='#27AE60'    
+           selectionColor='#99c8de'    
            mode='outlined'  
            value={MailAccount}
            onChangeText={MailAccount => setMailAccount(MailAccount)}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <TextInput
            placeholder='Username'
            style={styles.box}  
            label='Username'
-           selectionColor='#27AE60'    
+           selectionColor='#99c8de'    
            mode='outlined'  
            value={User}
            onChangeText={User => setUser(User)}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <TextInput
            placeholder='Password'
            style={styles.box}  
            mode='outlined'
            label='Password'
-           selectionColor='#27AE60'
+           selectionColor='#99c8de'
            value={Password}
            onChangeText={Password => setPassword(Password)}
            secureTextEntry={true}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <TextInput
            placeholder='Confirm Password'
            style={styles.box}  
            mode='outlined'
            label='Confirm Password'
-           selectionColor='#27AE60'
+           selectionColor='#99c8de'
            value={ConfirmPassword}
            onChangeText={ConfirmPassword => setConfirmPassword(ConfirmPassword)}
            secureTextEntry={true}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <View style={styles.contchips}>
             <Chip style={styles.chip} >Male</Chip>
@@ -79,6 +79,7 @@
             <Chip style={styles.chip} >Other</Chip>
          </View>
          <Button
+         labelStyle={{color: 'white'}}
          mode='contained'
          color='#99c8de'
          style={{position:"absolute",bottom:40}}
