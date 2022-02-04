@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from "./src/components/Start/Login";
 import CrearCuenta from "./src/components/Start/Creacuenta";
+import IndexAssistant from "./src/components/Assistant/IndexAssistant";
 
 import { LogBox } from 'react-native';
 
@@ -28,6 +29,9 @@ class App extends Component {
             </Stack.Group>
             <Stack.Group>
               <Stack.Screen name="CrearCuenta" component={CrearCuenta} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="IndexAssistant" component={IndexAssistant} />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>

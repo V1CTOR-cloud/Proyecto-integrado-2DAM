@@ -89,6 +89,7 @@ const Login = () => {
           mode='contained'
           color='#99c8de'
           style={{position:"absolute",bottom:60}}
+          onPress={()=> navigation.navigate("IndexAssistant")}
         >
           Iniciar sesión
          </Button>
