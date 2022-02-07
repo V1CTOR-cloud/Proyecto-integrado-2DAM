@@ -5,12 +5,9 @@ import {
     View,
     Image
 } from 'react-native';
-import { Card, Avatar } from "react-native-paper";
-import Swiper from "react-native-web-swiper";
+import Slider from "./Slider";
 
 const IndexAssistant = () => {
-
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -23,17 +20,7 @@ const IndexAssistant = () => {
                     source={require("../../assets/img/Dependiente.png")} />
             </View>
             <View style={{ flex: 0.3 }}>
-                <Swiper>
-                    <View>
-                        <Card>
-                            <Card.Title title="Nombre" left={(props) => <Avatar.Image size={50}  theme={{colors:{primary:"black"}}} source={require('../../assets/img/Dependiente.png')} />} />
-                        </Card>
-                    </View>
-                    <View>
-                        <Text style={{ color: "black" }}>VIvva adada</Text>
-                    </View>
-                </Swiper>
-                
+                <Slider></Slider>
             </View>
         </View>
     );

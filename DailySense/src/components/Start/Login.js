@@ -94,7 +94,7 @@ const Login = () => {
           mode='contained'
           color='#99c8de'
           style={{position:"absolute",bottom:60, width: 180}}
-          onPress={()=> navigation.navigate("Tareas")}
+          onPress={()=> navigation.navigate("IndexAssistant")}
           labelStyle={{color: 'white'}}
           
         >
