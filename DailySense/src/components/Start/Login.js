@@ -31,13 +31,18 @@ const Login = () => {
 
   function Validation() {
     setVal(true)
-    if (User == "") {
+
+    if (User == "" && Password == "") {
       setVal(false)
-    } else {
-      if (Password == "") {
+    }else{
+      if (User == "") {
         setVal(false)
+      } else {
+        if (Password == "") {
+          setVal(false)
+        }
       }
-    }
+    }    
   }
 
   function Login(){
@@ -55,7 +60,7 @@ const Login = () => {
     <View style={styles.cont}>
       <View style={styles.content}>
         <Image
-          source={require('../assets/img/png_logo_simplificado.png')}
+          source={require('../../assets/img/logo1.png')}
           style={styles.imagen}
         />
         <Text style={{fontSize:25, color:"black"}}>Log In</Text>
@@ -87,9 +92,13 @@ const Login = () => {
 
         <Button
           mode='contained'
-          color='#27AE60'
+          color='#99c8de'
+          style={{position:"absolute",bottom:60, width: 180}}
+          onPress={()=> navigation.navigate("IndexAssistant")}
+          labelStyle={{color: 'white'}}
+          
         >
-          Iniciar sesión
+          Sign In
          </Button>
       </View>
     </View >
@@ -99,7 +108,7 @@ const Login = () => {
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: '#27AE60',
+    backgroundColor: '#99c8de',
     opacity: 0.98,
     justifyContent: 'center',
     alignItems: 'center',
@@ -110,20 +119,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#f7f7f7',
     borderRadius: 8,
     flexDirection: 'column',
-    justifyContent: 'space-around',
     alignItems: 'center'
   },
   imagen: {
-    height: "15%",
-     width: "30%",
+    height: "30%",
+     width: "35%",
   },
   box: {
     height: 45,
+    margin:20,
     width: 250
   },
   subtext: {
     fontSize: 12,
     color: "#666",
+    margin:20,
   }
 });
 

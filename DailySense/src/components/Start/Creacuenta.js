@@ -27,7 +27,7 @@
      <View style={styles.cont}>
        <View style={styles.content}>
          <Image
-         source={require('../assets/img/png_logo_simplificado.png')}
+         source={require('../../assets/img/logo1.png')}
          style={styles.imagen}
          />
          <Text style={{fontSize:25, color:"black"}}>Create Account</Text>
@@ -35,43 +35,43 @@
            placeholder='Mail account'
            style={styles.box}  
            label='Mail account'
-           selectionColor='#27AE60'    
+           selectionColor='#99c8de'    
            mode='outlined'  
            value={MailAccount}
            onChangeText={MailAccount => setMailAccount(MailAccount)}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <TextInput
            placeholder='Username'
            style={styles.box}  
            label='Username'
-           selectionColor='#27AE60'    
+           selectionColor='#99c8de'    
            mode='outlined'  
            value={User}
            onChangeText={User => setUser(User)}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <TextInput
            placeholder='Password'
            style={styles.box}  
            mode='outlined'
            label='Password'
-           selectionColor='#27AE60'
+           selectionColor='#99c8de'
            value={Password}
            onChangeText={Password => setPassword(Password)}
            secureTextEntry={true}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <TextInput
            placeholder='Confirm Password'
            style={styles.box}  
            mode='outlined'
            label='Confirm Password'
-           selectionColor='#27AE60'
+           selectionColor='#99c8de'
            value={ConfirmPassword}
            onChangeText={ConfirmPassword => setConfirmPassword(ConfirmPassword)}
            secureTextEntry={true}
-           theme={{colors: {primary: '#27AE60'}}}
+           theme={{colors: {primary: '#99c8de'}}}
          />
          <View style={styles.contchips}>
             <Chip style={styles.chip} >Male</Chip>
@@ -79,8 +79,10 @@
             <Chip style={styles.chip} >Other</Chip>
          </View>
          <Button
+         labelStyle={{color: 'white'}}
          mode='contained'
-         color='#27AE60'
+         color='#99c8de'
+         style={{position:"absolute",bottom:40}}
          >
            Create Account
          </Button>
@@ -92,7 +94,7 @@
  const styles = StyleSheet.create({
    cont: {
      flex: 1, 
-     backgroundColor: '#27AE60',
+     backgroundColor: '#99c8de',
      opacity: 0.98,
      justifyContent:'center',
      alignItems: 'center',
@@ -103,18 +105,18 @@
      backgroundColor: '#f7f7f7',
      borderRadius: 8,
      flexDirection: 'column',
-     justifyContent: "space-evenly",
      alignItems: 'center',
      padding: "2%"
    },
    imagen: {
-     height: "15%",
+     height: "20%",
      width: "30%",
      
    },
    box: {
      height: 45,
-     width: 250
+     width: 250,
+     margin:10,
    },
    titulo: {
      fontSize: 20
@@ -123,7 +125,8 @@
     width: 250,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row', 
+    margin:15,
    },
    chip: {
      padding: 1    
