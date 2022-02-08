@@ -24,6 +24,8 @@ import { Chip, RadioButton } from 'react-native-paper';
 
 const AddGrandpa = () => {
 
+    const navigation = useNavigation(); 
+
     const [Nombre, setNombre] = React.useState("");
     const [Apellidos, setApellidos] = React.useState("");
     const [Direccion, setDireccion] = React.useState("");
