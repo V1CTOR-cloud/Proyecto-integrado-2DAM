@@ -24,7 +24,7 @@ import { Chip, RadioButton } from 'react-native-paper';
 
 const AddGrandpa = () => {
 
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     const [Nombre, setNombre] = React.useState("");
     const [Apellidos, setApellidos] = React.useState("");
@@ -35,9 +35,28 @@ const AddGrandpa = () => {
     const [Alergias, setAlergias] = React.useState("");
     const [Dependencia, setDependencia] = React.useState("");
     const [Sexo, setSexo] = React.useState("Male");
+    const [SelectedChipMale, selectedChipMale] = React.useState(false);
+    const [SelectedChipFemale, selectedChipFemale] = React.useState(false);
+    const [SelectedChipOther, selectedChipOther] = React.useState(false);
 
+    const estableixSexe = (sexe) => {
+        if (sexe === 'Male') {
+            selectedChipMale(!SelectedChipMale);
+            selectedChipFemale(false);
+            selectedChipOther(false);
+        } else if (sexe === 'Female') {
+            selectedChipFemale(!SelectedChipFemale);
+            selectedChipMale(false);
+            selectedChipOther(false);
+        }
+        else if (sexe === 'Other') {
+            selectedChipOther(!SelectedChipOther);
+            selectedChipMale(false);
+            selectedChipFemale(false);
+        }
 
-
+        setSexo(sexe);
+    }
 
     return (
         <View style={styles.cont}>
@@ -96,9 +115,9 @@ const AddGrandpa = () => {
                         <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
 
 
-                            <Chip style={styles.chips} textStyle={{ textAlign: "center" }} onPress={() => setSexo("Male")}>Male</Chip>
-                            <Chip style={styles.chips} onPress={() => setSexo("Female")}>Female</Chip>
-                            <Chip style={styles.chips} onPress={() => setSexo("Other")}>Other</Chip>
+                            <Chip style={styles.chips} textStyle={{ textAlign: "center" }} selected={SelectedChipMale} onPress={() => estableixSexe('Male')}>Male</Chip>
+                            <Chip style={styles.chips} selected={SelectedChipFemale} onPress={() => estableixSexe('Female')}>Female</Chip>
+                            <Chip style={styles.chips} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
                         </View>
                         <TextInput
                             placeholder='Contact phone'
@@ -134,11 +153,15 @@ const AddGrandpa = () => {
                         <Text style={{ color: "black", left: 20, fontSize: 20 }}>Dependency level</Text>
 
                         <View>
-                            <RadioButton
-                                value="Bajo"
-                                status={Dependencia === 'Bajo' ? 'checked' : 'unchecked'}
-                                onPress={() => setDependencia("Bajo")}
-                            />
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <RadioButton
+                                    value="Bajo"
+                                    status={Dependencia === 'Bajo' ? 'checked' : 'unchecked'}
+                                    onPress={() => setDependencia("Bajo")}
+                                    color='red'
+                                > </RadioButton>
+                                <Text style={{ color: 'black' }} onPress={() => setDependencia("Bajo")}>MAneeel</Text>
+                            </View>
                             <RadioButton
                                 value="Medio"
                                 status={Dependencia === 'Medio' ? 'checked' : 'unchecked'}
@@ -150,9 +173,6 @@ const AddGrandpa = () => {
                                 onPress={() => setDependencia("Alto")}
                             />
                         </View>
-
-
-
 
                         <Button
                             mode='contained'

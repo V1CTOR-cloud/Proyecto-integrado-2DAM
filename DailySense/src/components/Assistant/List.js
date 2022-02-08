@@ -29,16 +29,6 @@ const Lista = () => {
     const person = ["Paco Martinez", "Paco A", "Paco B", "Paco C", "Paco D", "Paco F",];
 
 
-    const list = () => {
-        return person.map((person, index) => {
-            return(
-            <View key={index} style={{ flexDirection: "row", margin:10 }}>
-                <Image source={require('../../assets/img/Dependiente.png')} style={styles.ico}></Image>
-                <Text>{person}</Text>
-            </View>
-            );
-        });
-    }
 
 
     return (
@@ -50,7 +40,15 @@ const Lista = () => {
                 />
                 <ScrollView >
                     <View style={styles.scrollv}>
-                        {list()}
+                        {person.map((person, index) => {
+                            return (
+                                <View key={index} style={{ flexDirection: "row", margin: 10 }}>
+                                    <Image source={require('../../assets/img/Dependiente.png')} style={styles.ico}></Image>
+                                    <Text style={{color:'black'}}>{person}</Text>
+                                </View>
+                            );
+                        })
+                        }
                     </View>
                 </ScrollView>
             </View>
@@ -93,8 +91,8 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     ico: {
-        height: "20%",
-        width: "30"
+        height: 20,
+        width: 30
     }
 });
 

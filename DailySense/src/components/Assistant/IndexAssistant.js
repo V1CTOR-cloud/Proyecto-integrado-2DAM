@@ -26,6 +26,7 @@ const IndexAssistant = () => {
             </View>
             <View style={styles.body}>
                 <View style={styles.slider}>
+
                     <Slider />
                 </View>
             </View>
