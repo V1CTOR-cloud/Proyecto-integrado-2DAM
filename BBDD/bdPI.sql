@@ -34,9 +34,9 @@ IdAtribute INT(4) NOT NULL auto_increment,
 Type INT(1) NOT NULL,
 Name VARCHAR(30) NOT NULL,
 Description VARCHAR(400),
-Grandpa INT (4)NOT NULL,           
+Dependents INT (4)NOT NULL,           
 Date DATETIME ,
-PRIMARY KEY(IdAtribute)
+PRIMARY KEY(IdAttribute)
 );
 
 INSERT INTO Assistant(User,Password,Dependents,Gender,Email )
