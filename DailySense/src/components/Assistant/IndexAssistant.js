@@ -31,7 +31,7 @@ const IndexAssistant = () => {
             </View>
             <View style={styles.bottom}>
                 <View>
-                    <TouchableOpacity onPress={() => navigation.navigate("AddGrandpa")} style={styles.buttonAddPerson}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Lista")} style={styles.buttonAddPerson}>
                         <Image source={require('../../assets/img/Lista.png')} style={{ height: 66, width: 66 }}></Image>
                     </TouchableOpacity>
                 </View>

@@ -11,6 +11,7 @@ import AnyadirTarea from './src/components/Assistant/AnyadirTarea';
 import Recordatorios from './src/components/Assistant/Recordatorios';
 import AnyadirRecordatorio from './src/components/Assistant/AnyadirRecordatorio';
 import AddGrandpa from "./src/components/Assistant/AddGranpa";
+import Lista from "./src/components/Assistant/List";
 
 import { LogBox } from 'react-native';
 
@@ -50,7 +51,9 @@ class App extends Component {
             <Stack.Group>
               <Stack.Screen name="AnyadirRecordatorio" component={AnyadirRecordatorio} />
             </Stack.Group>
-            <Stack.Group></Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="Lista" component={Lista} />
+            </Stack.Group>
             <Stack.Group>
               <Stack.Screen name="AddGrandpa" component={AddGrandpa} />
             </Stack.Group>
