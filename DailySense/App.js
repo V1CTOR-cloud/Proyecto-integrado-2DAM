@@ -8,6 +8,9 @@ import CrearCuenta from "./src/components/Start/Creacuenta";
 import IndexAssistant from "./src/components/Assistant/IndexAssistant";
 import Tareas from './src/components/Assistant/Tareas';
 import AnyadirTarea from './src/components/Assistant/AnyadirTarea';
+import Recordatorios from './src/components/Assistant/Recordatorios';
+import AnyadirRecordatorio from './src/components/Assistant/AnyadirRecordatorio';
+import AddGrandpa from "./src/components/Assistant/AddGranpa";
 
 import { LogBox } from 'react-native';
 
@@ -40,6 +43,16 @@ class App extends Component {
             </Stack.Group>
             <Stack.Group>
               <Stack.Screen name="AnyadirTarea" component={AnyadirTarea} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="Recordatorios" component={Recordatorios} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="AnyadirRecordatorio" component={AnyadirRecordatorio} />
+            </Stack.Group>
+            <Stack.Group></Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="AddGrandpa" component={AddGrandpa} />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
