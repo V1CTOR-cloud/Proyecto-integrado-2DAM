@@ -22,3 +22,4 @@ RAMAS EN LAS QUE SE TRABAJARÁ:
 5. npm install react-native/paper
 6. npm install react-native/screens
 7. npm install @react-native-picker/picker
+8. npm install react-native-paper-dates
