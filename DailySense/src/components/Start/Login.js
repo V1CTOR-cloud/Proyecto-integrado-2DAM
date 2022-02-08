@@ -68,22 +68,22 @@ const Login = () => {
           placeholder='Username'
           style={styles.box}
           label='Username'
-          selectionColor='#27AE60'
+          selectionColor='#99c8de'
           mode='outlined'
           value={User}
           onChangeText={User => setUser(User)}
-          theme={{ colors: { primary: '#27AE60' } }}
+          theme={{ colors: { primary: '#99c8de' } }}
         />
         <TextInput
           placeholder='Password'
           style={styles.box}
           mode='outlined'
           label='Password'
-          selectionColor='#27AE60'
+          selectionColor='#99c8de'
           value={Password}
           onChangeText={Password => setPassword(Password)}
           secureTextEntry={true}
-          theme={{ colors: { primary: '#27AE60' } }}
+          theme={{ colors: { primary: '#99c8de' } }}
         />
 
         <TouchableOpacity onPress={() => { navigation.navigate("CrearCuenta") }}>
