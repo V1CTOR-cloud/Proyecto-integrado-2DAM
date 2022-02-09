@@ -33,17 +33,17 @@ const IndexAssistant = () => {
             <View style={styles.bottom}>
                 <View>
                     <TouchableOpacity onPress={() => navigation.navigate("Lista")} style={styles.buttonAddPerson}>
-                        <Image source={require('../../assets/img/Lista.png')} style={{ height: 66, width: 66 }}></Image>
+                        <Image source={require('../../assets/img/Lista.png')} style={{ height: 55, width: 55 }}></Image>
                     </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity onPress={() => navigation.navigate("AddGrandpa")} style={styles.buttonAddPerson}>
-                        <Image source={require('../../assets/img/Añadir.png')} style={{ height: 66, width: 66 }}></Image>
+                        <Image source={require('../../assets/img/Add.png')} style={{ height: 66, width: 66 }}></Image>
                     </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity onPress={() => navigation.navigate("AddGrandpa")} style={styles.buttonAddPerson}>
-                        <Image source={require('../../assets/img/Ajustes.png')} style={{ height: 66, width: 66 }}></Image>
+                        <Image source={require('../../assets/img/Ajustes.png')} style={{ height: 55, width: 55 }}></Image>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         flex: 0.5,
         width: '100%',
         flexDirection: "row",
-        alignSelf: 'flex-end',
+        justifyContent: 'center',
     },
     body: {
         flex: 2,
