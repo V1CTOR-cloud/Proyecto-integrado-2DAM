@@ -146,7 +146,7 @@ const AddGrandpa = () => {
                             selectionColor='#99c8de'
                             mode='outlined'
                             value={Alergias}
-                            onChangeText={Alergias => setNombre(Alergias)}
+                            onChangeText={Alergias => setAlergias(Alergias)}
                             theme={{ colors: { primary: '#99c8de' } }}
                         />
 
@@ -158,20 +158,26 @@ const AddGrandpa = () => {
                                     value="Bajo"
                                     status={Dependencia === 'Bajo' ? 'checked' : 'unchecked'}
                                     onPress={() => setDependencia("Bajo")}
-                                    color='red'
+                                    color='green'
                                 > </RadioButton>
-                                <Text style={{ color: 'black' }} onPress={() => setDependencia("Bajo")}>MAneeel</Text>
+                                <Text style={{ color: 'black' }} onPress={() => setDependencia("Bajo")}>Bajo</Text>
                             </View>
-                            <RadioButton
-                                value="Medio"
-                                status={Dependencia === 'Medio' ? 'checked' : 'unchecked'}
-                                onPress={() => setDependencia("Medio")}
-                            />
-                            <RadioButton
-                                value="Alto"
-                                status={Dependencia === 'Alto' ? 'checked' : 'unchecked'}
-                                onPress={() => setDependencia("Alto")}
-                            />
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <RadioButton
+                                    value="Medio"
+                                    status={Dependencia === 'Medio' ? 'checked' : 'unchecked'}
+                                    onPress={() => setDependencia("Medio")}
+                                    color='yellow'
+                                /><Text style={{ color: 'black' }} onPress={() => setDependencia("Medio")}>Medio</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <RadioButton
+                                    value="Alto"
+                                    status={Dependencia === 'Alto' ? 'checked' : 'unchecked'}
+                                    onPress={() => setDependencia("Alto")}
+                                    color='red'
+                                /><Text style={{ color: 'black' }} onPress={() => setDependencia("Alto")}>Alto</Text>
+                            </View>
                         </View>
 
                         <Button
@@ -183,7 +189,7 @@ const AddGrandpa = () => {
 
                         >
                             Add
-                    </Button>
+                        </Button>
                     </View>
                 </ScrollView>
             </View>
