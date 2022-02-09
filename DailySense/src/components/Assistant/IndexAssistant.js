@@ -18,7 +18,7 @@ const IndexAssistant = () => {
             <View style={styles.header}>
                 <View style={{ flexDirection: "column" }}>
                     <Text style={styles.titol}>Bienvenido</Text>
-                    <Text style={styles.titol}>JUAN</Text>
+                    <Text style={styles.subtitol}>Jose</Text>
                 </View>
                 <Image
                     style={styles.logo}
@@ -37,7 +37,7 @@ const IndexAssistant = () => {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity onPress={() => navigation.navigate("AddGrandpa")} style={styles.buttonAddPerson}>
+                    <TouchableOpacity onPress={() => navigation.navigate("AddGrandpa")} style={styles.buttonAddPerson, {position: 'relative', bottom: 20}}>
                         <Image source={require('../../assets/img/Add.png')} style={{ height: 66, width: 66 }}></Image>
                     </TouchableOpacity>
                 </View>
@@ -65,17 +65,23 @@ const styles = StyleSheet.create({
         flex: 0.5,
         width: '100%',
         flexDirection: "row",
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 20
     },
     body: {
-        flex: 2,
+        flex: 3,
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
-
     },
     titol: {
-        left: 30,
+        left: 25,
+        fontSize: 20,
+        color: "black",
+    },
+    subtitol: {
+        left: 25,
         fontSize: 25,
         color: "black",
     },
@@ -83,9 +89,9 @@ const styles = StyleSheet.create({
         top: 0,
         left: 40,
         right: 0,
-        width: "20%",
-        height: "35%",
-        marginLeft: 60,
+        width: 100,
+        height: 100,
+        marginLeft: 100,
         resizeMode: "stretch",
     },
     buttonAddPerson: {
@@ -95,10 +101,16 @@ const styles = StyleSheet.create({
         paddingLeft: 25,
         marginTop: 20
     },
+    buttonAddPerson: {
+        paddingTop: 5,
+        paddingRight: 25,
+        paddingBottom: 5,
+        paddingLeft: 25,
+        marginTop: 20
+    },
     slider: {
-        height: "70%",
-        width: "90%",
-
+        height: "100%",
+        width: "100%",
     },
 })
 

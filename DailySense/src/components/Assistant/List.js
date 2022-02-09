@@ -73,9 +73,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center'
     },
-    chips: {
-        marginTop: 15,
-    },
     imagen: {
         height: "30%",
         width: "35%",
@@ -91,7 +88,7 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     ico: {
-        height: 20,
+        height: 32,
         width: 30
     }
 });

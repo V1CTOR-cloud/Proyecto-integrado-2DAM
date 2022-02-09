@@ -17,7 +17,7 @@ const Slider = () => {
             <Swiper>
                 <View>
                     <Card>
-                        <Card.Title title="Nombre" left={(props) => <Avatar.Image size={50} theme={{ colors: { primary: "trasnparent" } }} source={require("../../assets/img/Dependiente.png")} />} />
+                        <Card.Title title="Nombre" left={(props) => <Avatar.Image size={50} theme={{ colors: { primary: "trasnparent" } }} source={require("../../assets/img/Cuidadora.png")} />} />
                     </Card>
                 </View>
             </Swiper>
