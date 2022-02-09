@@ -10,6 +10,8 @@ import Tareas from './src/components/Assistant/Tareas';
 import AnyadirTarea from './src/components/Assistant/AnyadirTarea';
 import Recordatorios from './src/components/Assistant/Recordatorios';
 import AnyadirRecordatorio from './src/components/Assistant/AnyadirRecordatorio';
+import Pills from './src/components/Assistant/Pills.js';
+import SliderPills from './src/components/Assistant/SliderPills.js'
 import AddGrandpa from "./src/components/Assistant/AddGranpa";
 import Lista from "./src/components/Assistant/List";
 
@@ -53,6 +55,12 @@ class App extends Component {
             </Stack.Group>
             <Stack.Group>
               <Stack.Screen name="Lista" component={Lista} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="Pills" component={Pills} />
+            </Stack.Group>
+            <Stack.Group>
+              <Stack.Screen name="SliderPills" component={SliderPills} />
             </Stack.Group>
             <Stack.Group>
               <Stack.Screen name="AddGrandpa" component={AddGrandpa} />
