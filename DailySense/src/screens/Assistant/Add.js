@@ -13,7 +13,6 @@ import {
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
-import Add from "./Add";
 
 
 const colors = {
@@ -24,15 +23,7 @@ const colors = {
     tint: "#2b49c3"
 }
 
-function Home() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Add" component={Add} />
-    </Tab.Navigator>
-  );
-}
-
-const IndexAssistant = ({navigation}) => {
+const Add = ({navigation}) => {
 
     const [User, setUser] = React.useState("");
     const [Password, setPassword] = React.useState("");
@@ -41,35 +32,7 @@ const IndexAssistant = ({navigation}) => {
     return ( 
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
-            <View style={styles.header}>
-                <View style={styles.headercontext}>
-                    <Image
-                        style={styles.img}
-                        source={require('../../assets/img/feather.png')}
-                    />
-                    <Text style={styles.h2}>
-                        Welcome 
-                    </Text>
-                    <Text style={styles.h1}>
-                        Víctor 
-                    </Text>
-                </View>
-                <View style={styles.contimg}>
-                    <Image
-                        style={styles.logo}
-                        source={require('../../assets/img/Dependiente.png')}
-                    />
-                </View>
-            </View>
-            <View style={styles.content}>
-
-            </View>
-            <View style={styles.footer}>
-                <Image
-                    source={require('../../assets/img/Add.png')}
-                    style={styles.imgbtn}
-                />
-            </View>
+            
         </View>
      );
 
@@ -158,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
  
-export default IndexAssistant;
+export default Add;
