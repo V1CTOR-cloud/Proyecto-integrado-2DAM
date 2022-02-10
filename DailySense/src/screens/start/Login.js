@@ -8,7 +8,8 @@ import {
   useColorScheme,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
@@ -53,31 +54,26 @@ const Login = ({ navigation }) => {
 
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
-  const [Val, setVal] = React.useState("");
-
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch('http:52.174.144.160:5000/127.0.0.1/test?')
-      .then((response) => response.json())
-      .then((json) => setData(json[0]))
-      .catch((error) => console.error(error));
-  }, []);
 
   const [datos, setDatos] = React.useState([]);
   const post = "[{type: login, user: " + User + ", pass: " + Password + "}]";
 
   const postDatos = async () => {
-    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1', { post });
+    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
     setDatos(res.data.items);
     console.log(datos);
   }
 
   const logIn = () => {
     postDatos;
-    if (data.length !== 0) {
-      if (data[0].correct === "true")
+    if (datos.length !== 0) {
+      if (datos[0].correct === "true") {
         navigation.navigate("IndexAssistant");
+      } else {
+        Alert.alert("Error", "Username or password incorrect try again")
+      }
+    } else {
+      Alert.alert("Error", "Username or password incorrect try again")
     }
 
   }
@@ -129,7 +125,7 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => logIn}
+            onPress={() =>  navigation.navigate("BottomTabs")}
             labelStyle={{ color: colors.white }}
           >
             Sign in
