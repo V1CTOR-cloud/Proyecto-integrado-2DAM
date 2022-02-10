@@ -24,14 +24,6 @@ const colors = {
     tint: "#2b49c3"
 }
 
-function Home() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Add" component={Add} />
-    </Tab.Navigator>
-  );
-}
-
 const IndexAssistant = ({navigation}) => {
 
     const [User, setUser] = React.useState("");
@@ -64,12 +56,7 @@ const IndexAssistant = ({navigation}) => {
             <View style={styles.content}>
 
             </View>
-            <View style={styles.footer}>
-                <Image
-                    source={require('../../assets/img/Add.png')}
-                    style={styles.imgbtn}
-                />
-            </View>
+            
         </View>
      );
 

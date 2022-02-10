@@ -1,16 +1,26 @@
 import * as React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import IndexAssistant from '../Assistant/IndexAssistant';
 import Add from '../Assistant/Add';
+import List from '../Assistant/List';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
-const BottomTabs = () => (
-    <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home}/>
-        <Tab.Screen name="Pantalla1" component={Pantalla1}/>
-        <Tab.Screen name="Pantalla2" component={Pantalla2}/>
+const BottomTabs = ({ navigation }) => (
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      activeColor="#f0edf6"
+          inactiveColor="#A3A3A3"
+          barStyle={{ backgroundColor: "#515151" }}
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="vote" color={color} size={size} />
+        ),
+      }}
+     >
+        <Tab.Screen name="Home" component={IndexAssistant}  />
+        <Tab.Screen name="Add" component={Add} />
+        <Tab.Screen name="List" component={List} />
     </Tab.Navigator>
 );
 export default BottomTabs;

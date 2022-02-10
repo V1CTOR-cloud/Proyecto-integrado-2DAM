@@ -12,7 +12,9 @@
  
  import Login from "./src/screens/start/Login";
  import CreateAccount from './src/screens/start/CreateAccount';
+ import BottomTabs from './src/screens/components/BottomTabs';
  import IndexAssistant from './src/screens/Assistant/IndexAssistant';
+
  
  import {
    StatusBar,
@@ -58,6 +60,7 @@
          <Stack.Screen name="Landing" component={Landing} />
          <Stack.Screen name="Login" component={Login} />
          <Stack.Screen name="CreateAccount" component={CreateAccount} />
+         <Stack.Screen name="BottomTabs" component={BottomTabs} />
          <Stack.Screen name="IndexAssistant" component={IndexAssistant} />
        </Stack.Navigator>
      </NavigationContainer>
