@@ -18,7 +18,7 @@ const BottomTabs = ({ navigation }) => (
         ),
       }}
      >
-        <Tab.Screen name="Home" component={IndexAssistant}  />
+        <Tab.Screen name="Home" component={IndexAssistant} />
         <Tab.Screen name="Add" component={Add} />
         <Tab.Screen name="List" component={List} />
     </Tab.Navigator>

@@ -68,7 +68,7 @@ const Login = ({ navigation }) => {
     postDatos;
     if (datos.length !== 0) {
       if (datos[0].correct === "true") {
-        navigation.navigate("IndexAssistant");
+        navigation.navigate("BottomTabs");
       } else {
         Alert.alert("Error", "Username or password incorrect try again")
       }
