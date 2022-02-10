@@ -12,7 +12,8 @@ import {
     Text,
     View,
     Image,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 
 import { TextInput, Button } from 'react-native-paper';
@@ -42,15 +43,20 @@ const Lista = () => {
                     <View style={styles.scrollv}>
                         {person.map((person, index) => {
                             return (
-                                <View key={index} style={{ flexDirection: "row", margin: 10 }}>
+                                <TouchableOpacity key={index} style={styles.listItem} onPress={() => navigation.navigate()}>
                                     <Image source={require('../../assets/img/Dependiente.png')} style={styles.ico}></Image>
-                                    <Text style={{color:'black'}}>{person}</Text>
-                                </View>
+                                    <Text style={{ color: 'black' }}>{person}</Text>
+                                </TouchableOpacity>
                             );
                         })
                         }
                     </View>
                 </ScrollView>
+                <Button
+                    style={{ bottom: 10 }}
+                    labelStyle={{ color: 'white' }}
+                    mode='contained'
+                    color='#99c8de' onPress={() => navigation.goBack()}>Return</Button>
             </View>
 
         </View >
@@ -90,6 +96,13 @@ const styles = StyleSheet.create({
     ico: {
         height: 32,
         width: 30
+    },
+    listItem: {
+        width: "90%",
+        flexDirection: "row",
+        margin: 10,
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
 
