@@ -1,0 +1,209 @@
+import React from "react";
+import {
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
+    Image,
+    TouchableOpacity
+} from 'react-native';
+
+import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
+import { TextInput, Button } from "react-native-paper";
+
+
+const colors = {
+    themeColor: "#4263ec",
+    white: "#fff",
+    background: "#f4f6fc",
+    greyish: "#a4a4a4", 
+    tint: "#2b49c3"
+}
+
+
+function Validation() {
+    setVal(true)
+
+    if (User == "" && Password == "") {
+      setVal(false)
+    }else{
+      if (User == "") {
+        setVal(false)
+      } else {
+        if (Password == "") {
+          setVal(false)
+        }
+      }
+    }    
+}
+
+function IniciarSesion(){
+    if(Validation){
+
+    }else{
+
+    }
+}
+
+
+const Login = ({navigation}) => {
+
+    const [User, setUser] = React.useState("");
+    const [Password, setPassword] = React.useState("");
+    const [Val, setVal] = React.useState("");
+
+    return ( 
+        <View style={styles.container}>
+            <StatusBar barStyle="light-content" backgroundColor={colors.tint}/>
+            <View style={styles.header}>
+                <Text style={styles.h1}>Welcome to DailySense</Text>
+            </View>
+            <View style={styles.content}>
+                <View style={styles.form}>
+                    <View style={styles.texti}>
+                        <Image
+                            style={styles.img}
+                            source={require('../../assets/img/user.png')}
+                        />
+                        <TextInput
+                            placeholder='Your Username goes here...'
+                            style={styles.box}
+                            label='Username'
+                            mode='outlined'
+                            value={User}
+                            onChangeText={User => setUser(User)}
+                            theme={{ colors: { primary: colors.tint } }}
+                        />
+                    </View> 
+
+                    <View style={styles.texti}>
+                        <Image
+                            style={styles.img}
+                            source={require('../../assets/img/lock.png')}
+                        />
+                        <TextInput
+                            placeholder='Your Password goes here...'
+                            style={styles.box}
+                            label='password'
+                            mode='outlined'
+                            value={Password}
+                            onChangeText={Password => setPassword(Password)}
+                            secureTextEntry={true}
+                            theme={{ colors: { primary: colors.tint } }}
+                        />
+                    </View>
+                </View>
+                <View style={styles.contbtn}>
+                    <Button
+                        mode='contained'
+                        color={colors.themeColor}
+                        style={styles.btn}
+                        onPress={()=> navigation.navigate("IndexAssistant")}
+                        labelStyle={{color: colors.white}}
+                    >
+                        Sign in
+                    </Button>
+                    <Button
+                        mode='outlined'
+                        color={colors.themeColor}
+                        style={styles.btnout}
+                        onPress={()=> navigation.navigate("CreateAccount")}
+                        labelStyle={{color: colors.themeColor}}
+                    >
+                        Sign up
+                    </Button>
+                </View>
+                <View style={styles.context}>
+                    <Text>Florida - DAM 2 - DailySense - 2022©</Text>
+                </View>
+            </View>
+        </View>
+     );
+}
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      backgroundColor: colors.tint,
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+  header: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  texti:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 10
+  },
+  h1: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    position: 'relative',
+    left: 30,
+    color: colors.white
+  },
+  img:{
+    height: 20,
+    width: 20,
+  },
+  content: {
+      flex: 5,
+      width: '100%',
+      backgroundColor: colors.white,
+      borderRadius: 40,
+      position: 'relative',
+      top: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  form: {
+    flex: 0.3,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 100
+  },
+  box: {
+    height: 45,
+    margin:15,
+    width: 250,
+  },
+  contbtn:{
+    height: 150,
+    width: '80%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 70
+  },
+  btn:{
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  btnout:{
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: colors.themeColor,
+    borderWidth: 1,
+  },
+  context: {
+    height: 20,
+    position: 'relative',
+    top: 80
+  }
+});
+ 
+export default Login;
