@@ -16,10 +16,10 @@ RAMAS EN LAS QUE SE TRABAJARÁ:
 	axure: axure
 
 1. npm install
-2. npm install react-native-gesture-handler
-3. npm install react-navigation/native
-4. npm install react-navigation/stack
+2. npm install react-native-screens react-native-safe-area-context
+3. npm install npm install @react-navigation/bottom-tabs
+4. npm install npm install @react-navigation/native
 5. npm install react-native/paper
-6. npm install react-native/screens
+6. npm install npm install @react-navigation/native-stack
 7. npm install @react-native-picker/picker
 8. npm install react-native-paper-dates
