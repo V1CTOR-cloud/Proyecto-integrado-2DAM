@@ -58,49 +58,6 @@ const Login = ({ navigation }) => {
   const [datos, setDatos] = React.useState([]);
   const post = "[{type: login, user: " + User + ", pass: " + Password + "}]";
 
-<<<<<<< HEAD
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/lock.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Password goes here...'
-                            style={styles.box}
-                            label='password'
-                            mode='outlined'
-                            value={Password}
-                            onChangeText={Password => setPassword(Password)}
-                            secureTextEntry={true}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                </View>
-                <View style={styles.contbtn}>
-                    <Button
-                        mode='contained'
-                        color={colors.themeColor}
-                        style={styles.btn}
-                        onPress={()=> navigation.navigate("BottomTabs")}
-                        labelStyle={{color: colors.white}}
-                    >
-                        Sign in
-                    </Button>
-                    <Button
-                        mode='outlined'
-                        color={colors.themeColor}
-                        style={styles.btnout}
-                        onPress={()=> navigation.navigate("CreateAccount")}
-                        labelStyle={{color: colors.themeColor}}
-                    >
-                        Sign up
-                    </Button>
-                </View>
-                <View style={styles.context}>
-                    <Text>Florida - DAM 2 - DailySense - 2022©</Text>
-                </View>
-            </View>
-=======
   const postDatos = async () => {
     const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
     setDatos(res.data.items);
@@ -162,7 +119,6 @@ const Login = ({ navigation }) => {
               theme={{ colors: { primary: colors.tint } }}
             />
           </View>
->>>>>>> a8ab6d9e4ebc70e7ca8658e3f5b74e87ae6f6257
         </View>
         <View style={styles.contbtn}>
           <Button
