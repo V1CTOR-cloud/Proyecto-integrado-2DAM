@@ -9,6 +9,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import SafeAreaView from 'react-native';
 
 import Login from "./src/screens/start/Login";
 import CreateAccount from './src/screens/start/CreateAccount';
@@ -38,6 +40,7 @@ const colors = {
 
 function Landing({ navigation }) {
   return (
+    
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.circle}>
@@ -49,6 +52,7 @@ function Landing({ navigation }) {
       />
       <Text style={styles.h1}>DailySense</Text>
     </TouchableOpacity>
+    
   );
 }
 
@@ -57,6 +61,7 @@ const Stack = createNativeStackNavigator();
 const App = () => {
 
   return (
+  <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Landing" component={Landing} />
@@ -68,6 +73,7 @@ const App = () => {
         <Stack.Screen name="User" component={User} />
       </Stack.Navigator>
     </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

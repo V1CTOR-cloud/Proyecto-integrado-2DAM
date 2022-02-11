@@ -31,7 +31,7 @@ const Add = ({navigation}) => {
 
     return ( 
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
+            <StatusBar barStyle="light-content" backgroundColor={colors.tint}/>
             
         </View>
      );

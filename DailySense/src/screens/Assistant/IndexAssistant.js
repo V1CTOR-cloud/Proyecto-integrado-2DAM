@@ -56,36 +56,22 @@ const IndexAssistant = ({ navigation }) => {
             Víctor
           </Text>
         </View>
-        <View style={styles.contimg}>
+        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate('User')}>
           <Image
             style={styles.logo}
             source={require('../../assets/img/Dependiente.png')}
           />
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.content}>
 
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('List')}>
-          <Image
-            style={styles.imgbtn}
-            source={require('../../assets/img/list.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
+      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
           <Image
             style={styles.imgbtn}
             source={require('../../assets/img/Add.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('User')}>
-          <Image
-            style={styles.imgbtn}
-            source={require('../../assets/img/userico.png')}
-          />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -93,7 +79,7 @@ const IndexAssistant = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -155,31 +141,30 @@ const styles = StyleSheet.create({
   content: {
     flex: 5,
     width: '100%',
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     justifyContent: 'center',
     alignItems: 'center',
   },
   footer: {
-    flex: 0.8,
+    flex: 1,
     width: '100%',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     flexDirection: 'row',
   },
   contbtn: {
-    flex: 1,
+    height: 60,
+    width: 60,
     backgroundColor: colors.themeColor,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 200,
+    position: 'absolute',
+    bottom: 35,
+    right: 30
   },
-  contbtn:{
-    flex:1,
-    backgroundColor: colors.themeColor,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },  
   imgbtn: {
-    height: 45,
-    width: 45
+    height: 40,
+    width: 40
   }
 });
 
