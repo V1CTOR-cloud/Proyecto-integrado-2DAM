@@ -4,7 +4,7 @@ import IndexAssistant from '../Assistant/IndexAssistant';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Add from '../Assistant/Add';
 import List from '../Assistant/List';
-
+import { useLinkProps } from '@react-navigation/native';
 const Tab = createMaterialBottomTabNavigator();
 
 const colors = {
@@ -15,7 +15,8 @@ const colors = {
   tint: "#2b49c3"
 }
 
-const BottomTabs = ({ navigation }) => (
+const BottomTabs = ({ navigation }, {props}) => (
+    
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
       barStyle={{ backgroundColor: colors.themeColor }}
@@ -38,7 +39,7 @@ const BottomTabs = ({ navigation }) => (
         tabBarInactiveTintColor: colors.greyish,
       })}
      >
-        <Tab.Screen name="Home" component={IndexAssistant} />
+        <Tab.Screen name="Home" component={IndexAssistant}/>
         <Tab.Screen name="Add" component={Add} />
         <Tab.Screen name="List" component={List} />
     </Tab.Navigator>
