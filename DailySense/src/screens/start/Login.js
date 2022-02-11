@@ -55,6 +55,9 @@ const Login = ({ navigation }) => {
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
 
+  const [Userbd, setUserbd] = React.useState("");
+  const [Gender, setGender] = React.useState("");
+
   const [datos, setDatos] = React.useState([]);
   const post = "[{type: login, user: " + User + ", pass: " + Password + "}]";
   const [Id, setId] = React.useState();
@@ -69,8 +72,11 @@ const Login = ({ navigation }) => {
     postDatos;
     if (datos.length !== 0) {
       if (datos[0].correct === "true") {
-        setId(datos[0].id);
-        navigation.navigate("BottomTabs");
+        setId(datos[0].IdAssistant);
+        setUserbd(datos[0].User);
+        setGender(datos[0].Gender);
+        
+        navigation.navigate("IndexAssistant", {id: Id, user: Userbd, gender:Gender});
       } else {
         Alert.alert("Error", "Username or password incorrect try again")
       }
