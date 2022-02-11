@@ -57,6 +57,7 @@ const Login = ({ navigation }) => {
 
   const [datos, setDatos] = React.useState([]);
   const post = "[{type: login, user: " + User + ", pass: " + Password + "}]";
+  const [Id, setId] = React.useState();
 
   const postDatos = async () => {
     const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
@@ -68,6 +69,7 @@ const Login = ({ navigation }) => {
     postDatos;
     if (datos.length !== 0) {
       if (datos[0].correct === "true") {
+        setId(datos[0].id);
         navigation.navigate("BottomTabs");
       } else {
         Alert.alert("Error", "Username or password incorrect try again")
@@ -125,7 +127,7 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() =>  navigation.navigate("BottomTabs")}
+            onPress={() =>  navigation.navigate("IndexAssistant")}
             labelStyle={{ color: colors.white }}
           >
             Sign in

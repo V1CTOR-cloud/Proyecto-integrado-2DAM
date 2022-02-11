@@ -4,7 +4,7 @@ import IndexAssistant from '../Assistant/IndexAssistant';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Add from '../Assistant/Add';
 import List from '../Assistant/List';
-
+import { useLinkProps } from '@react-navigation/native';
 const Tab = createMaterialBottomTabNavigator();
 
 const colors = {
@@ -15,30 +15,20 @@ const colors = {
   tint: "#2b49c3"
 }
 
-const BottomTabs = ({ navigation }) => (
+const BottomTabs = ({ navigation }, {props}) => (
+    
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
       barStyle={{ backgroundColor: colors.themeColor }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'home'
-              : 'home';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'home' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={20} color={color} />;
+          return <Ionicons name="home" size={20} color="white" />;
         },
         tabBarActiveTintColor: colors.themeColor,
-        tabBarInactiveTintColor: colors.greyish,
+        tabBarInactiveTintColor: colors.white,
       })}
      >
-        <Tab.Screen name="Home" component={IndexAssistant} />
+        <Tab.Screen name="Home" component={IndexAssistant}/>
         <Tab.Screen name="Add" component={Add} />
         <Tab.Screen name="List" component={List} />
     </Tab.Navigator>
