@@ -59,7 +59,7 @@ const Login = ({ navigation }) => {
   const [Gender, setGender] = React.useState("");
 
   const [datos, setDatos] = React.useState([]);
-  const post = "[{type: login, user: " + User + ", pass: " + Password + "}]";
+  const post = "[{op: login, user: " + User + ", pass: " + Password + "}]";
   const [Id, setId] = React.useState();
 
   const postDatos = async () => {

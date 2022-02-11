@@ -57,16 +57,17 @@ const CreateAccount = ({ navigation }) => {
 
 
     const [datos, setDatos] = React.useState([]);
-    const post = "[{type: register, user: " + User + ", pass: " + Password + ", email: " + MailAccount + ", gender: " + Sexo + "}]";
+    const post = "{op: register, user: " + User + ", pass: " + Password + ", email: " + MailAccount + ", gender: " + Sexo + "}";
 
     const postDatos = async () => {
-        const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-        setDatos(res.data.items);
+        const res = await axios.post('http:52.174.144.160:5000/test?', { post });
+        setDatos(res);
         console.log(datos);
     }
 
     const next = () => {
-        if(datos==="OK")
+        postDatos;
+        if(datos.correct==="OK")
         navigation.navigate("Login")
     }
 
