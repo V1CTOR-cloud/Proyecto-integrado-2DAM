@@ -32,7 +32,7 @@ const IndexAssistant = ({ navigation }) => {
   const [Id, setId] = React.useState("");
 
   const [datos, setDatos] = React.useState([]);
-  const post = "[{id: " + Id + "}]";
+  const post = "[{type: login2, id: " + Id + "}]";
 
   const postDatos = async () => {
     const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });

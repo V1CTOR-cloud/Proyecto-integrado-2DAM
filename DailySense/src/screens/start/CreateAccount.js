@@ -57,7 +57,7 @@ const CreateAccount = ({ navigation }) => {
 
 
     const [datos, setDatos] = React.useState([]);
-    const post = "[{type: login, user: " + User + ", pass: " + Password + ", mail: " + MailAccount + ", sex: " + Sexo + "}]";
+    const post = "[{type: register, user: " + User + ", pass: " + Password + ", email: " + MailAccount + ", gender: " + Sexo + "}]";
 
     const postDatos = async () => {
         const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
