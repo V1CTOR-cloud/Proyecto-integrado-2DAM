@@ -11,6 +11,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import axios from 'axios';
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button, Chip, HelperText } from "react-native-paper";
 
@@ -56,18 +57,25 @@ const CreateAccount = ({ navigation }) => {
 
 
 
-    const [datos, setDatos] = React.useState([]);
-    const post = "[{type: register, user: " + User + ", pass: " + Password + ", email: " + MailAccount + ", gender: " + Sexo + "}]";
+    const [datos, setDatos] = React.useState("a");
+    const post = "{\"op\": \"register\", \"user\": " + User + ", \"pass\": " + Password + ", \"email\": " + MailAccount + ", \"gender\": " + Sexo + "}";
 
     const postDatos = async () => {
-        const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-        setDatos(res.data.items);
+        console.log("hoa");
+        const res = await axios.post('http:52.174.144.160:5000/test?', { post });
+        setDatos(res);
         console.log(datos);
     }
 
     const next = () => {
-        if(datos==="OK")
+        console.log("He llegado");
+        postDatos();
+        console.log(datos)
+        if(datos.correct==="OK"){
         navigation.navigate("Login")
+        }else{
+            console.log("Datos no es OK")
+        }
     }
 
     return (
@@ -153,7 +161,7 @@ const CreateAccount = ({ navigation }) => {
                     mode='contained'
                     color={colors.themeColor}
                     style={styles.btn}
-                    onPress={() => navigation.navigate('IndexAssistant')}
+                    onPress={() => next()}
                     labelStyle={{ color: colors.white,width: '100%' }}
                 >
                     Register
