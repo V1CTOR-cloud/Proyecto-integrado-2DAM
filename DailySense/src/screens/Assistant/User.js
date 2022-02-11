@@ -1,14 +1,12 @@
 import React from "react";
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    useColorScheme,
-    View,
-    Image,
-    TouchableOpacity
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
@@ -16,109 +14,114 @@ import { TextInput, Button } from "react-native-paper";
 
 
 const colors = {
-    themeColor: "#4263ec",
-    white: "#fff",
-    background: "#f4f6fc",
-    greyish: "#a4a4a4", 
-    tint: "#2b49c3"
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3"
 }
 
-const User = ({navigation}) => {
+const User = ({ navigation }) => {
 
-    const [User, setUser] = React.useState("");
-    const [Password, setPassword] = React.useState("");
-    const [Val, setVal] = React.useState("");
+  const [User, setUser] = React.useState("");
+  const [Password, setPassword] = React.useState("");
+  const [Val, setVal] = React.useState("");
 
-    return ( 
-        <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
-            
+  return (
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+      <View style={styles.header}>
+        <Image
+          source={require('../../assets/img/wall.jpg')}
+          style={styles.wall}
+        />
+        <Text style={styles.h1}>Victor</Text>
+      </View>
+      <View style={styles.body}>
+        <View style={styles.texti}>
+          <Image
+            style={styles.img}
+            source={require('../../assets/img/lock.png')}
+          />
+          <TextInput
+            placeholder='Your Password goes here...'
+            style={styles.box}
+            label='Password'
+            mode='outlined'
+            value={Password}
+            onChangeText={Password => setPassword(Password)}
+            secureTextEntry={true}
+            theme={{ colors: { primary: colors.tint } }}
+          />
         </View>
-     );
+      </View>
+      <View style={styles.footer}>
 
-     
+      </View>
+    </View>
+  );
+
+
 }
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      backgroundColor: colors.white,
-      justifyContent: 'center',
-      alignItems: 'center'
+    flex: 1,
+    backgroundColor: colors.background,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   header: {
-    flex: 1.6,
-    width: '110%',
+    flex: 1,
+    width: '100%',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
     backgroundColor: colors.themeColor,
-    borderRadius: 100,
-    position: 'relative',
-    bottom: 40,
-  },
-  img:{
-    height: 40,
-    width: 40,
-    position: 'relative',
-    top: 40
-  },
-  headercontext: {
-    height: 100,
-    width: 200,
-    justifyContent: 'center',
-    position: 'relative',
-    left: 50,
-    top: 30,
-    flexDirection: 'column'
   },
   h1: {
     fontSize: 30,
-    fontWeight: '700',
+    fontWeight: 'bold',
     color: colors.white,
-    position: 'relative',
-    left: 60
+    position: 'absolute',
   },
-  h2: {
-    fontSize: 18,
-    fontWeight: '300',
-    color: colors.white,
-    position: 'relative',
-    left: 60
-  },
-  contimg: {
-    height: 80,
-    width: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.white,
-    position: 'relative',
-    left: 300,
-    bottom: 50,
-    borderRadius: 100
-  },
-  logo:{
-    height: 65,
-    width: 60,
-  },
-  content: {
+  body: {
     flex: 4,
     width: '100%',
-    backgroundColor: colors.white,
-    justifyContent: 'center',
+    backgroundColor: colors.background,
     alignItems: 'center',
+    justifyContent: 'space-evenly'
   },
   footer: {
-    flex: 0.8,
+    flex: 1,
     width: '100%',
-    backgroundColor: colors.greyish,
+    backgroundColor: colors.tint,
+  },
+  wall: {
+    height: 130,
+    width: '100%',
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
+    position: 'absolute',
+    top: 0,
+    opacity: 0.5
+  },
+  texti: {
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+    padding: 10
   },
-  imgbtn: {
-    height: 65,
-    width: 65
-  }
+  box: {
+    height: 45,
+    margin: 20,
+    width: 250
+  },
+  img: {
+    height: 20,
+    width: 20,
+  },
 });
- 
+
 export default User;

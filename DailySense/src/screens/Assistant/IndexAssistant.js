@@ -42,7 +42,7 @@ const IndexAssistant = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} animated={true} />
       <View style={styles.header}>
         <View style={styles.headercontext}>
           <Image
