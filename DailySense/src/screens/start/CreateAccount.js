@@ -116,7 +116,7 @@ const CreateAccount = ({ navigation }) => {
                         <TextInput
                             placeholder='Your Password goes here...'
                             style={styles.box}
-                            label='password'
+                            label='Password'
                             mode='outlined'
                             secureTextEntry={true}
                             onChangeText={Password => setPassword(Password)}
