@@ -153,8 +153,8 @@ const CreateAccount = ({ navigation }) => {
                     mode='contained'
                     color={colors.themeColor}
                     style={styles.btn}
-                    onPress={() => next}
-                    labelStyle={{ color: colors.white }}
+                    onPress={() => navigation.navigate('IndexAssistant')}
+                    labelStyle={{ color: colors.white,width: '100%' }}
                 >
                     Register
                 </Button>

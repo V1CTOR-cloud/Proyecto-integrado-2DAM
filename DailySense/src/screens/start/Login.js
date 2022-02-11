@@ -128,7 +128,7 @@ const Login = ({ navigation }) => {
             color={colors.themeColor}
             style={styles.btn}
             onPress={() =>  navigation.navigate("IndexAssistant")}
-            labelStyle={{ color: colors.white }}
+            labelStyle={{ color: colors.white, width: '99%' }}
           >
             Sign in
                     </Button>
@@ -137,7 +137,7 @@ const Login = ({ navigation }) => {
             color={colors.themeColor}
             style={styles.btnout}
             onPress={() => navigation.navigate("CreateAccount")}
-            labelStyle={{ color: colors.themeColor }}
+            labelStyle={{  width: '90%' }}
           >
             Sign up
                     </Button>
