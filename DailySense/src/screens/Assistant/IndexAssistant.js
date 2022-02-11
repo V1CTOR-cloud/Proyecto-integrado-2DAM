@@ -51,23 +51,40 @@ const IndexAssistant = ({ navigation }) => {
           />
           <Text style={styles.h2}>
             Welcome
-                    </Text>
+          </Text>
           <Text style={styles.h1}>
             Víctor
-                    </Text>
+          </Text>
         </View>
         <View style={styles.contimg}>
           <Image
             style={styles.logo}
             source={require('../../assets/img/Dependiente.png')}
           />
-        </View> 
+        </View>
       </View>
       <View style={styles.content}>
 
       </View>
       <View style={styles.footer}>
-
+        <TouchableOpacity style={styles.contbtn}>
+          <Image
+            style={styles.imgbtn}
+            source={require('../../assets/img/list.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.contbtn}>
+          <Image
+            style={styles.imgbtn}
+            source={require('../../assets/img/Add.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.contbtn}>
+          <Image
+            style={styles.imgbtn}
+            source={require('../../assets/img/userico.png')}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -148,12 +165,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexDirection: 'row',
   },
-  contbtn:{
-    flex:1,
+  contbtn: {
+    flex: 1,
     backgroundColor: colors.themeColor,
     justifyContent: 'center',
     alignItems: 'center'
-  },  
+  },
   imgbtn: {
     height: 45,
     width: 45
