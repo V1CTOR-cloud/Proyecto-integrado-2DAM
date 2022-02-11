@@ -56,7 +56,26 @@ const IndexAssistant = ({navigation}) => {
             <View style={styles.content}>
 
             </View>
-            
+            <View style={styles.footer}>
+              <TouchableOpacity style={styles.contbtn}> 
+                <Image
+                  style={styles.imgbtn}
+                  source={require('../../assets/img/list.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.contbtn}> 
+                <Image
+                  style={styles.imgbtn}
+                  source={require('../../assets/img/Add.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.contbtn}> 
+                <Image
+                  style={styles.imgbtn}
+                  source={require('../../assets/img/userico.png')}
+                />
+              </TouchableOpacity>
+            </View>
         </View>
      );
 
@@ -71,7 +90,7 @@ const styles = StyleSheet.create({
       alignItems: 'center'
   },
   header: {
-    flex: 1.6,
+    flex: 2,
     width: '110%',
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -126,7 +145,7 @@ const styles = StyleSheet.create({
     width: 60,
   },
   content: {
-    flex: 4,
+    flex: 5,
     width: '100%',
     backgroundColor: colors.white,
     justifyContent: 'center',
@@ -135,13 +154,18 @@ const styles = StyleSheet.create({
   footer: {
     flex: 0.8,
     width: '100%',
-    backgroundColor: colors.greyish,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
   },
+  contbtn:{
+    flex:1,
+    backgroundColor: colors.themeColor,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },  
   imgbtn: {
-    height: 65,
-    width: 65
+    height: 45,
+    width: 45
   }
 });
  

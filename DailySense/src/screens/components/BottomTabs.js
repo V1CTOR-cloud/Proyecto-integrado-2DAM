@@ -21,24 +21,17 @@ const BottomTabs = ({ navigation }) => (
       barStyle={{ backgroundColor: colors.themeColor }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'home'
-              : 'home';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'home' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={20} color={color} />;
+          return <Ionicons name="home" size={20} color="white" />;
         },
         tabBarActiveTintColor: colors.themeColor,
-        tabBarInactiveTintColor: colors.greyish,
+        tabBarInactiveTintColor: colors.white,
       })}
      >
-        <Tab.Screen name="Home" component={IndexAssistant} />
+        <Tab.Screen
+          name="Home"
+          component={IndexAssistant}
+          
+        />
         <Tab.Screen name="Add" component={Add} />
         <Tab.Screen name="List" component={List} />
     </Tab.Navigator>

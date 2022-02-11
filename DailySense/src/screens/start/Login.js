@@ -125,7 +125,7 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() =>  navigation.navigate("BottomTabs")}
+            onPress={() =>  navigation.navigate("IndexAssistant")}
             labelStyle={{ color: colors.white }}
           >
             Sign in
