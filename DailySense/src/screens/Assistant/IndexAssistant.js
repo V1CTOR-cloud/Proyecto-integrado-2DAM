@@ -67,19 +67,19 @@ const IndexAssistant = ({ navigation }) => {
 
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.contbtn}>
+        <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('List')}>
           <Image
             style={styles.imgbtn}
             source={require('../../assets/img/list.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.contbtn}>
+        <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
           <Image
             style={styles.imgbtn}
             source={require('../../assets/img/Add.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.contbtn}>
+        <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('User')}>
           <Image
             style={styles.imgbtn}
             source={require('../../assets/img/userico.png')}

@@ -14,7 +14,9 @@ import Login from "./src/screens/start/Login";
 import CreateAccount from './src/screens/start/CreateAccount';
 import BottomTabs from './src/screens/components/BottomTabs';
 import IndexAssistant from './src/screens/Assistant/IndexAssistant';
-
+import List from './src/screens/Assistant/List';
+import Add from './src/screens/Assistant/Add';
+import User from './src/screens/Assistant/User';
 
 import {
   StatusBar,
@@ -61,6 +63,9 @@ const App = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} />
         <Stack.Screen name="IndexAssistant" component={IndexAssistant} />
+        <Stack.Screen name="Add" component={Add} />
+        <Stack.Screen name="List" component={List} />
+        <Stack.Screen name="User" component={User} />
       </Stack.Navigator>
     </NavigationContainer>
   );
