@@ -1,14 +1,14 @@
 import React from "react";
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    useColorScheme,
-    View,
-    Image,
-    TouchableOpacity
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
@@ -17,34 +17,45 @@ import Add from "./Add";
 
 
 const colors = {
-    themeColor: "#4263ec",
-    white: "#fff",
-    background: "#f4f6fc",
-    greyish: "#a4a4a4", 
-    tint: "#2b49c3"
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3"
 }
 
-const IndexAssistant = ({navigation}) => {
+const IndexAssistant = ({ navigation }) => {
 
-    const [User, setUser] = React.useState("");
-    const [Password, setPassword] = React.useState("");
-    const [Val, setVal] = React.useState("");
+  const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
 
-    return ( 
-        <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
-            <View style={styles.header}>
-                <View style={styles.headercontext}>
-                    <Image
-                        style={styles.img}
-                        source={require('../../assets/img/feather.png')}
-                    />
-                    <Text style={styles.h2}>
-                        Welcome 
+
+  const [Id, setId] = React.useState("");
+
+  const [datos, setDatos] = React.useState([]);
+  const post = "[{id: " + Id + "}]";
+
+  const postDatos = async () => {
+    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
+    setDatos(res.data.items);
+    console.log(datos);
+  }
+
+  return (
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+      <View style={styles.header}>
+        <View style={styles.headercontext}>
+          <Image
+            style={styles.img}
+            source={require("../../assets/img/feather.png")}
+          />
+          <Text style={styles.h2}>
+            Welcome
                     </Text>
-                    <Text style={styles.h1}>
-                        Víctor 
+          <Text style={styles.h1}>
+            Víctor
                     </Text>
+<<<<<<< HEAD
                 </View>
                 <View style={styles.contimg}>
                     <Image
@@ -76,18 +87,32 @@ const IndexAssistant = ({navigation}) => {
                 />
               </TouchableOpacity>
             </View>
+=======
+>>>>>>> 486e95ccd4131c69412b6ca3f0cda834d47a0df4
         </View>
-     );
+        <View style={styles.contimg}>
+          <Image
+            style={styles.logo}
+            source={require('../../assets/img/Dependiente.png')}
+          />
+        </View>
+      </View>
+      <View style={styles.content}>
 
-     
+      </View>
+
+    </View>
+  );
+
+
 }
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      backgroundColor: colors.white,
-      justifyContent: 'center',
-      alignItems: 'center'
+    flex: 1,
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   header: {
     flex: 2,
@@ -99,7 +124,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: 40,
   },
-  img:{
+  img: {
     height: 40,
     width: 40,
     position: 'relative',
@@ -140,7 +165,7 @@ const styles = StyleSheet.create({
     bottom: 50,
     borderRadius: 100
   },
-  logo:{
+  logo: {
     height: 65,
     width: 60,
   },
@@ -168,5 +193,5 @@ const styles = StyleSheet.create({
     width: 45
   }
 });
- 
+
 export default IndexAssistant;
