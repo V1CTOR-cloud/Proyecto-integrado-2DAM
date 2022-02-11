@@ -55,40 +55,6 @@ const IndexAssistant = ({ navigation }) => {
           <Text style={styles.h1}>
             Víctor
                     </Text>
-<<<<<<< HEAD
-                </View>
-                <View style={styles.contimg}>
-                    <Image
-                        style={styles.logo}
-                        source={require('../../assets/img/Dependiente.png')}
-                    />
-                </View>
-            </View>
-            <View style={styles.content}>
-
-            </View>
-            <View style={styles.footer}>
-              <TouchableOpacity style={styles.contbtn}> 
-                <Image
-                  style={styles.imgbtn}
-                  source={require('../../assets/img/list.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.contbtn}> 
-                <Image
-                  style={styles.imgbtn}
-                  source={require('../../assets/img/Add.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.contbtn}> 
-                <Image
-                  style={styles.imgbtn}
-                  source={require('../../assets/img/userico.png')}
-                />
-              </TouchableOpacity>
-            </View>
-=======
->>>>>>> 486e95ccd4131c69412b6ca3f0cda834d47a0df4
         </View>
         <View style={styles.contimg}>
           <Image

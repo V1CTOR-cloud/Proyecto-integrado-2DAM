@@ -28,15 +28,7 @@ const BottomTabs = ({ navigation }, {props}) => (
         tabBarInactiveTintColor: colors.white,
       })}
      >
-<<<<<<< HEAD
-        <Tab.Screen
-          name="Home"
-          component={IndexAssistant}
-          
-        />
-=======
         <Tab.Screen name="Home" component={IndexAssistant}/>
->>>>>>> 486e95ccd4131c69412b6ca3f0cda834d47a0df4
         <Tab.Screen name="Add" component={Add} />
         <Tab.Screen name="List" component={List} />
     </Tab.Navigator>
