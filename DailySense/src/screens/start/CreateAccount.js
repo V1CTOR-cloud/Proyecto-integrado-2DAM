@@ -57,17 +57,17 @@ const CreateAccount = ({ navigation }) => {
 
 
     const [datos, setDatos] = React.useState([]);
-    const post = "[{user: " + User + ", pass: " + Password + ", mail: " + MailAccount + "}]";
+    const post = "[{type: login, user: " + User + ", pass: " + Password + ", mail: " + MailAccount + ", sex: " + Sexo + "}]";
 
     const postDatos = async () => {
-        const res = await axios.post('http:direccion_api_a_llamar', { post });
+        const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
         setDatos(res.data.items);
         console.log(datos);
     }
 
     const next = () => {
+        if(datos==="OK")
         navigation.navigate("Login")
-
     }
 
     return (
@@ -116,7 +116,7 @@ const CreateAccount = ({ navigation }) => {
                         <TextInput
                             placeholder='Your Password goes here...'
                             style={styles.box}
-                            label='password'
+                            label='Password'
                             mode='outlined'
                             secureTextEntry={true}
                             onChangeText={Password => setPassword(Password)}
