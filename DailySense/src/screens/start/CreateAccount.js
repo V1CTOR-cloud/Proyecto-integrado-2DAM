@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         position: 'relative',
-        bottom: 130,
+        bottom: 50,
     },
     box: {
         height: 45,
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        top: 20
+        top: 60
     },
     contchips: {
         height: 30,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flexDirection: 'row',
         position: 'relative',
-        top: 60
+        top: 40
     },
     chip: {
         padding: 1

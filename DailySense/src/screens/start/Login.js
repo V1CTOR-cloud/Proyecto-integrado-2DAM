@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    bottom: 100
+    bottom: 50
   },
   box: {
     height: 45,
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'relative',
-    bottom: 70
+    bottom: 0
   },
   btn: {
     height: 45,
