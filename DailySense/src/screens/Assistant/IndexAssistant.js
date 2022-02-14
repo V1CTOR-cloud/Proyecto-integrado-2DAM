@@ -13,15 +13,18 @@ import {
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
-import Add from "./Add";
+import LinearGradient from 'react-native-linear-gradient'
 
+import Add from "./Add";
+import Card from "../components/Card";
 
 const colors = {
   themeColor: "#4263ec",
   white: "#fff",
   background: "#f4f6fc",
   greyish: "#a4a4a4",
-  tint: "#2b49c3"
+  tint: "#2b49c3",
+  pink: "#D16BA5"
 }
 
 const IndexAssistant = ({ navigation }) => {
@@ -42,8 +45,11 @@ const IndexAssistant = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} animated={true} />
-      <View style={styles.header}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
+      <View
+       style={styles.header}
+       
+       >
         <View style={styles.headercontext}>
           <Image
             style={styles.img}
@@ -64,14 +70,18 @@ const IndexAssistant = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.content}>
-
+        <ScrollView>
+          <Card />
+          <Card />
+          <Card />
+        </ScrollView>
       </View>
       <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
-          <Image
-            style={styles.imgbtn}
-            source={require('../../assets/img/Add.png')}
-          />
-        </TouchableOpacity>
+        <Image
+          style={styles.imgbtn}
+          source={require('../../assets/img/Add.png')}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -84,20 +94,23 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   header: {
-    flex: 2,
+    flex: 1.3,
     width: '110%',
     justifyContent: 'center',
     alignItems: 'flex-start',
     backgroundColor: colors.themeColor,
-    borderRadius: 100,
     position: 'relative',
     bottom: 40,
+    opacity: 1,
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
   },
   img: {
     height: 40,
     width: 40,
     position: 'relative',
-    top: 40
+    top: 40,
+    
   },
   headercontext: {
     height: 100,
@@ -131,7 +144,7 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     position: 'relative',
     left: 300,
-    bottom: 50,
+    bottom: 38,
     borderRadius: 100
   },
   logo: {
@@ -141,9 +154,12 @@ const styles = StyleSheet.create({
   content: {
     flex: 5,
     width: '100%',
-    backgroundColor: colors.background,
-    justifyContent: 'center',
+    backgroundColor: colors.background ,
+    justifyContent: 'space-evenly',
     alignItems: 'center',
+    position: 'relative',
+    bottom: 5,
+    paddingBottom: 20
   },
   footer: {
     flex: 1,

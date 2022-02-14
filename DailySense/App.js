@@ -40,7 +40,7 @@ const colors = {
 
 function Landing({ navigation }) {
   return (
-    
+
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.circle}>
@@ -52,7 +52,7 @@ function Landing({ navigation }) {
       />
       <Text style={styles.h1}>DailySense</Text>
     </TouchableOpacity>
-    
+
   );
 }
 
@@ -61,18 +61,18 @@ const Stack = createNativeStackNavigator();
 const App = () => {
 
   return (
-  <SafeAreaProvider>
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Landing" component={Landing} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="CreateAccount" component={CreateAccount} />
-        <Stack.Screen name="IndexAssistant" component={IndexAssistant} />
-        <Stack.Screen name="Add" component={Add} />
-        <Stack.Screen name="List" component={List} />
-        <Stack.Screen name="User" component={User} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Landing" component={Landing} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="CreateAccount" component={CreateAccount} />
+          <Stack.Screen name="IndexAssistant" component={IndexAssistant} />
+          <Stack.Screen name="Add" component={Add} />
+          <Stack.Screen name="List" component={List} />
+          <Stack.Screen name="User" component={User} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 };

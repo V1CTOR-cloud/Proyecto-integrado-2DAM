@@ -19,7 +19,11 @@
     "axios": "^0.25.0",
     "react": "17.0.2",
     "react-native": "0.67.2",
+<<<<<<< HEAD
     "react-native-gesture-handler": "^2.2.0",
+=======
+    "react-native-linear-gradient": "^2.5.6",
+>>>>>>> main
     "react-native-paper": "^4.11.2",
     "react-native-paper-dates": "^0.8.7",
     "react-native-safe-area-context": "^3.3.2",
