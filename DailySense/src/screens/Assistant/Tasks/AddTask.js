@@ -12,13 +12,22 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { TextInput, Button } from 'react-native-paper';
 
+const colors = {
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3",
+  pink: "#D16BA5"
+}
 
 const AddTask = () => {
 
@@ -28,16 +37,17 @@ const AddTask = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.cont}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.content}>
         <Text style={styles.titulo}>Add tasks</Text>
         <TextInput
           style={styles.box}
           placeholder='Title goes here...'
           label='Title'
-          selectionColor='#99c8de'
+          selectionColor={colors.themeColor}
           mode='outlined'
-          outlineColor='#99c8de'
-          theme={{ colors: { primary: '#99c8de' } }}
+          outlineColor={colors.themeColor}
+          theme={{ colors: { primary: colors.themeColor } }}
           value={Title}
           onChangeText={(Title) => setTitle(Title)}
         />
@@ -47,16 +57,16 @@ const AddTask = () => {
           label='Description'
           multiline
           numberOfLines={3}
-          selectionColor='#99c8de'
+          selectionColor={colors.themeColor}
           mode='outlined'
-          outlineColor='#99c8de'
-          theme={{ colors: { primary: '#99c8de' } }}
+          outlineColor={colors.themeColor}
+          theme={{ colors: { primary: colors.themeColor } }}
           value={Description}
           onChangeText={(Description) => setDescription(Description)}
         />
         <Button
           mode='contained'
-          color='#99c8de'
+          color={colors.themeColor}
           labelStyle={styles.btn}
           onPress={() => navigation.navigate('Tasks', {
             titulo: Title,
@@ -74,14 +84,14 @@ const AddTask = () => {
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: '#99c8de',
+    backgroundColor: colors.themeColor,
     justifyContent: 'center',
     alignItems: 'center'
   },
   content: {
     flex: 0.5,
     width: '80%',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     borderRadius: 10,
     justifyContent: 'space-evenly',
     alignItems: 'center'

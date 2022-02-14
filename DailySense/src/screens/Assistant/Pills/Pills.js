@@ -6,37 +6,36 @@
  * @flow strict-local
  */
 
- import React from 'react';
- import {
-   StyleSheet,
-   Text,
-   View,
-   Image,
-   TouchableOpacity,
-   StatusBar
- } from 'react-native';
- 
- import { useNavigation } from '@react-navigation/native';
- import { Button } from 'react-native-paper';
- 
- 
- const colors = {
-   themeColor: "#4263ec",
-   white: "#fff",
-   background: "#f4f6fc",
-   greyish: "#a4a4a4",
-   tint: "#2b49c3",
-   pink: "#D16BA5"
- }
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StatusBar
+} from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native-paper';
 
 
-const Tasks = () => {
+const colors = {
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3",
+  pink: "#D16BA5"
+}
+
+const Pills = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.cont}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.header}>
-        <Text style={styles.titulo}>Tasks</Text>
+        <Text style={styles.titulo}>Medication</Text>
       </View>
       <View style={styles.body}>
 
@@ -55,7 +54,7 @@ const Tasks = () => {
           color={colors.white}
           style={styles.btnout}
           labelStyle={{ width: 75 }}
-          onPress={() => navigation.navigate('AddTask')}
+          onPress={() => navigation.navigate('AddPills')}
         >
           Add
         </Button>
@@ -67,7 +66,7 @@ const Tasks = () => {
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: colors.tint
+    backgroundColor: colors.themeColor
   },
   header: {
     flex: 0.5,
@@ -112,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tasks;
+export default Pills;

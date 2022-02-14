@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
     width: 40,
     position: 'relative',
     top: 40,
-    
   },
   headercontext: {
     height: 100,

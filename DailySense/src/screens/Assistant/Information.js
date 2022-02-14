@@ -68,7 +68,7 @@ const Information = ({ navigation }) => {
                     <Chip
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => setColorText(colors.themeColor)}
+                        onPress={() => navigation.navigate('Pills')}
                     >Pills</Chip>
                 </View>
             </View>
@@ -131,7 +131,7 @@ const Information = ({ navigation }) => {
                             Diseases:
                         </Text>
                         <Text>
-                        COVID-19, E. coli
+                            COVID-19, E. coli
                         </Text>
                     </View>
                     <View style={styles.texti}>
@@ -143,7 +143,7 @@ const Information = ({ navigation }) => {
                             Medication:
                         </Text>
                         <Text>
-                        Omaprazol, Ramipril
+                            Omaprazol, Ramipril
                         </Text>
                     </View>
                 </View>

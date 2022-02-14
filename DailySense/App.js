@@ -24,6 +24,8 @@ import Tasks from './src/screens/Assistant/Tasks/Tasks';
 import AddTask from './src/screens/Assistant/Tasks/AddTask';
 import Reminders from './src/screens/Assistant/Reminders/Reminders';
 import AddReminder from './src/screens/Assistant/Reminders/AddReminder';
+import Pills from './src/screens/Assistant/Pills/Pills';
+import AddPills from './src/screens/Assistant/Pills/AddPills';
 
 
 import {
@@ -63,7 +65,7 @@ function Landing({ navigation }) {
 
 const Stack = createNativeStackNavigator();
 
-const App = ({navigation}) => {
+const App = ({ navigation }) => {
 
   return (
     <SafeAreaProvider>
@@ -81,6 +83,8 @@ const App = ({navigation}) => {
           <Stack.Screen name="AddTask" component={AddTask} />
           <Stack.Screen name="Reminders" component={Reminders} />
           <Stack.Screen name="AddReminder" component={AddReminder} />
+          <Stack.Screen name="Pills" component={Pills} />
+          <Stack.Screen name="AddPills" component={AddPills} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
