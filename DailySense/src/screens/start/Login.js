@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,6 +12,7 @@ import {
   Alert
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 
@@ -58,31 +59,39 @@ const Login = ({ navigation }) => {
   const [Userbd, setUserbd] = React.useState("");
   const [Gender, setGender] = React.useState("");
 
-  const [datos, setDatos] = React.useState([]);
-  const post = "[{op: login, user: " + User + ", pass: " + Password + "}]";
+  const [datos, setDatos] = React.useState("a");
   const [Id, setId] = React.useState();
 
   const postDatos = async () => {
-    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-    setDatos(res.data.items);
-    console.log(datos);
+    axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
+      .then((response) => {
+        console.log(response.data);
+        setDatos(prevState => (response.data));
+
+      }, (error) => {
+        console.log(error);
+      });
   }
 
-  const logIn = () => {
-    postDatos;
-    if (datos.length !== 0) {
-      if (datos[0].correct === "true") {
-        setId(datos[0].IdAssistant);
-        setUserbd(datos[0].User);
-        setGender(datos[0].Gender);
 
-        navigation.navigate("IndexAssistant", { id: Id, user: Userbd, gender: Gender });
-      } else {
-        Alert.alert("Error", "Username or password incorrect try again")
-      }
+  function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time)
+    )
+  }
+
+
+  const logIn = () => {
+    console.log("He llegado");
+    postDatos();
+
+    console.log(datos)
+
+    if (datos.correct === "OK") {
+      navigation.navigate("IndexAssistant")
     } else {
       Alert.alert("Error", "Username or password incorrect try again")
     }
+
 
   }
 
@@ -133,7 +142,7 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => navigation.navigate("IndexAssistant")}
+            onPress={() => logIn()}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             Sign in
