@@ -75,8 +75,8 @@ const Login = ({ navigation }) => {
         setId(datos[0].IdAssistant);
         setUserbd(datos[0].User);
         setGender(datos[0].Gender);
-        
-        navigation.navigate("IndexAssistant", {id: Id, user: Userbd, gender:Gender});
+
+        navigation.navigate("IndexAssistant", { id: Id, user: Userbd, gender: Gender });
       } else {
         Alert.alert("Error", "Username or password incorrect try again")
       }
@@ -133,20 +133,20 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() =>  navigation.navigate("IndexAssistant")}
+            onPress={() => navigation.navigate("IndexAssistant")}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             Sign in
-                    </Button>
+          </Button>
           <Button
             mode='outlined'
             color={colors.themeColor}
             style={styles.btnout}
             onPress={() => navigation.navigate("CreateAccount")}
-            labelStyle={{  width: '90%' }}
+            labelStyle={{ width: '90%' }}
           >
             Sign up
-                    </Button>
+          </Button>
         </View>
         <View style={styles.context}>
           <Text style={{ color: "black" }}>Florida - DAM 2 - DailySense - 2022©</Text>

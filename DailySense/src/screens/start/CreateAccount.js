@@ -71,9 +71,9 @@ const CreateAccount = ({ navigation }) => {
         console.log("He llegado");
         postDatos();
         console.log(datos)
-        if(datos.correct==="OK"){
-        navigation.navigate("Login")
-        }else{
+        if (datos.correct === "OK") {
+            navigation.navigate("Login")
+        } else {
             console.log("Datos no es OK")
         }
     }
@@ -149,7 +149,7 @@ const CreateAccount = ({ navigation }) => {
 
                         />
                     </View>
-                    
+
                     <View style={styles.contchips}>
                         <Chip style={styles.chip} selected={SelectedChipMale} onPress={() => estableixSexe('Male')} >Male</Chip>
                         <Chip style={styles.chip} selected={SelectedChipFemale} onPress={() => estableixSexe('Female')} >Female</Chip>
@@ -162,7 +162,7 @@ const CreateAccount = ({ navigation }) => {
                     color={colors.themeColor}
                     style={styles.btn}
                     onPress={() => next()}
-                    labelStyle={{ color: colors.white,width: '100%' }}
+                    labelStyle={{ color: colors.white, width: '100%' }}
                 >
                     Register
                 </Button>
