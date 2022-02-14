@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     width: '100%',
-    
+
   },
   wall: {
     height: 112,
