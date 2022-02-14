@@ -17,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import Add from "./Add";
 import Card from "../components/Card";
+import Information from "./Information";
 
 const colors = {
   themeColor: "#4263ec",

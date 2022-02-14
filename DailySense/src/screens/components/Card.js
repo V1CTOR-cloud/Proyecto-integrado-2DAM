@@ -12,8 +12,8 @@ import {
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 import LinearGradient from "react-native-linear-gradient";
-
-
+import Information from "../Assistant/Information";
+import { useNavigation } from '@react-navigation/native';
 
 const colors = {
     themeColor: "#4263ec",
@@ -23,8 +23,8 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const Card = ({ navigation }) => {
-
+const Card = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -39,13 +39,15 @@ const Card = ({ navigation }) => {
                 <Text style={styles.h2}>Luisa</Text>
             </View>
             <View style={styles.footer}>
-                <LinearGradient
-                    style={styles.btn1}
-                    start={{ x: 1, y: 0 }}
-                    colors={[colors.tint, colors.themeColor]}
-                >
-                    <Text style={styles.btntext1}>More Info</Text>
-                </LinearGradient>
+                <TouchableOpacity onPress={() => navigation.navigate('Information')}>
+                    <LinearGradient
+                        style={styles.btn1}
+                        start={{ x: 1, y: 0 }}
+                        colors={[colors.tint, colors.themeColor]}
+                    >
+                        <Text style={styles.btntext1}>More Info</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.btn2}>
                     <Image
                         source={require('../../assets/img/icono_basura.png')}
