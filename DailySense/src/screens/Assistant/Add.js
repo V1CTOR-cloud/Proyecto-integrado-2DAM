@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import Slider from '@react-native-community/slider';
 import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
@@ -81,7 +82,7 @@ const Add = ({ navigation }) => {
 
     if (resultat.data.correct === "OK") {
 
-      navigation.navigate("IndexAssitant")
+      navigation.navigate("IndexAssistant")
 
     } else {
 
@@ -117,7 +118,6 @@ const Add = ({ navigation }) => {
               label='Last name'
               value={Apellidos}
               onChangeText={Apellidos => setApellidos(Apellidos)}
-              secureTextEntry={true}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
@@ -128,7 +128,6 @@ const Add = ({ navigation }) => {
               selectionColor='#99c8de'
               value={Direccion}
               onChangeText={Direccion => setDireccion(Direccion)}
-              secureTextEntry={true}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <Text style={{ color: "black", margin: 10 }}>Age: {Edad}</Text>
@@ -208,7 +207,7 @@ const Add = ({ navigation }) => {
               mode='contained'
               color={colors.themeColor}
               style={{ width: "65%", alignSelf: "center", margin: 20 }}
-              onPress={() => navigation.navigate("IndexAssistant")}
+              onPress={() => addPerson()}
               labelStyle={{ color: 'white' }}
             >
               Add
