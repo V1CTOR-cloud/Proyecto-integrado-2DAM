@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -8,7 +8,8 @@ import {
     useColorScheme,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import axios from 'axios';
@@ -57,25 +58,43 @@ const CreateAccount = ({ navigation }) => {
 
 
 
-    const [datos, setDatos] = React.useState("a");
-    const post = "{\"op\": \"register\", \"user\": " + User + ", \"pass\": " + Password + ", \"email\": " + MailAccount + ", \"gender\": " + Sexo + "}";
-
+    const [datos, setDatos] = React.useState("");
     const postDatos = async () => {
         console.log("hoa");
-        const res = await axios.post('http:52.174.144.160:5000/test?', { post });
-        setDatos(res);
-        console.log(datos);
+        axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
+            .then((response) => {
+                console.log(response.data);
+                ;
+            }, (error) => {
+                console.log(error);
+            });
     }
 
-    const next = () => {
+    const validation = () => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(text) === true) {
+            console.log("Email is Correct");
+            this.setState({ email: text })
+            return false;
+        }
+    }
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time)
+        )
+    }
+
+    const createAccount = () => {
         console.log("He llegado");
         postDatos();
-        console.log(datos)
-        if (datos.correct === "OK") {
-            navigation.navigate("Login")
-        } else {
-            console.log("Datos no es OK")
-        }
+        sleep(2000).then(() => {
+            console.log(datos);
+            if (datos.correct === "OK") {
+                navigation.navigate("Login")
+            } else {
+                console.log("Datos no es OK");
+            }
+        })
     }
 
     return (
@@ -161,7 +180,7 @@ const CreateAccount = ({ navigation }) => {
                     mode='contained'
                     color={colors.themeColor}
                     style={styles.btn}
-                    onPress={() => next()}
+                    onPress={() => createAccount()}
                     labelStyle={{ color: colors.white, width: '100%' }}
                 >
                     Register
