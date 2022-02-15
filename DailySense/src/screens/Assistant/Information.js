@@ -82,7 +82,7 @@ const Information = ({ navigation }) => {
                         <Text style={styles.text}>
                             Contact Phone:
                         </Text>
-                        <Text>
+                        <Text style={{color: '#444'}}>
                             96 155 39 19
                         </Text>
                     </View>
@@ -94,7 +94,7 @@ const Information = ({ navigation }) => {
                         <Text style={styles.text}>
                             Adress:
                         </Text>
-                        <Text>
+                        <Text style={{color: '#444'}}>
                             Calle Utiel 59
                         </Text>
                     </View>
@@ -106,7 +106,7 @@ const Information = ({ navigation }) => {
                         <Text style={styles.text}>
                             Age:
                         </Text>
-                        <Text>
+                        <Text style={{color: '#444'}}>
                             79
                         </Text>
                     </View>
@@ -118,7 +118,7 @@ const Information = ({ navigation }) => {
                         <Text style={styles.text}>
                             Allergies:
                         </Text>
-                        <Text>
+                        <Text style={{color: '#444'}}>
                             Dust, nuts, gluten
                         </Text>
                     </View>
@@ -130,7 +130,7 @@ const Information = ({ navigation }) => {
                         <Text style={styles.text}>
                             Diseases:
                         </Text>
-                        <Text>
+                        <Text style={{color: '#444'}}>
                             COVID-19, E. coli
                         </Text>
                     </View>
@@ -142,7 +142,7 @@ const Information = ({ navigation }) => {
                         <Text style={styles.text}>
                             Medication:
                         </Text>
-                        <Text>
+                        <Text style={{color: '#444'}}>
                             Omaprazol, Ramipril
                         </Text>
                     </View>
@@ -180,12 +180,11 @@ const styles = StyleSheet.create({
         height: 35,
         width: '80%',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         padding: 5,
         flexDirection: 'row',
         position: 'relative',
         bottom: 120,
-        backgroundColor: colors.fadedwhite,
         borderRadius: 20,
         opacity: 0.7,
     },
@@ -225,25 +224,26 @@ const styles = StyleSheet.create({
     content: {
         height: 450,
         width: 330,
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.white,
         position: 'relative',
         bottom: 220,
         borderRadius: 30,
-        padding: 10
+        padding: 10,
     },
     texti: {
         width: '80%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        padding: 10,
+        padding: 18,
     },
     text: {
         fontWeight: 'bold',
         paddingLeft: 5,
-        paddingRight: 5
+        paddingRight: 5,
+        color: '#444'
     },
     img: {
         height: 25,
