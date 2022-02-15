@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
+import axios from 'axios';
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import Slider from '@react-native-community/slider';
 import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
@@ -58,6 +60,38 @@ const Add = ({ navigation }) => {
     setSexo(sexe);
   }
 
+  const postDatos = async () => {
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "Add", idAssistant:2, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
+    diseases: Enfermedades, alergies: Alergias, dependency: Dependencia, gender: Sexo })
+
+    console.log(resultInser.data);
+
+    //setDatos(response.data);
+
+    return resultInser;
+
+}
+
+const addPerson = async () => {
+
+  const resultat = await postDatos()
+
+  console.log(JSON.stringify(resultat));
+
+  if (resultat.data.correct === "OK") {
+
+      navigation.navigate("IndexAssitant")
+
+  } else {
+
+      resultat.log("Datos no es OK");
+
+  }
+
+}
+
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
@@ -85,7 +119,6 @@ const Add = ({ navigation }) => {
               label='Last name'
               value={Apellidos}
               onChangeText={Apellidos => setApellidos(Apellidos)}
-              secureTextEntry={true}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
@@ -96,7 +129,6 @@ const Add = ({ navigation }) => {
               selectionColor='#99c8de'
               value={Direccion}
               onChangeText={Direccion => setDireccion(Direccion)}
-              secureTextEntry={true}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <Text style={{ color: "black", margin: 10 }}>Age: {Edad}</Text>
@@ -176,7 +208,7 @@ const Add = ({ navigation }) => {
               mode='contained'
               color={colors.themeColor}
               style={{ width: "65%", alignSelf: "center", margin: 20 }}
-              onPress={() => navigation.navigate("IndexAssistant")}
+              onPress={() => addPerson()}
               labelStyle={{ color: 'white' }}
             >
               Add

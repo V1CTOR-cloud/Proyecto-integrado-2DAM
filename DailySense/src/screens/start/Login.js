@@ -26,7 +26,7 @@ const colors = {
 }
 
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route }) => {
 
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
@@ -56,13 +56,13 @@ const Login = ({ navigation }) => {
     const resultat = await postDatos()
 
     console.log(resultat.data);
-    
+
     var corr = resultat.data.correct;
 
     if (corr === "OK") {
       console.log("Funka")
 
-      navigation.navigate("Login")
+      navigation.navigate("IndexAssistant")
 
     } else {
 
@@ -119,7 +119,7 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => logIn()}
+            onPress={() => navigation.navigate("IndexAssistant")}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             Sign in
