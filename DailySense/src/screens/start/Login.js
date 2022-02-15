@@ -63,27 +63,40 @@ const Login = ({ navigation }) => {
   const [Id, setId] = React.useState();
 
   const postDatos = async () => {
-    axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
-      .then((response) => {
-        console.log(response.data);
-        setDatos(response.data);
-      }, (error) => {
-        console.log(error);
-      });
+
+    console.log("hoa");
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
+
+
+
+    console.log(resultInser.data);
+
+    //setDatos(response.data);
+
+    return resultInser;
+
   }
 
-  const logIn = () => {
+  const logIn = async () => {
+
     console.log("He llegado");
-    postDatos();
 
-    console.log(datos)
+    const resultat = await postDatos()
 
-    if (datos.correct === "OK") {
-      navigation.navigate("IndexAssistant")
+    console.log(JSON.stringify(resultat) + " jajaja");
+
+    if (resultat.data.correct === "OK") {
+
+      console.log("Manel")
+
+      navigation.navigate("Login")
+
     } else {
-      Alert.alert("Error", "Username or password incorrect try again")
-    }
 
+      Alert.alert("Error", "Username or password incorrect try again")
+
+    }
 
   }
 

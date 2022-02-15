@@ -60,145 +60,149 @@ const CreateAccount = ({ navigation }) => {
 
     const [datos, setDatos] = React.useState("a");
     const registreUsuari = async () => {
+
         console.log("hoa");
-        axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
-            .then((response) => {
-                try{
-                    console.log(response.data);
-                    setDatos(response.data);
-                    
-                } catch(error){
-                    console.log(error)
-                } finally {
-                    return(response.data);
-                }
 
-            }, (error) => {
-                console.log(error);
-            });
-    }
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
 
-    const validation = () => {
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-        if (reg.test(text) === true) {
-            console.log("Email is Correct");
-            this.setState({ email: text })
-            return false;
-        }
-    }
 
-    
 
-    const createAccount = () => {
-        console.log("He llegado");
-        registreUsuari().then((datos)=>{
-            console.log(datos +" jajaja");
-            if (datos.correct === "OK") {
-                console.log("Manel")
-                navigation.navigate("Login")
-            } else {
-                console.log("Datos no es OK");
-            }
-        })
+        console.log(resultInser.data);
 
-        
+        //setDatos(response.data);
+
+        return resultInser;
 
     }
 
-    return (
-        <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-            <View style={styles.header}>
-                <Text style={styles.h1}>Register Now!</Text>
+
+const validation = () => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(text) === true) {
+        console.log("Email is Correct");
+        this.setState({ email: text })
+        return false;
+    }
+}
+
+
+
+const createAccount = async () => {
+
+    console.log("He llegado");
+
+    const resultat = await registreUsuari()
+
+    console.log(JSON.stringify(resultat) + " jajaja");
+
+    if (resultat.data.correct === "OK") {
+
+        console.log("Manel")
+
+        navigation.navigate("Login")
+
+    } else {
+
+        resultat.log("Datos no es OK");
+
+    }
+
+}
+
+return (
+    <View style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+        <View style={styles.header}>
+            <Text style={styles.h1}>Register Now!</Text>
+        </View>
+        <View style={styles.content}>
+            <View style={styles.form}>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/mail.png')}
+                    />
+                    <TextInput
+                        placeholder='Your Email goes here...'
+                        style={styles.box}
+                        label='Email'
+                        mode='outlined'
+                        value={MailAccount}
+                        onChangeText={MailAccount => setMailAccount(MailAccount)}
+                        theme={{ colors: { primary: colors.tint } }}
+                    />
+                </View>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/user.png')}
+                    />
+                    <TextInput
+                        placeholder='Your Username goes here...'
+                        style={styles.box}
+                        label='Username'
+                        mode='outlined'
+                        value={User}
+                        onChangeText={User => setUser(User)}
+                        theme={{ colors: { primary: colors.tint } }}
+                    />
+                </View>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/lock.png')}
+                    />
+                    <TextInput
+                        placeholder='Your Password goes here...'
+                        style={styles.box}
+                        label='Password'
+                        mode='outlined'
+                        secureTextEntry={true}
+                        onChangeText={Password => setPassword(Password)}
+                        secureTextEntry={true}
+                        theme={{ colors: { primary: colors.tint } }}
+                    />
+                </View>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/lock.png')}
+                    />
+                    <TextInput
+                        placeholder='Confirm your password'
+                        style={styles.box}
+                        label='Confirm password'
+                        mode='outlined'
+                        secureTextEntry={true}
+                        value={ConfirmPassword}
+                        onChangeText={ConfirmPassword => setConfirmPassword(ConfirmPassword)}
+                        theme={{ colors: { primary: colors.tint } }}
+
+                    />
+                </View>
+
+                <View style={styles.contchips}>
+                    <Chip style={styles.chip} selected={SelectedChipMale} onPress={() => estableixSexe('Male')} >Male</Chip>
+                    <Chip style={styles.chip} selected={SelectedChipFemale} onPress={() => estableixSexe('Female')} >Female</Chip>
+                    <Chip style={styles.chip} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
+                </View>
             </View>
-            <View style={styles.content}>
-                <View style={styles.form}>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/mail.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Email goes here...'
-                            style={styles.box}
-                            label='Email'
-                            mode='outlined'
-                            value={MailAccount}
-                            onChangeText={MailAccount => setMailAccount(MailAccount)}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/user.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Username goes here...'
-                            style={styles.box}
-                            label='Username'
-                            mode='outlined'
-                            value={User}
-                            onChangeText={User => setUser(User)}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/lock.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Password goes here...'
-                            style={styles.box}
-                            label='Password'
-                            mode='outlined'
-                            secureTextEntry={true}
-                            onChangeText={Password => setPassword(Password)}
-                            secureTextEntry={true}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/lock.png')}
-                        />
-                        <TextInput
-                            placeholder='Confirm your password'
-                            style={styles.box}
-                            label='Confirm password'
-                            mode='outlined'
-                            secureTextEntry={true}
-                            value={ConfirmPassword}
-                            onChangeText={ConfirmPassword => setConfirmPassword(ConfirmPassword)}
-                            theme={{ colors: { primary: colors.tint } }}
 
-                        />
-                    </View>
-
-                    <View style={styles.contchips}>
-                        <Chip style={styles.chip} selected={SelectedChipMale} onPress={() => estableixSexe('Male')} >Male</Chip>
-                        <Chip style={styles.chip} selected={SelectedChipFemale} onPress={() => estableixSexe('Female')} >Female</Chip>
-                        <Chip style={styles.chip} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
-                    </View>
-                </View>
-
-                <Button
-                    mode='contained'
-                    color={colors.themeColor}
-                    style={styles.btn}
-                    onPress={() => createAccount()}
-                    labelStyle={{ color: colors.white, width: '100%' }}
-                >
-                    Register
-                </Button>
-                <View style={styles.context}>
-                    <Text>Developed by DailySense Team</Text>
-                </View>
+            <Button
+                mode='contained'
+                color={colors.themeColor}
+                style={styles.btn}
+                onPress={() => createAccount()}
+                labelStyle={{ color: colors.white, width: '100%' }}
+            >
+                Register
+            </Button>
+            <View style={styles.context}>
+                <Text>Developed by DailySense Team</Text>
             </View>
         </View>
-    );
+    </View>
+);
 }
 
 const styles = StyleSheet.create({
