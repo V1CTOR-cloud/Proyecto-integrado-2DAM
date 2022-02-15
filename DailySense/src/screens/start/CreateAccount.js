@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -58,13 +58,21 @@ const CreateAccount = ({ navigation }) => {
 
 
 
-    const [datos, setDatos] = React.useState("");
-    const postDatos = async () => {
+    const [datos, setDatos] = React.useState("a");
+    const registreUsuari = async () => {
         console.log("hoa");
         axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
             .then((response) => {
-                console.log(response.data);
-                ;
+                try{
+                    console.log(response.data);
+                    setDatos(response.data);
+                    
+                } catch(error){
+                    console.log(error)
+                } finally {
+                    return(response.data);
+                }
+
             }, (error) => {
                 console.log(error);
             });
@@ -79,22 +87,22 @@ const CreateAccount = ({ navigation }) => {
         }
     }
 
-    function sleep(time) {
-        return new Promise((resolve) => setTimeout(resolve, time)
-        )
-    }
+    
 
     const createAccount = () => {
         console.log("He llegado");
-        postDatos();
-        sleep(2000).then(() => {
-            console.log(datos);
+        registreUsuari().then((datos)=>{
+            console.log(datos +" jajaja");
             if (datos.correct === "OK") {
+                console.log("Manel")
                 navigation.navigate("Login")
             } else {
                 console.log("Datos no es OK");
             }
         })
+
+        
+
     }
 
     return (

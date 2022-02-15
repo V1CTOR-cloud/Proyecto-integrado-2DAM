@@ -59,26 +59,18 @@ const Login = ({ navigation }) => {
   const [Userbd, setUserbd] = React.useState("");
   const [Gender, setGender] = React.useState("");
 
-  const [datos, setDatos] = React.useState("a");
+  const [datos, setDatos] = React.useState("");
   const [Id, setId] = React.useState();
 
   const postDatos = async () => {
     axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
       .then((response) => {
         console.log(response.data);
-        setDatos(prevState => (response.data));
-
+        setDatos(response.data);
       }, (error) => {
         console.log(error);
       });
   }
-
-
-  function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time)
-    )
-  }
-
 
   const logIn = () => {
     console.log("He llegado");
