@@ -26,31 +26,6 @@ const colors = {
 }
 
 
-function Validation() {
-  setVal(true)
-
-  if (User == "" && Password == "") {
-    setVal(false)
-  } else {
-    if (User == "") {
-      setVal(false)
-    } else {
-      if (Password == "") {
-        setVal(false)
-      }
-    }
-  }
-}
-
-function IniciarSesion() {
-  if (Validation) {
-
-  } else {
-
-  }
-}
-
-
 const Login = ({ navigation }) => {
 
   const [User, setUser] = React.useState("");
@@ -59,12 +34,10 @@ const Login = ({ navigation }) => {
   const [Userbd, setUserbd] = React.useState("");
   const [Gender, setGender] = React.useState("");
 
-  const [datos, setDatos] = React.useState("");
+  //const [datos, setDatos] = React.useState("");
   const [Id, setId] = React.useState();
 
   const postDatos = async () => {
-
-    console.log("hoa");
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
 
@@ -80,15 +53,14 @@ const Login = ({ navigation }) => {
 
   const logIn = async () => {
 
-    console.log("He llegado");
-
     const resultat = await postDatos()
 
-    console.log(JSON.stringify(resultat) + " jajaja");
+    console.log(resultat.data);
+    
+    var corr = resultat.data.correct;
 
-    if (resultat.data.correct === "OK") {
-
-      console.log("Manel")
+    if (corr === "OK") {
+      console.log("Funka")
 
       navigation.navigate("Login")
 

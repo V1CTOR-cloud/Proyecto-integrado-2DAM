@@ -61,10 +61,7 @@ const CreateAccount = ({ navigation }) => {
     const [datos, setDatos] = React.useState("a");
     const registreUsuari = async () => {
 
-        console.log("hoa");
-
         const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
-
 
 
         console.log(resultInser.data);
@@ -89,15 +86,11 @@ const validation = () => {
 
 const createAccount = async () => {
 
-    console.log("He llegado");
-
     const resultat = await registreUsuari()
 
     console.log(JSON.stringify(resultat) + " jajaja");
 
     if (resultat.data.correct === "OK") {
-
-        console.log("Manel")
 
         navigation.navigate("Login")
 
