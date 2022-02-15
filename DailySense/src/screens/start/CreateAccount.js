@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -8,7 +8,8 @@ import {
     useColorScheme,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import axios from 'axios';
@@ -58,120 +59,143 @@ const CreateAccount = ({ navigation }) => {
 
 
     const [datos, setDatos] = React.useState("a");
-    const post = "{\"op\": \"register\", \"user\": " + User + ", \"pass\": " + Password + ", \"email\": " + MailAccount + ", \"gender\": " + Sexo + "}";
+    const registreUsuari = async () => {
 
-    const postDatos = async () => {
-        console.log("hoa");
-        const res = await axios.post('http:52.174.144.160:5000/test?', { post });
-        setDatos(res);
-        console.log(datos);
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
+
+
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser;
+
     }
 
-    const next = () => {
-        console.log("He llegado");
-        postDatos();
-        console.log(datos)
-        if (datos.correct === "OK") {
-            navigation.navigate("Login")
-        } else {
-            console.log("Datos no es OK")
-        }
+
+const validation = () => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(text) === true) {
+        console.log("Email is Correct");
+        this.setState({ email: text })
+        return false;
+    }
+}
+
+
+
+const createAccount = async () => {
+
+    const resultat = await registreUsuari()
+
+    console.log(JSON.stringify(resultat) + " jajaja");
+
+    if (resultat.data.correct === "OK") {
+
+        navigation.navigate("Login")
+
+    } else {
+
+        resultat.log("Datos no es OK");
+
     }
 
-    return (
-        <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-            <View style={styles.header}>
-                <Text style={styles.h1}>Register Now!</Text>
+}
+
+return (
+    <View style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+        <View style={styles.header}>
+            <Text style={styles.h1}>Register Now!</Text>
+        </View>
+        <View style={styles.content}>
+            <View style={styles.form}>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/mail.png')}
+                    />
+                    <TextInput
+                        placeholder='Your Email goes here...'
+                        style={styles.box}
+                        label='Email'
+                        mode='outlined'
+                        value={MailAccount}
+                        onChangeText={MailAccount => setMailAccount(MailAccount)}
+                        theme={{ colors: { primary: colors.tint } }}
+                    />
+                </View>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/user.png')}
+                    />
+                    <TextInput
+                        placeholder='Your Username goes here...'
+                        style={styles.box}
+                        label='Username'
+                        mode='outlined'
+                        value={User}
+                        onChangeText={User => setUser(User)}
+                        theme={{ colors: { primary: colors.tint } }}
+                    />
+                </View>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/lock.png')}
+                    />
+                    <TextInput
+                        placeholder='Your Password goes here...'
+                        style={styles.box}
+                        label='Password'
+                        mode='outlined'
+                        secureTextEntry={true}
+                        onChangeText={Password => setPassword(Password)}
+                        secureTextEntry={true}
+                        theme={{ colors: { primary: colors.tint } }}
+                    />
+                </View>
+                <View style={styles.texti}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../assets/img/lock.png')}
+                    />
+                    <TextInput
+                        placeholder='Confirm your password'
+                        style={styles.box}
+                        label='Confirm password'
+                        mode='outlined'
+                        secureTextEntry={true}
+                        value={ConfirmPassword}
+                        onChangeText={ConfirmPassword => setConfirmPassword(ConfirmPassword)}
+                        theme={{ colors: { primary: colors.tint } }}
+
+                    />
+                </View>
+
+                <View style={styles.contchips}>
+                    <Chip style={styles.chip} selected={SelectedChipMale} onPress={() => estableixSexe('Male')} >Male</Chip>
+                    <Chip style={styles.chip} selected={SelectedChipFemale} onPress={() => estableixSexe('Female')} >Female</Chip>
+                    <Chip style={styles.chip} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
+                </View>
             </View>
-            <View style={styles.content}>
-                <View style={styles.form}>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/mail.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Email goes here...'
-                            style={styles.box}
-                            label='Email'
-                            mode='outlined'
-                            value={MailAccount}
-                            onChangeText={MailAccount => setMailAccount(MailAccount)}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/user.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Username goes here...'
-                            style={styles.box}
-                            label='Username'
-                            mode='outlined'
-                            value={User}
-                            onChangeText={User => setUser(User)}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/lock.png')}
-                        />
-                        <TextInput
-                            placeholder='Your Password goes here...'
-                            style={styles.box}
-                            label='Password'
-                            mode='outlined'
-                            secureTextEntry={true}
-                            onChangeText={Password => setPassword(Password)}
-                            secureTextEntry={true}
-                            theme={{ colors: { primary: colors.tint } }}
-                        />
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            style={styles.img}
-                            source={require('../../assets/img/lock.png')}
-                        />
-                        <TextInput
-                            placeholder='Confirm your password'
-                            style={styles.box}
-                            label='Confirm password'
-                            mode='outlined'
-                            secureTextEntry={true}
-                            value={ConfirmPassword}
-                            onChangeText={ConfirmPassword => setConfirmPassword(ConfirmPassword)}
-                            theme={{ colors: { primary: colors.tint } }}
 
-                        />
-                    </View>
-
-                    <View style={styles.contchips}>
-                        <Chip style={styles.chip} selected={SelectedChipMale} onPress={() => estableixSexe('Male')} >Male</Chip>
-                        <Chip style={styles.chip} selected={SelectedChipFemale} onPress={() => estableixSexe('Female')} >Female</Chip>
-                        <Chip style={styles.chip} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
-                    </View>
-                </View>
-
-                <Button
-                    mode='contained'
-                    color={colors.themeColor}
-                    style={styles.btn}
-                    onPress={() => next()}
-                    labelStyle={{ color: colors.white, width: '100%' }}
-                >
-                    Register
-                </Button>
-                <View style={styles.context}>
-                    <Text>Developed by DailySense Team</Text>
-                </View>
+            <Button
+                mode='contained'
+                color={colors.themeColor}
+                style={styles.btn}
+                onPress={() => createAccount()}
+                labelStyle={{ color: colors.white, width: '100%' }}
+            >
+                Register
+            </Button>
+            <View style={styles.context}>
+                <Text>Developed by DailySense Team</Text>
             </View>
         </View>
-    );
+    </View>
+);
 }
 
 const styles = StyleSheet.create({

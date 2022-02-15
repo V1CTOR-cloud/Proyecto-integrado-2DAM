@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,6 +12,7 @@ import {
   Alert
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 
@@ -25,31 +26,6 @@ const colors = {
 }
 
 
-function Validation() {
-  setVal(true)
-
-  if (User == "" && Password == "") {
-    setVal(false)
-  } else {
-    if (User == "") {
-      setVal(false)
-    } else {
-      if (Password == "") {
-        setVal(false)
-      }
-    }
-  }
-}
-
-function IniciarSesion() {
-  if (Validation) {
-
-  } else {
-
-  }
-}
-
-
 const Login = ({ navigation }) => {
 
   const [User, setUser] = React.useState("");
@@ -58,30 +34,40 @@ const Login = ({ navigation }) => {
   const [Userbd, setUserbd] = React.useState("");
   const [Gender, setGender] = React.useState("");
 
-  const [datos, setDatos] = React.useState([]);
-  const post = "[{op: login, user: " + User + ", pass: " + Password + "}]";
+  //const [datos, setDatos] = React.useState("");
   const [Id, setId] = React.useState();
 
   const postDatos = async () => {
-    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-    setDatos(res.data.items);
-    console.log(datos);
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
+
+
+
+    console.log(resultInser.data);
+
+    //setDatos(response.data);
+
+    return resultInser;
+
   }
 
-  const logIn = () => {
-    postDatos;
-    if (datos.length !== 0) {
-      if (datos[0].correct === "true") {
-        setId(datos[0].IdAssistant);
-        setUserbd(datos[0].User);
-        setGender(datos[0].Gender);
+  const logIn = async () => {
 
-        navigation.navigate("IndexAssistant", { id: Id, user: Userbd, gender: Gender });
-      } else {
-        Alert.alert("Error", "Username or password incorrect try again")
-      }
+    const resultat = await postDatos()
+
+    console.log(resultat.data);
+    
+    var corr = resultat.data.correct;
+
+    if (corr === "OK") {
+      console.log("Funka")
+
+      navigation.navigate("Login")
+
     } else {
+
       Alert.alert("Error", "Username or password incorrect try again")
+
     }
 
   }
@@ -133,7 +119,7 @@ const Login = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => navigation.navigate("IndexAssistant")}
+            onPress={() => logIn()}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             Sign in
