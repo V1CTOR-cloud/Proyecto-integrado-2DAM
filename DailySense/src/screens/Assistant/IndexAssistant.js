@@ -17,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import Add from "./Add";
 import Card from "../components/Card";
+import Information from "./Information";
 
 const colors = {
   themeColor: "#4263ec",
@@ -110,7 +111,6 @@ const styles = StyleSheet.create({
     width: 40,
     position: 'relative',
     top: 40,
-    
   },
   headercontext: {
     height: 100,
