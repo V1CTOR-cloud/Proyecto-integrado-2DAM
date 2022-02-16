@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 import axios from "axios";
-import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput } from "react-native-paper";
 
 
@@ -25,12 +24,10 @@ const colors = {
   tint: "#2b49c3"
 }
 
-
 const Login = ({ navigation, route }) => {
 
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
-
   //const [datos, setDatos] = React.useState("");
 
   const postDatos = async () => {
@@ -46,25 +43,49 @@ const Login = ({ navigation, route }) => {
   }
 
   const logIn = async () => {
+    if (validar()) {
+      const resultat = await postDatos();
 
-    const resultat = await postDatos();
+      const { correct } = resultat;
+      if (correct === "OK") {
 
-    const { correct } = resultat;
-    if (correct === "OK") {
-
-      navigation.navigate('IndexAssistant', {
-        User: resultat.User,
-        IdAssistant: resultat.IdAssistant,
-        Gender: resultat.Gender,
-        Mail: resultat.Email,
-      })
-
-    } else {
-
-      Alert.alert("Error", "Username or password incorrect try again")
-
+        navigation.navigate('IndexAssistant', {
+          User: resultat.User,
+          IdAssistant: resultat.IdAssistant,
+          Gender: resultat.Gender,
+          Mail: resultat.Email,
+        })
+      } else {
+        Alert.alert("Error 404", "The account could not be found", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+      }
     }
+  }
 
+  function validar() {
+    if (User.length == 0 && Password.length == 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
+    } else {
+      if (User.length == 0) {
+        Alert.alert("Error", "The user field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      } else {
+        if (Password.length == 0) {
+          Alert.alert("Error", "The password field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
   }
 
 
@@ -223,7 +244,7 @@ const styles = StyleSheet.create({
     height: 20,
     position: 'relative',
     top: 80
-  }
+  },
 });
 
 export default Login;
