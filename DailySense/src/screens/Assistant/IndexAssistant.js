@@ -32,7 +32,6 @@ const colors = {
 const IndexAssistant = ({ route, navigation }) => {
 
   const { User, IdAssistant, Gender, Mail } = route.params;
-  console.log(Mail)
   // const { IdAssistant } = route.params;
   //const { Gender } = route.params;
   const [personesAsociades, setPersonesAsociades] = React.useState([]);
