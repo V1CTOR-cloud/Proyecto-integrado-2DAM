@@ -66,7 +66,7 @@ const Add = ({ route, navigation }) => {
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "Add", idAssistant: 2, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
+      op: "Add", idAssistant: IdAssistant, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
       diseases: Enfermedades, alergies: Alergias, dependency: Dependencia, gender: Sexo
     })
 
