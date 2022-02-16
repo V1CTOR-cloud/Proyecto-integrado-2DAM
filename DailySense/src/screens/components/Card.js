@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
@@ -23,8 +24,26 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const Card = () => {
+const Card = (props) => {
     const navigation = useNavigation();
+
+    const del = async () => {
+        const resultInser = await axios.delete('http:52.174.144.160:5000/test?', { data: { op: "delete", idDependent: props.id } })
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser;
+
+    }
+    
+    const deletePerson = async () =>{
+        const res = await del();
+        if (res.data.correct=== "OK"){
+            Alert.alert("Delete", "Delete completed")
+        }
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -35,8 +54,8 @@ const Card = () => {
                     source={require('../../assets/img/Dependiente.png')}
                     style={styles.img}
                 />
-                <Text style={styles.h1}>María</Text>
-                <Text style={styles.h2}>Luisa</Text>
+                <Text style={styles.h1}>María {props.name}</Text>
+                <Text style={styles.h2}>Luisa {props.lastName}</Text>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity onPress={() => navigation.navigate('Information')}>
