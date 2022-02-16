@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     height: 45,
-    width: 170,
+    width: 150,
     justifyContent: 'center',
     alignItems: 'center'
   },

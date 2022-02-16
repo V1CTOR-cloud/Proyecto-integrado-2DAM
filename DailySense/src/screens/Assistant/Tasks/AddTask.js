@@ -68,10 +68,7 @@ const AddTask = () => {
           mode='contained'
           color={colors.themeColor}
           labelStyle={styles.btn}
-          onPress={() => navigation.navigate('Tasks', {
-            titulo: Title,
-            descripcion: Description
-          })}
+          onPress={() => console.log(Title, Description)}
           style={{ width: 150 }}
         >
           Add

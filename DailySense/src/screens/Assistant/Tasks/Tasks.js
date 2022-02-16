@@ -6,28 +6,30 @@
  * @flow strict-local
  */
 
- import React from 'react';
- import {
-   StyleSheet,
-   Text,
-   View,
-   Image,
-   TouchableOpacity,
-   StatusBar
- } from 'react-native';
- 
- import { useNavigation } from '@react-navigation/native';
- import { Button } from 'react-native-paper';
- 
- 
- const colors = {
-   themeColor: "#4263ec",
-   white: "#fff",
-   background: "#f4f6fc",
-   greyish: "#a4a4a4",
-   tint: "#2b49c3",
-   pink: "#D16BA5"
- }
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+  ScrollView
+} from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native-paper';
+import Tarjetatask from '../../components/TarjetaTask';
+
+
+const colors = {
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3",
+  pink: "#D16BA5"
+}
 
 
 const Tasks = () => {
@@ -39,14 +41,18 @@ const Tasks = () => {
         <Text style={styles.titulo}>Tasks</Text>
       </View>
       <View style={styles.body}>
-
+        <ScrollView>
+          <Tarjetatask />
+          <Tarjetatask />
+          <Tarjetatask />
+        </ScrollView>
       </View>
       <View style={styles.footer}>
         <Button
           mode='contained'
           color={colors.background}
           labelStyle={{ width: 120 }}
-          onPress={() => navigation.navigate('IndexAssistant')}
+          onPress={() => navigation.goBack()}
         >
           Home
         </Button>
