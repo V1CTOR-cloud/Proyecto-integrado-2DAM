@@ -31,8 +31,8 @@ const colors = {
 
 const IndexAssistant = ({ route, navigation }) => {
 
-  const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
-  const { User, IdAssistant, Gender } = route.params;
+  const { User, IdAssistant, Gender, Mail } = route.params;
+  console.log(Mail)
   // const { IdAssistant } = route.params;
   //const { Gender } = route.params;
   const [personesAsociades, setPersonesAsociades] = React.useState([]);
@@ -65,12 +65,6 @@ const IndexAssistant = ({ route, navigation }) => {
 
     setPersonesAsociades(resultInser.data.array);
   }
-  const ompliCards = () => {
-    console.log(JSON.stringify(personesAsociades) + " persones");
-    personesAsociades.map((element, pos) => {
-      return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} ></Card>);
-    })
-  }
 
 
 
@@ -93,7 +87,7 @@ const IndexAssistant = ({ route, navigation }) => {
           </Text>
         </View>
         <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate("User", {
-          User: User
+          User: User, Mail: Mail,
         })}>
           <Image
             style={styles.logo}

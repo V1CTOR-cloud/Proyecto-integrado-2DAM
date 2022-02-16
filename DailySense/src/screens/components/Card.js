@@ -10,6 +10,7 @@ import {
     Alert
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 import LinearGradient from "react-native-linear-gradient";
@@ -24,8 +25,51 @@ const colors = {
     tint: "#2b49c3"
 }
 
+
+
 const Card = (props) => {
     const navigation = useNavigation();
+
+    const [sure, setSure] = React.useState();
+
+    const postDelete = async () => {
+
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "delete", id: props.id })
+
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser.data;
+
+    }
+
+    const del = async () => {
+
+        Alert.alert("Delete", "Are you sure you want to do the delete", [
+            {
+                text: "Cancel",
+                onPress: () => setSure("Cancel"),
+                style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+        ])
+
+        const resultat = await postDelete();
+
+        const { correct } = resultat;
+        if (correct === "OK") {
+
+            Alert.alert("Delete", "Delete was succefully")
+
+        } else {
+
+            Alert.alert("Error", "Unable to delete")
+
+        }
+
+    }
+
 
     return (
         <View style={styles.container}>
@@ -60,7 +104,7 @@ const Card = (props) => {
                         <Text style={styles.btntext1}>More Info</Text>
                     </LinearGradient>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btn2}>
+                <TouchableOpacity style={styles.btn2} onPress={() => del()}>
                     <Image
                         source={require('../../assets/img/icono_basura.png')}
                         style={styles.bin}
