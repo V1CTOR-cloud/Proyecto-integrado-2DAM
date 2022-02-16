@@ -18,7 +18,8 @@ const colors = {
   white: "#fff",
   background: "#f4f6fc",
   greyish: "#a4a4a4",
-  tint: "#2b49c3"
+  tint: "#2b49c3",
+  error: '#FF5252'
 }
 
 const User = ({ navigation }) => {
@@ -69,36 +70,26 @@ const User = ({ navigation }) => {
               theme={{ colors: { primary: colors.tint } }}
             />
           </View>
-          <View style={styles.texti}>
-            <Image
-              style={styles.img}
-              source={require('../../assets/img/lock.png')}
-            />
-            <TextInput
-              placeholder='Your Password goes here...'
-              style={styles.box}
-              label='Password'
-              mode='outlined'
-              value={Password}
-              onChangeText={Password => setPassword(Password)}
-              secureTextEntry={true}
-              theme={{ colors: { primary: colors.tint } }}
-            />
-          </View>
-          <View style={styles.texti}>
-            <Image
-              style={styles.img}
-              source={require('../../assets/img/lock.png')}
-            />
-            <TextInput
-              placeholder='Confirm your password'
-              style={styles.box}
-              label='Confirm password'
-              mode='outlined'
-              secureTextEntry={true}
-              theme={{ colors: { primary: colors.tint } }}
-            />
-          </View>
+        </View>
+        <View style={styles.contbtn}>
+          <Button
+            mode='contained'
+            color={colors.themeColor}
+            style={styles.btn}
+            onPress={() => navigation.navigate("IndexAssistant")}
+            labelStyle={{ color: colors.white, width: '99%' }}
+          >
+            Save Changes
+          </Button>
+          <Button
+            mode='outlined'
+            color={colors.error}
+            style={styles.btnout}
+            onPress={() => navigation.navigate("Login")}
+            labelStyle={{ width: '80%' }}
+          >
+            log out
+          </Button>
         </View>
       </View>
       <View style={styles.footer}>
@@ -115,7 +106,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.themeColor,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomLeftRadius: 300,
   },
   header: {
     flex: 0.8,
@@ -140,19 +132,13 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   body: {
-    flex: 3,
-    width: '94%',
+    flex: 1.5,
+    width: '90%',
     backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    borderTopLeftRadius: 60,
-    borderTopRightRadius: 60,
-    borderBottomLeftRadius: 60,
-    borderBottomRightRadius: 60
-  },
-  cont: {
-
+    borderRadius: 10
   },
   footer: {
     flex: 1,
@@ -185,6 +171,27 @@ const styles = StyleSheet.create({
     width: 40,
     position: 'relative',
     right: 20
+  },
+  contbtn: {
+    height: 100,
+    width: '90%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  btn: {
+    height: 45,
+    width: 170,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  btnout: {
+    height: 45,
+    width: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: colors.error,
+    borderWidth: 1,
   },
 });
 
