@@ -48,6 +48,7 @@ const Card = (props) => {
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
+                
             </View>
             <View style={styles.body}>
                 <Image
