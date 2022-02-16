@@ -62,7 +62,7 @@ const IndexAssistant = ({ route ,navigation }) => {
   const res = indexAss();
   console.log(res);
 
-
+  
 
   return (
     <View style={styles.container}>
@@ -83,7 +83,9 @@ const IndexAssistant = ({ route ,navigation }) => {
             {User}
           </Text>
         </View>
-        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate('User')}>
+        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate("User", {
+              User: User
+            })}>
           <Image
             style={styles.logo}
             source={require('../../assets/img/Dependiente.png')}

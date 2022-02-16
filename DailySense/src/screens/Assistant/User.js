@@ -22,11 +22,17 @@ const colors = {
   error: '#FF5252'
 }
 
-const User = ({ navigation }) => {
-
-  const [User, setUser] = React.useState("");
-  const [Password, setPassword] = React.useState("");
+const User = ({ route, navigation }) => {
+  const { User } = route.params;
+  const [UserName, setUserName] = React.useState(User);
+  const [Mail, setMail] = React.useState("");
   const [Val, setVal] = React.useState("");
+
+  function cambiaNombre() {
+    navigation.navigate("IndexAssistant",{
+      User: UserName
+    })
+  }
 
   return (
     <View style={styles.container}>
@@ -37,7 +43,9 @@ const User = ({ navigation }) => {
             source={require('../../assets/img/user2.png')}
             style={styles.logo}
           />
-          <Text style={styles.h1}>Victor</Text>
+          <Text style={styles.h1}>
+            {UserName}
+          </Text>
         </View>
       </View>
       <View style={styles.body}>
@@ -65,8 +73,8 @@ const User = ({ navigation }) => {
               style={styles.box}
               label='Username'
               mode='outlined'
-              value={User}
-              onChangeText={User => setUser(User)}
+              value={UserName}
+              onChangeText={UserName => setUserName(UserName)}
               theme={{ colors: { primary: colors.tint } }}
             />
           </View>
@@ -76,7 +84,7 @@ const User = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => navigation.navigate("IndexAssistant")}
+            onPress={() => cambiaNombre()}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             Save Changes
@@ -118,7 +126,7 @@ const styles = StyleSheet.create({
   },
   contheader: {
     height: 50,
-    width: 200,
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -127,7 +135,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   h1: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.white,
   },
