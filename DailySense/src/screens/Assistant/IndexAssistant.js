@@ -11,6 +11,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import { useIsFocused } from "@react-navigation/native";
+
 import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
@@ -31,17 +33,42 @@ const colors = {
 
 const IndexAssistant = ({ route, navigation }) => {
 
+  const isFocused = useIsFocused();
+
+  const imgMale = require('../../assets/img/Dependiente.png');
+  const imgFemale = require('../../assets/img/Cuidadora.png');
+  const imgOther = require('../../assets/img/Other.png');
+  const [img, setImg] = React.useState(imgMale);
+
+
+
+
+
+
   const { User, IdAssistant, Gender, Mail } = route.params;
+
+  
   // const { IdAssistant } = route.params;
   //const { Gender } = route.params;
   const [personesAsociades, setPersonesAsociades] = React.useState([]);
   //const [datos, setDatos] = React.useState([]);
 
+  const imgFile = () => {
+    if (Gender === "Female") {
+      setImg(imgFemale);
+    } else if (Gender === "Other") {
+      setImg(imgOther);
+    }
+  }
+
   useEffect(() => {
     // write your code here, it's like componentWillMount
 
-    obtinPersonesAssociades();
+    if (isFocused) {
+      obtinPersonesAssociades();
 
+      imgFile();
+    }
 
 
 
@@ -53,7 +80,7 @@ const IndexAssistant = ({ route, navigation }) => {
 
     /*const res = indexAss();
     console.log(res +  " Nope");*/
-  }, [navigation])
+  }, [navigation, isFocused])
 
   const obtinPersonesAssociades = async () => {
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login2", id: IdAssistant })
@@ -63,6 +90,9 @@ const IndexAssistant = ({ route, navigation }) => {
 
 
     setPersonesAsociades(resultInser.data.array);
+
+
+
   }
 
 
@@ -76,7 +106,7 @@ const IndexAssistant = ({ route, navigation }) => {
         <View style={styles.headercontext}>
           <Image
             style={styles.img}
-            source={require("../../assets/img/feather.png")}
+            source={require('../../assets/img/feather.png')}
           />
           <Text style={styles.h2}>
             Welcome
@@ -90,19 +120,20 @@ const IndexAssistant = ({ route, navigation }) => {
         })}>
           <Image
             style={styles.logo}
-            source={require('../../assets/img/Dependiente.png')}
+            source={img}
           />
         </TouchableOpacity>
       </View>
       <View style={styles.content}>
         <ScrollView>
           {personesAsociades.map((element, pos) => {
-            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact} 
-              address={element.Address} age={element.Age} allergies={element.Allergies} dependency={element.DependencyLevel}></Card>);
+            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact}
+              address={element.Address} age={element.Age} allergies={element.Allergies} dependency={element.DependencyLevel} gender={element.Gender} 
+              User={User} IdAssistant={IdAssistant}></Card>);
           })}
         </ScrollView>
       </View>
-      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add', {User: User, IdAssistant: IdAssistant})}>
+      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add', { User: User, IdAssistant: IdAssistant })}>
         <Image
           style={styles.imgbtn}
           source={require('../../assets/img/Add.png')}

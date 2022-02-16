@@ -176,7 +176,7 @@ const Add = ({ route, navigation }) => {
       if (resultat.data.correct === "OK") {
 
         Alert.alert("Added", "Person added correctly")
-        navigation.navigate("IndexAssistant", { User: User })
+        navigation.navigate("IndexAssistant", { User: User, IdAssistant:IdAssistant })
 
       } else {
 
@@ -222,6 +222,7 @@ const Add = ({ route, navigation }) => {
               style={styles.box}
               mode='outlined'
               label='Address'
+
               selectionColor='#99c8de'
               value={Direccion}
               onChangeText={Direccion => setDireccion(Direccion)}
@@ -247,6 +248,7 @@ const Add = ({ route, navigation }) => {
               style={styles.box}
               label='Contact Phone'
               mode='outlined'
+              
               value={Telefono}
               onChangeText={Telefono => setTelefono(Telefono)}
               theme={{ colors: { primary: colors.themeColor } }}
@@ -275,28 +277,28 @@ const Add = ({ route, navigation }) => {
             <View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <RadioButton
-                  value="Bajo"
-                  status={Dependencia === 'Bajo' ? 'checked' : 'unchecked'}
-                  onPress={() => setDependencia("Bajo")}
+                  value="Low"
+                  status={Dependencia === 'Low' ? 'checked' : 'unchecked'}
+                  onPress={() => setDependencia("Low")}
                   color='green'
                 > </RadioButton>
-                <Text style={{ color: 'black' }} onPress={() => setDependencia("Bajo")}>Bajo</Text>
+                <Text style={{ color: 'black' }} onPress={() => setDependencia("Low")}>Low</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <RadioButton
-                  value="Medio"
-                  status={Dependencia === 'Medio' ? 'checked' : 'unchecked'}
-                  onPress={() => setDependencia("Medio")}
+                  value="Medium"
+                  status={Dependencia === 'Medium' ? 'checked' : 'unchecked'}
+                  onPress={() => setDependencia("Medium")}
                   color='yellow'
-                /><Text style={{ color: 'black' }} onPress={() => setDependencia("Medio")}>Medio</Text>
+                /><Text style={{ color: 'black' }} onPress={() => setDependencia("Medium")}>Medium</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <RadioButton
-                  value="Alto"
-                  status={Dependencia === 'Alto' ? 'checked' : 'unchecked'}
-                  onPress={() => setDependencia("Alto")}
+                  value="High"
+                  status={Dependencia === 'High' ? 'checked' : 'unchecked'}
+                  onPress={() => setDependencia("High")}
                   color='red'
-                /><Text style={{ color: 'black' }} onPress={() => setDependencia("Alto")}>Alto</Text>
+                /><Text style={{ color: 'black' }} onPress={() => setDependencia("High")}>High</Text>
               </View>
             </View>
 
