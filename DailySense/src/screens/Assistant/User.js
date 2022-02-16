@@ -23,9 +23,10 @@ const colors = {
 }
 
 const User = ({ route, navigation }) => {
-  const { User } = route.params;
+  const { User , Mail} = route.params;
+  console.log(Mail)
   const [UserName, setUserName] = React.useState(User);
-  const [Mail, setMail] = React.useState("");
+  const [eMail, setMail] = React.useState(Mail);
   const [Val, setVal] = React.useState("");
 
   function cambiaNombre() {
@@ -60,6 +61,8 @@ const User = ({ route, navigation }) => {
               style={styles.box}
               label='Email'
               mode='outlined'
+              value={eMail}
+              onChangeText={eMail => setMail(eMail)}
               theme={{ colors: { primary: colors.tint } }}
             />
           </View>

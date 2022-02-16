@@ -56,6 +56,7 @@ const Login = ({ navigation, route }) => {
         User: resultat.User,
         IdAssistant: resultat.IdAssistant,
         Gender: resultat.Gender,
+        Mail: resultat.Email,
       })
 
     } else {
