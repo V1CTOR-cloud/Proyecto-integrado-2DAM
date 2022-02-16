@@ -29,7 +29,7 @@ const User = ({ route, navigation }) => {
   const [Val, setVal] = React.useState("");
 
   function cambiaNombre() {
-    navigation.navigate("IndexAssistant",{
+    navigation.navigate("IndexAssistant", {
       User: UserName
     })
   }
@@ -80,24 +80,20 @@ const User = ({ route, navigation }) => {
           </View>
         </View>
         <View style={styles.contbtn}>
-          <Button
-            mode='contained'
-            color={colors.themeColor}
-            style={styles.btn}
-            onPress={() => cambiaNombre()}
-            labelStyle={{ color: colors.white, width: '99%' }}
-          >
-            Save Changes
-          </Button>
-          <Button
-            mode='outlined'
-            color={colors.error}
+          <TouchableOpacity
+            activeOpacity={0.75}
+            style={styles.btnin}
+            onPress={() => cambiaNombre()}>
+            <Text style={styles.btninT}>SAVE CHANGES</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate("Login")}
-            labelStyle={{ width: '80%' }}
-          >
-            log out
-          </Button>
+            onPress={() => navigation.navigate('CreateAccount', {
+              User: User
+            })}>
+            <Text style={styles.btnoutT}>LOG OUT</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer}>
@@ -110,6 +106,7 @@ const User = ({ route, navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  
   container: {
     flex: 1,
     backgroundColor: colors.themeColor,
@@ -122,7 +119,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.themeColor,
+    
   },
   contheader: {
     height: 50,
@@ -182,24 +179,38 @@ const styles = StyleSheet.create({
   },
   contbtn: {
     height: 100,
-    width: '90%',
+    width: '89%',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
+    
   },
-  btn: {
-    height: 45,
-    width: 150,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  btnout: {
-    height: 45,
-    width: 80,
+  btnin: {
+    height: 40,
+    width: 130,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.themeColor,
+    borderRadius: 5
+  },
+  btninT: {
+    fontSize: 15,
+    color: colors.white,
+    fontWeight: '300'
+  },
+  btnout: {
+    height: 40,
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
     borderColor: colors.error,
     borderWidth: 1,
+  },
+  btnoutT: {
+    fontSize: 15,
+    color: colors.error,
+    fontWeight: '300'
   },
 });
 

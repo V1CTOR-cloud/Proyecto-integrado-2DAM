@@ -29,7 +29,7 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const IndexAssistant = ({ route ,navigation }) => {
+const IndexAssistant = ({ route, navigation }) => {
 
   const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
   const { User } = route.params;
@@ -62,14 +62,13 @@ const IndexAssistant = ({ route ,navigation }) => {
   const res = indexAss();
   console.log(res);
 
-  
+
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View
         style={styles.header}
-
       >
         <View style={styles.headercontext}>
           <Image
@@ -84,8 +83,8 @@ const IndexAssistant = ({ route ,navigation }) => {
           </Text>
         </View>
         <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate("User", {
-              User: User
-            })}>
+          User: User
+        })}>
           <Image
             style={styles.logo}
             source={require('../../assets/img/Dependiente.png')}
@@ -171,8 +170,8 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   logo: {
-    height: 65,
-    width: 60,
+    height: 58,
+    width: 52,
   },
   content: {
     flex: 5,

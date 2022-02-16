@@ -128,7 +128,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate('IndexAssistant', {
+            onPress={() => navigation.navigate('CreateAccount', {
               User: User
             })}>
             <Text style={styles.btnoutT}>SIGN UP</Text>
