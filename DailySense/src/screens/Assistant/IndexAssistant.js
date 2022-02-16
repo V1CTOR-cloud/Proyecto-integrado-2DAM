@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -11,6 +11,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 import LinearGradient from 'react-native-linear-gradient'
@@ -28,29 +29,57 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const IndexAssistant = ({ navigation }) => {
+const IndexAssistant = ({ route, navigation }) => {
 
   const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
+  const { User, IdAssistant, Gender } = route.params;
+  // const { IdAssistant } = route.params;
+  //const { Gender } = route.params;
+  const [personesAsociades, setPersonesAsociades] = React.useState([]);
+  //const [datos, setDatos] = React.useState([]);
+
+  useEffect(() => {
+    // write your code here, it's like componentWillMount
+
+    obtinPersonesAssociades();
 
 
-  const [Id, setId] = React.useState("");
 
-  const [datos, setDatos] = React.useState([]);
-  const post = "[{type: login2, id: " + Id + "}]";
 
-  const postDatos = async () => {
-    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-    setDatos(res.data.items);
-    console.log(datos);
+    //setDatos(response.data); 
+
+
+
+
+
+    /*const res = indexAss();
+    console.log(res +  " Nope");*/
+  }, [navigation])
+
+  const obtinPersonesAssociades = async () => {
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login2", id: IdAssistant })
+
+
+    console.log(JSON.stringify(resultInser.data));
+
+
+    setPersonesAsociades(resultInser.data.array);
   }
+  const ompliCards = () => {
+    console.log(JSON.stringify(personesAsociades) + " persones");
+    personesAsociades.map((element, pos) => {
+      return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} ></Card>);
+    })
+  }
+
+
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View
-       style={styles.header}
-       
-       >
+        style={styles.header}
+      >
         <View style={styles.headercontext}>
           <Image
             style={styles.img}
@@ -60,10 +89,12 @@ const IndexAssistant = ({ navigation }) => {
             Welcome
           </Text>
           <Text style={styles.h1}>
-            Víctor
+            {User}
           </Text>
         </View>
-        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate('User')}>
+        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate("User", {
+          User: User
+        })}>
           <Image
             style={styles.logo}
             source={require('../../assets/img/Dependiente.png')}
@@ -72,12 +103,13 @@ const IndexAssistant = ({ navigation }) => {
       </View>
       <View style={styles.content}>
         <ScrollView>
-          <Card />
-          <Card />
-          <Card />
+          {personesAsociades.map((element, pos) => {
+            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact} 
+              address={element.Address} age={element.Age} allergies={element.Allergies}></Card>);
+          })}
         </ScrollView>
       </View>
-      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
+      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add', {User: User, IdAssistant: IdAssistant})}>
         <Image
           style={styles.imgbtn}
           source={require('../../assets/img/Add.png')}
@@ -148,13 +180,13 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   logo: {
-    height: 65,
-    width: 60,
+    height: 58,
+    width: 52,
   },
   content: {
     flex: 5,
     width: '100%',
-    backgroundColor: colors.background ,
+    backgroundColor: colors.background,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'relative',

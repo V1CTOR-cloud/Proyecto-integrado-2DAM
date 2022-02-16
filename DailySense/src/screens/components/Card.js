@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
@@ -23,23 +24,34 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const Card = () => {
+const Card = (props) => {
     const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
+
             </View>
             <View style={styles.body}>
                 <Image
                     source={require('../../assets/img/Dependiente.png')}
                     style={styles.img}
                 />
-                <Text style={styles.h1}>María</Text>
-                <Text style={styles.h2}>Luisa</Text>
+                <Text style={styles.h1}>{props.name}</Text>
+                <Text style={styles.h2}>{props.lastName}</Text>
             </View>
             <View style={styles.footer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Information')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Information', {
+                    id: props.id,
+                    tel: props.tel,
+                    age: props.age,
+                    allergies: props.allergies,
+                    diseases: props.diseases,
+                    address: props.address,
+                    name: props.name,
+                    lastName: props.lastName,
+                })}>
                     <LinearGradient
                         style={styles.btn1}
                         start={{ x: 1, y: 0 }}

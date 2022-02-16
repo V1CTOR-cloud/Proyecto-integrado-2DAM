@@ -14,7 +14,7 @@ import {
 
 import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 
 
 const colors = {
@@ -26,72 +26,43 @@ const colors = {
 }
 
 
-function Validation() {
-  setVal(true)
-
-  if (User == "" && Password == "") {
-    setVal(false)
-  } else {
-    if (User == "") {
-      setVal(false)
-    } else {
-      if (Password == "") {
-        setVal(false)
-      }
-    }
-  }
-}
-
-function IniciarSesion() {
-  if (Validation) {
-
-  } else {
-
-  }
-}
-
-
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route }) => {
 
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
 
-  const [Userbd, setUserbd] = React.useState("");
-  const [Gender, setGender] = React.useState("");
-
-  const [datos, setDatos] = React.useState("a");
-  const [Id, setId] = React.useState();
+  //const [datos, setDatos] = React.useState("");
 
   const postDatos = async () => {
-    axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
-      .then((response) => {
-        console.log(response.data);
-        setDatos(prevState => (response.data));
 
-      }, (error) => {
-        console.log(error);
-      });
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
+
+    console.log(resultInser.data);
+
+    //setDatos(response.data);
+
+    return resultInser.data;
+
   }
 
+  const logIn = async () => {
 
-  function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time)
-    )
-  }
+    const resultat = await postDatos();
 
+    const { correct } = resultat;
+    if (correct === "OK") {
 
-  const logIn = () => {
-    console.log("He llegado");
-    postDatos();
+      navigation.navigate('IndexAssistant', {
+        User: resultat.User,
+        IdAssistant: resultat.IdAssistant,
+        Gender: resultat.Gender,
+      })
 
-    console.log(datos)
-
-    if (datos.correct === "OK") {
-      navigation.navigate("IndexAssistant")
     } else {
-      Alert.alert("Error", "Username or password incorrect try again")
-    }
 
+      Alert.alert("Error", "Username or password incorrect try again")
+
+    }
 
   }
 
@@ -100,7 +71,7 @@ const Login = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
       <View style={styles.header}>
-        <Text style={styles.h1}>Welcome to DailySense</Text>
+        <Text style={styles.h1}>Welcome to DailySense </Text>
       </View>
       <View style={styles.content}>
         <View style={styles.form}>
@@ -138,24 +109,18 @@ const Login = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.contbtn}>
-          <Button
-            mode='contained'
-            color={colors.themeColor}
-            style={styles.btn}
-            onPress={() => logIn()}
-            labelStyle={{ color: colors.white, width: '99%' }}
-          >
-            Sign in
-          </Button>
-          <Button
-            mode='outlined'
-            color={colors.themeColor}
+          <TouchableOpacity
+            activeOpacity={0.75}
+            style={styles.btnin}
+            onPress={() => logIn()}>
+            <Text style={styles.btninT}>SIGN IN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate("CreateAccount")}
-            labelStyle={{ width: '90%' }}
-          >
-            Sign up
-          </Button>
+            onPress={() => navigation.navigate('CreateAccount')}>
+            <Text style={styles.btnoutT}>SIGN UP</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.context}>
           <Text style={{ color: "black" }}>Florida - DAM 2 - DailySense - 2022©</Text>
@@ -226,19 +191,32 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: 0
   },
-  btn: {
+  btnin: {
     height: 45,
     width: 250,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: colors.themeColor,
+    borderRadius: 5
+  },
+  btninT: {
+    fontSize: 16,
+    color: colors.white,
+    fontWeight: '300'
   },
   btnout: {
     height: 45,
     width: 250,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 5,
     borderColor: colors.themeColor,
     borderWidth: 1,
+  },
+  btnoutT: {
+    fontSize: 16,
+    color: colors.themeColor,
+    fontWeight: '300'
   },
   context: {
     height: 20,

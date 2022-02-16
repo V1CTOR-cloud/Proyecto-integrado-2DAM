@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -58,17 +58,20 @@ const CreateAccount = ({ navigation }) => {
 
 
 
-    const [datos, setDatos] = React.useState("");
-    const postDatos = async () => {
-        console.log("hoa");
-        axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
-            .then((response) => {
-                console.log(response.data);
-                ;
-            }, (error) => {
-                console.log(error);
-            });
+    const [datos, setDatos] = React.useState("a");
+    const registreUsuari = async () => {
+
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
+
+
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser;
+
     }
+
 
     const validation = () => {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -79,22 +82,25 @@ const CreateAccount = ({ navigation }) => {
         }
     }
 
-    function sleep(time) {
-        return new Promise((resolve) => setTimeout(resolve, time)
-        )
-    }
 
-    const createAccount = () => {
-        console.log("He llegado");
-        postDatos();
-        sleep(2000).then(() => {
-            console.log(datos);
-            if (datos.correct === "OK") {
-                navigation.navigate("Login")
-            } else {
-                console.log("Datos no es OK");
-            }
-        })
+
+    const createAccount = async () => {
+
+        const resultat = await registreUsuari()
+
+        console.log(JSON.stringify(resultat));
+
+        if (resultat.data.correct === "OK") {
+
+        Alert.alert("Create Account", "Account created succesfully");
+        navigation.navigate("Login");
+
+        } else {
+
+            resultat.log("Datos no es OK");
+
+        }
+
     }
 
     return (

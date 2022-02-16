@@ -25,7 +25,9 @@ const colors = {
     fadedwhite: "#E0E1E4"
 }
 
-const Information = ({ navigation }) => {
+const Information = ({ route, navigation }) => {
+
+    const { id, tel, age, allergies, diseases, address, name, lastName } = route.params;
 
     const [ColorText, setColorText] = React.useState(colors.greyish);
     const [selected, setSelected] = useState(false);
@@ -34,7 +36,7 @@ const Information = ({ navigation }) => {
         borderColor: colors.fadedwhite,
         backgroundColor: colors.background
     });
-
+    
     useEffect(() => {
         if (selected) {
             setTextColor(colors.white);
@@ -50,7 +52,7 @@ const Information = ({ navigation }) => {
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
                 <Text style={styles.h1}>
-                    María Luisa
+                    {name} {lastName}
                 </Text>
                 <View style={styles.contchips}>
                     <Chip
@@ -74,77 +76,90 @@ const Information = ({ navigation }) => {
             </View>
             <View style={styles.footer}>
                 <View style={styles.content}>
-                    <View style={styles.texti}>
-                        <Image
-                            source={require('../../assets/img/contact.png')}
-                            style={styles.img}
-                        />
-                        <Text style={styles.text}>
-                            Contact Phone:
-                        </Text>
-                        <Text>
-                            96 155 39 19
-                        </Text>
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            source={require('../../assets/img/adress.png')}
-                            style={styles.img}
-                        />
-                        <Text style={styles.text}>
-                            Adress:
-                        </Text>
-                        <Text>
-                            Calle Utiel 59
-                        </Text>
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            source={require('../../assets/img/userico.png')}
-                            style={styles.img}
-                        />
-                        <Text style={styles.text}>
-                            Age:
-                        </Text>
-                        <Text>
-                            79
-                        </Text>
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            source={require('../../assets/img/allergies.png')}
-                            style={styles.img}
-                        />
-                        <Text style={styles.text}>
-                            Allergies:
-                        </Text>
-                        <Text>
-                            Dust, nuts, gluten
-                        </Text>
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            source={require('../../assets/img/diseases.png')}
-                            style={styles.img}
-                        />
-                        <Text style={styles.text}>
-                            Diseases:
-                        </Text>
-                        <Text>
-                            COVID-19, E. coli
-                        </Text>
-                    </View>
-                    <View style={styles.texti}>
-                        <Image
-                            source={require('../../assets/img/Pills.png')}
-                            style={styles.img}
-                        />
-                        <Text style={styles.text}>
-                            Medication:
-                        </Text>
-                        <Text>
-                            Omaprazol, Ramipril
-                        </Text>
+                    <View style={styles.wrapper}>
+                        <View style={styles.header1}>
+                            <Text style={styles.h2}>
+                                About me
+                            </Text>
+                        </View>
+                        <View style={styles.body1}>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/contact.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Contact Phone:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    {tel}
+                                </Text>
+                            </View>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/adress.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Adress:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    {address}
+                                </Text>
+                            </View>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/userico.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Age:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    {age}
+                                </Text>
+                            </View>
+
+
+                        </View>
+                        <View style={styles.footer1}>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/allergies.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Allergies:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    {allergies}
+                                </Text>
+                            </View>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/diseases.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Diseases:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    {diseases}
+                                </Text>
+                            </View>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/Pills.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Medication:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    Omaprazol, Ramipril
+                                </Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
                 <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
@@ -180,12 +195,11 @@ const styles = StyleSheet.create({
         height: 35,
         width: '80%',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         padding: 5,
         flexDirection: 'row',
         position: 'relative',
         bottom: 120,
-        backgroundColor: colors.fadedwhite,
         borderRadius: 20,
         opacity: 0.7,
     },
@@ -225,30 +239,61 @@ const styles = StyleSheet.create({
     content: {
         height: 450,
         width: 330,
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.white,
         position: 'relative',
         bottom: 220,
         borderRadius: 30,
-        padding: 10
+        padding: 10,
     },
     texti: {
-        width: '80%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        padding: 10,
+        padding: 5,
     },
     text: {
         fontWeight: 'bold',
         paddingLeft: 5,
-        paddingRight: 5
+        paddingRight: 5,
+        color: '#444'
     },
     img: {
         height: 25,
         width: 25,
+    },
+    wrapper: {
+        flex: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
 
+    },
+    header1: {
+        flex: 0.6,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    h2:{
+        fontSize: 24,
+        fontWeight: '600',
+        color: '#141414',
+    },
+    body1: {
+        flex: 1,
+        width: '100%',
+        paddingTop: 10,
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+    },
+    footer1: {
+        flex: 1,
+        width: '100%',
+        paddingTop: 10,
+        alignItems: 'flex-start',
+        flexDirection: 'column',
     },
 });
 

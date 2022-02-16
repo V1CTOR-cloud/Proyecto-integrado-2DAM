@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import CardTask from '../../components/CardTask';
 
 import { TextInput, Button } from 'react-native-paper';
 
@@ -29,12 +30,33 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const AddTask = () => {
+const AddTask = ({navigation}) => {
 
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
 
-  const navigation = useNavigation();
+  
+
+  function EnviaDatos() {
+    if (Title == "" && Description == "") {
+      alert('Error - All fields are empty');
+    } else {
+      if (Title == "") {
+        alert('Error - Title field empty');
+      } else {
+        if (Description == "") {
+          alert('Error - Description field empty');
+        } else {
+          navigation.navigate('Tasks', {
+            Title: Title,
+            Description: Description
+          });
+        }
+      }
+    }
+  }
+
+
   return (
     <View style={styles.cont}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -68,10 +90,7 @@ const AddTask = () => {
           mode='contained'
           color={colors.themeColor}
           labelStyle={styles.btn}
-          onPress={() => navigation.navigate('Tasks', {
-            titulo: Title,
-            descripcion: Description
-          })}
+          onPress={() => EnviaDatos()}
           style={{ width: 150 }}
         >
           Add

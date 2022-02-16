@@ -16,8 +16,7 @@ import {
   StatusBar
 } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native-paper';
+import { Button, Title } from 'react-native-paper';
 
 
 const colors = {
@@ -29,8 +28,7 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const Pills = () => {
-  const navigation = useNavigation();
+const Pills = ({route, navigation}) => {
   return (
     <View style={styles.cont}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -38,14 +36,14 @@ const Pills = () => {
         <Text style={styles.titulo}>Medication</Text>
       </View>
       <View style={styles.body}>
-
+        <Text></Text>
       </View>
       <View style={styles.footer}>
         <Button
           mode='contained'
           color={colors.background}
           labelStyle={{ width: 120 }}
-          onPress={() => navigation.navigate('IndexAssistant')}
+          onPress={() => navigation.goBack()}
         >
           Home
         </Button>
