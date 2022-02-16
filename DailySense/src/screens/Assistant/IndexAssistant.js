@@ -71,7 +71,7 @@ const IndexAssistant = ({ route, navigation }) => {
     console.log(JSON.stringify(personesAsociades) + " persones");
     personesAsociades.map((element, pos) => {
       console.log("Vaig a pintar unCard");
-      return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName}></Card>);
+      return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} ></Card>);
     })
   }
 
@@ -107,8 +107,9 @@ const IndexAssistant = ({ route, navigation }) => {
       <View style={styles.content}>
         <ScrollView>
           {personesAsociades.map((element, pos) => {
-            console.log("Vaig a pintar unCard");
-            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName}></Card>);
+            console.log("Dieada: " + element.Diseases)
+            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact} 
+              address={element.Address} age={element.Age} allergies={element.Allergies}></Card>);
           })}
         </ScrollView>
       </View>

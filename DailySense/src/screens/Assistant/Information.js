@@ -25,7 +25,9 @@ const colors = {
     fadedwhite: "#E0E1E4"
 }
 
-const Information = ({ navigation }) => {
+const Information = ({ route, navigation }) => {
+
+    const { id, tel, age, allergies, diseases, address, name, lastName } = route.params;
 
     const [ColorText, setColorText] = React.useState(colors.greyish);
     const [selected, setSelected] = useState(false);
@@ -34,7 +36,7 @@ const Information = ({ navigation }) => {
         borderColor: colors.fadedwhite,
         backgroundColor: colors.background
     });
-
+    
     useEffect(() => {
         if (selected) {
             setTextColor(colors.white);
@@ -50,7 +52,7 @@ const Information = ({ navigation }) => {
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
                 <Text style={styles.h1}>
-                    María Luisa
+                    {name} {lastName}
                 </Text>
                 <View style={styles.contchips}>
                     <Chip
@@ -90,7 +92,7 @@ const Information = ({ navigation }) => {
                                     Contact Phone:
                                 </Text>
                                 <Text style={{ color: '#444' }}>
-                                    96 155 39 19
+                                    {tel}
                                 </Text>
                             </View>
                             <View style={styles.texti}>
@@ -102,7 +104,7 @@ const Information = ({ navigation }) => {
                                     Adress:
                                 </Text>
                                 <Text style={{ color: '#444' }}>
-                                    Calle Utiel 59
+                                    {address}
                                 </Text>
                             </View>
                             <View style={styles.texti}>
@@ -114,7 +116,7 @@ const Information = ({ navigation }) => {
                                     Age:
                                 </Text>
                                 <Text style={{ color: '#444' }}>
-                                    79
+                                    {age}
                                 </Text>
                             </View>
 
@@ -130,7 +132,7 @@ const Information = ({ navigation }) => {
                                     Allergies:
                                 </Text>
                                 <Text style={{ color: '#444' }}>
-                                    Dust, nuts, gluten
+                                    {allergies}
                                 </Text>
                             </View>
                             <View style={styles.texti}>
@@ -142,7 +144,7 @@ const Information = ({ navigation }) => {
                                     Diseases:
                                 </Text>
                                 <Text style={{ color: '#444' }}>
-                                    COVID-19, E. coli
+                                    {diseases}
                                 </Text>
                             </View>
                             <View style={styles.texti}>
