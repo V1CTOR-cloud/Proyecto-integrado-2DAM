@@ -43,6 +43,98 @@ const Add = ({ route, navigation }) => {
   const [SelectedChipFemale, selectedChipFemale] = React.useState(false);
   const [SelectedChipOther, selectedChipOther] = React.useState(false);
 
+  function validar() {
+    if (Nombre.length == 0 &&
+      Apellidos.length == 0 &&
+      Direccion.length == 0 &&
+      Edad == 0 &&
+      Telefono.length == 0 &&
+      Enfermedades.length == 0 &&
+      Alergias.length == 0 &&
+      Dependencia.length == 0 &&
+      Sexo.length == 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
+    } else {
+      if (Nombre.length == 0) {
+        Alert.alert("Error", "Name field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      } else {
+        if (Apellidos.length == 0) {
+          Alert.alert("Error", "Last Name field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        } else {
+          if (Direccion.length == 0) {
+            Alert.alert("Error", "Adress field is empty", [
+              { text: "Ok", onPress: () => console.log("error") }
+            ]);
+            return false;
+          } else {
+            if (Edad == 0) {
+              Alert.alert("Error", "Age field incorrect", [
+                { text: "Ok", onPress: () => console.log("error") }
+              ]);
+              return false;
+            } else {
+              if (Telefono.length == 0) {
+                Alert.alert("Error", "Phone field is empty", [
+                  { text: "Ok", onPress: () => console.log("error") }
+                ]);
+                return false;
+              } else {
+                if (Enfermedades.length == 0) {
+                  Alert.alert("Error", "Diseases field is empty", [
+                    { text: "Ok", onPress: () => console.log("error") }
+                  ]);
+                  return false;
+                } else {
+                  if (Alergias.length == 0) {
+                    Alert.alert("Error", "Diseases field is empty", [
+                      { text: "Ok", onPress: () => console.log("error") }
+                    ]);
+                    return false;
+                  } else {
+                    if (Dependencia.length == 0) {
+                      Alert.alert("Error", "Dependency field is empty", [
+                        { text: "Ok", onPress: () => console.log("error") }
+                      ]);
+                      return false;
+                    } else {
+                      if (Sexo.length == 0) {
+                        Alert.alert("Error", "Gender field is empty", [
+                          { text: "Ok", onPress: () => console.log("error") }
+                        ]);
+                        return false;
+                      } else {
+                        if (SelectedChipMale == false &&
+                          SelectedChipFemale == false &&
+                          SelectedChipOther == false) {
+                          Alert.alert("Error", "chips field is empty", [
+                            { text: "Ok", onPress: () => console.log("error") }
+                          ]);
+                          return false;
+                        } else {
+                          return true;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
   const estableixSexe = (sexe) => {
     if (sexe === 'Male') {
       selectedChipMale(!SelectedChipMale);
@@ -62,16 +154,15 @@ const Add = ({ route, navigation }) => {
     setSexo(sexe);
   }
 
-  
+
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "Add", idAssistant: 2, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
+      op: "Add", idAssistant: IdAssistant, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
       diseases: Enfermedades, alergies: Alergias, dependency: Dependencia, gender: Sexo
     })
 
     console.log(resultInser.data);
-
     //setDatos(response.data);
 
     return resultInser;
@@ -79,18 +170,19 @@ const Add = ({ route, navigation }) => {
   }
 
   const addPerson = async () => {
+    if (validar()) {
+      const resultat = await postDatos()
 
-    const resultat = await postDatos()
+      if (resultat.data.correct === "OK") {
 
-    if (resultat.data.correct === "OK") {
+        Alert.alert("Added", "Person added correctly")
+        navigation.navigate("IndexAssistant", { User: User })
 
-      Alert.alert("Added", "Person added correctly")
-      navigation.navigate("IndexAssistant", {User: User})
+      } else {
 
-    } else {
+        resultat.log("Datos no es OK");
 
-      resultat.log("Datos no es OK");
-
+      }
     }
   }
 
@@ -104,7 +196,9 @@ const Add = ({ route, navigation }) => {
         />
         <ScrollView >
           <View>
-            <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>Add Person</Text>
+            <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>
+              Add Person
+            </Text>
             <TextInput
               placeholder='Name'
               style={styles.box}

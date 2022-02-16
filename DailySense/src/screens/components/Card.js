@@ -22,7 +22,11 @@ const colors = {
     white: "#fff",
     background: "#f4f6fc",
     greyish: "#a4a4a4",
-    tint: "#2b49c3"
+    tint: "#2b49c3",
+
+    high: '#FF5252',
+    medium: '#FFC107',
+    low: '#4CAF50'
 }
 
 
@@ -67,7 +71,19 @@ const Card = (props) => {
             Alert.alert("Error", "Unable to delete")
 
         }
+    }
 
+    function compruebaDependencia() {
+        let color = props.dependency;
+        if (color == 'Bajo') {
+            color = colors.low
+        }else{
+            if(color == 'Medio'){
+                color = colors.medium
+            }else{
+                color = colors.high
+            }
+        }
     }
 
 
@@ -131,7 +147,7 @@ const styles = StyleSheet.create({
     header: {
         flex: 0.6,
         width: '100%',
-        backgroundColor: '#FF5252',
+        backgroundColor: colors.low,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         justifyContent: 'center',

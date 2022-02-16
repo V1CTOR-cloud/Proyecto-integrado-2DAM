@@ -97,7 +97,7 @@ const IndexAssistant = ({ route, navigation }) => {
       <View style={styles.content}>
         <ScrollView>
           {personesAsociades.map((element, pos) => {
-            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact} 
+            return (<Card key={pos} dependency={element.dependency} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact} 
               address={element.Address} age={element.Age} allergies={element.Allergies}></Card>);
           })}
         </ScrollView>
