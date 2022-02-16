@@ -9,6 +9,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 import axios from "axios";
@@ -82,6 +83,7 @@ const Add = ({ navigation }) => {
 
     if (resultat.data.correct === "OK") {
 
+      Alert.alert("Added", "Person added correctly")
       navigation.navigate("IndexAssistant")
 
     } else {

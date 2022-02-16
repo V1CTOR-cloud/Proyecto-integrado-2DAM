@@ -92,6 +92,7 @@ const createAccount = async () => {
 
     if (resultat.data.correct === "OK") {
 
+        Alert.alert("Create Account", "Account created succesfully")
         navigation.navigate("Login")
 
     } else {
