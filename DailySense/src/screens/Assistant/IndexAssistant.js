@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -32,35 +32,48 @@ const colors = {
 const IndexAssistant = ({ route, navigation }) => {
 
   const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
-  const { User } = route.params;
+  const { User, IdAssistant, Gender } = route.params;
+  // const { IdAssistant } = route.params;
+  //const { Gender } = route.params;
   const [Id, setId] = React.useState();
-  let card = [];
+
+  const [personesAsociades, setPersonesAsociades] = React.useState([]);
   //const [datos, setDatos] = React.useState([]);
 
+  useEffect(() => {
+    // write your code here, it's like componentWillMount
 
-  const indexAss = async () => {
-
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login2", id: 2 })
-
-
-    console.log(resultInser.data);
+    obtinPersonesAssociades();
 
 
 
-    for (i = 0; i < resultInser.data.lenght; i++) {
-      cards.push(
-        <Card id={resultInser.data[i].IdDependents} name={resultInser.data[i].Name} lastName={resultInser.data[i].LastName}></Card>
-      )
-    }
 
-    //setDatos(response.data);
+    //setDatos(response.data); 
 
-    return resultInser.data;
 
+
+
+
+    /*const res = indexAss();
+    console.log(res +  " Nope");*/
+  }, [])
+
+  const obtinPersonesAssociades = async () => {
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login2", id: IdAssistant })
+
+
+    console.log(JSON.stringify(resultInser.data) + " Aqui");
+
+
+    setPersonesAsociades(resultInser.data.array);
   }
-
-  const res = indexAss();
-  console.log(res);
+  const ompliCards = () => {
+    console.log(JSON.stringify(personesAsociades) + " persones");
+    personesAsociades.map((element, pos) => {
+      console.log("Vaig a pintar unCard");
+      return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName}></Card>);
+    })
+  }
 
 
 
@@ -93,10 +106,10 @@ const IndexAssistant = ({ route, navigation }) => {
       </View>
       <View style={styles.content}>
         <ScrollView>
-          {card}
-          <Card id={Id} />
-          <Card id={Id} />
-          <Card id={Id} />
+          {personesAsociades.map((element, pos) => {
+            console.log("Vaig a pintar unCard");
+            return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName}></Card>);
+          })}
         </ScrollView>
       </View>
       <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>

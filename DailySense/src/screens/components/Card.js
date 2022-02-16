@@ -26,7 +26,7 @@ const colors = {
 
 const Card = (props) => {
     const navigation = useNavigation();
-
+    console.log("Pinte un Card "+props.lastName)
     const del = async () => {
         const resultInser = await axios.delete('http:52.174.144.160:5000/test?', { data: { op: "delete", idDependent: props.id } })
         console.log(resultInser.data);
@@ -55,8 +55,8 @@ const Card = (props) => {
                     source={require('../../assets/img/Dependiente.png')}
                     style={styles.img}
                 />
-                <Text style={styles.h1}>María {props.name}</Text>
-                <Text style={styles.h2}>Luisa {props.lastName}</Text>
+                <Text style={styles.h1}> {props.name}</Text>
+                <Text style={styles.h2}> {props.lastName}</Text>
             </View>
             <View style={styles.footer}>
                 <TouchableOpacity onPress={() => navigation.navigate('Information')}>

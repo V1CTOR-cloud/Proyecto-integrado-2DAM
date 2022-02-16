@@ -31,39 +31,31 @@ const Login = ({ navigation, route }) => {
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
 
-  const [Userbd, setUserbd] = React.useState("");
-  const [Gender, setGender] = React.useState("");
-
   //const [datos, setDatos] = React.useState("");
-  const [Id, setId] = React.useState();
 
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
 
-
-
     console.log(resultInser.data);
 
     //setDatos(response.data);
 
-    return resultInser;
+    return resultInser.data;
 
   }
 
   const logIn = async () => {
 
-    const resultat = await postDatos()
+    const resultat = await postDatos();
 
-    console.log(resultat.data);
-
-    var corr = resultat.data.correct;
-
-    if (corr === "OK") {
-      console.log("Funka")
+    const { correct } = resultat;
+    if (correct === "OK") {
 
       navigation.navigate('IndexAssistant', {
-        User: User
+        User: resultat.User,
+        IdAssistant: resultat.IdAssistant,
+        Gender: resultat.Gender,
       })
 
     } else {
@@ -79,7 +71,7 @@ const Login = ({ navigation, route }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
       <View style={styles.header}>
-        <Text style={styles.h1}>Welcome to DailySense</Text>
+        <Text style={styles.h1}>Welcome to DailySense </Text>
       </View>
       <View style={styles.content}>
         <View style={styles.form}>
@@ -120,17 +112,13 @@ const Login = ({ navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnin}
-            onPress={() => navigation.navigate('IndexAssistant', {
-              User: User
-            })}>
+            onPress={() => logIn()}>
             <Text style={styles.btninT}>SIGN IN</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate('CreateAccount', {
-              User: User
-            })}>
+            onPress={() => navigation.navigate('CreateAccount')}>
             <Text style={styles.btnoutT}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
