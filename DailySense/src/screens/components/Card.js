@@ -95,6 +95,7 @@ const Card = (props) => {
                     address: props.address,
                     name: props.name,
                     lastName: props.lastName,
+                    dependency: props.dependency,
                 })}>
                     <LinearGradient
                         style={styles.btn1}

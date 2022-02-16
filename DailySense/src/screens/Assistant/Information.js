@@ -27,7 +27,7 @@ const colors = {
 
 const Information = ({ route, navigation }) => {
 
-    const { id, tel, age, allergies, diseases, address, name, lastName } = route.params;
+    const { id, tel, age, allergies, diseases, address, name, lastName, dependency } = route.params;
 
     const [ColorText, setColorText] = React.useState(colors.greyish);
     const [selected, setSelected] = useState(false);
@@ -117,6 +117,18 @@ const Information = ({ route, navigation }) => {
                                 </Text>
                                 <Text style={{ color: '#444' }}>
                                     {age}
+                                </Text>
+                            </View>
+                            <View style={styles.texti}>
+                                <Image
+                                    source={require('../../assets/img/userico.png')}
+                                    style={styles.img}
+                                />
+                                <Text style={styles.text}>
+                                    Dependency Level:
+                                </Text>
+                                <Text style={{ color: '#444' }}>
+                                    {dependency}
                                 </Text>
                             </View>
 
