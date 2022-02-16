@@ -19,6 +19,14 @@ import IndexAssistant from './src/screens/Assistant/IndexAssistant';
 import List from './src/screens/Assistant/List';
 import Add from './src/screens/Assistant/Add';
 import User from './src/screens/Assistant/User';
+import Information from './src/screens/Assistant/Information';
+import Tasks from './src/screens/Assistant/Tasks/Tasks';
+import AddTask from './src/screens/Assistant/Tasks/AddTask';
+import Reminders from './src/screens/Assistant/Reminders/Reminders';
+import AddReminder from './src/screens/Assistant/Reminders/AddReminder';
+import Pills from './src/screens/Assistant/Pills/Pills';
+import AddPills from './src/screens/Assistant/Pills/AddPills';
+
 
 import {
   StatusBar,
@@ -40,7 +48,6 @@ const colors = {
 
 function Landing({ navigation }) {
   return (
-
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.circle}>
@@ -58,7 +65,7 @@ function Landing({ navigation }) {
 
 const Stack = createNativeStackNavigator();
 
-const App = () => {
+const App = ({ navigation }) => {
 
   return (
     <SafeAreaProvider>
@@ -71,6 +78,13 @@ const App = () => {
           <Stack.Screen name="Add" component={Add} />
           <Stack.Screen name="List" component={List} />
           <Stack.Screen name="User" component={User} />
+          <Stack.Screen name="Information" component={Information} />
+          <Stack.Screen name="Tasks" component={Tasks} />
+          <Stack.Screen name="AddTask" component={AddTask} />
+          <Stack.Screen name="Reminders" component={Reminders} />
+          <Stack.Screen name="AddReminder" component={AddReminder} />
+          <Stack.Screen name="Pills" component={Pills} />
+          <Stack.Screen name="AddPills" component={AddPills} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

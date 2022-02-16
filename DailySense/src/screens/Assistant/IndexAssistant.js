@@ -11,12 +11,14 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 import LinearGradient from 'react-native-linear-gradient'
 
 import Add from "./Add";
 import Card from "../components/Card";
+import Information from "./Information";
 
 const colors = {
   themeColor: "#4263ec",
@@ -27,29 +29,47 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const IndexAssistant = ({ navigation }) => {
+const IndexAssistant = ({ route, navigation }) => {
 
   const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
+  const { User } = route.params;
+  const [Id, setId] = React.useState();
+  let card = [];
+  //const [datos, setDatos] = React.useState([]);
 
 
-  const [Id, setId] = React.useState("");
+  const indexAss = async () => {
 
-  const [datos, setDatos] = React.useState([]);
-  const post = "[{type: login2, id: " + Id + "}]";
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login2", id: 2 })
 
-  const postDatos = async () => {
-    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-    setDatos(res.data.items);
-    console.log(datos);
+
+    console.log(resultInser.data);
+
+
+
+    for (i = 0; i < resultInser.data.lenght; i++) {
+      cards.push(
+        <Card id={resultInser.data[i].IdDependents} name={resultInser.data[i].Name} lastName={resultInser.data[i].LastName}></Card>
+      )
+    }
+
+    //setDatos(response.data);
+
+    return resultInser.data;
+
   }
+
+  const res = indexAss();
+  console.log(res);
+
+
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor}/>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View
-       style={styles.header}
-       
-       >
+        style={styles.header}
+      >
         <View style={styles.headercontext}>
           <Image
             style={styles.img}
@@ -59,10 +79,12 @@ const IndexAssistant = ({ navigation }) => {
             Welcome
           </Text>
           <Text style={styles.h1}>
-            Víctor
+            {User}
           </Text>
         </View>
-        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate('User')}>
+        <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate("User", {
+          User: User
+        })}>
           <Image
             style={styles.logo}
             source={require('../../assets/img/Dependiente.png')}
@@ -71,9 +93,10 @@ const IndexAssistant = ({ navigation }) => {
       </View>
       <View style={styles.content}>
         <ScrollView>
-          <Card />
-          <Card />
-          <Card />
+          {card}
+          <Card id={Id} />
+          <Card id={Id} />
+          <Card id={Id} />
         </ScrollView>
       </View>
       <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
@@ -110,7 +133,6 @@ const styles = StyleSheet.create({
     width: 40,
     position: 'relative',
     top: 40,
-    
   },
   headercontext: {
     height: 100,
@@ -148,13 +170,13 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   logo: {
-    height: 65,
-    width: 60,
+    height: 58,
+    width: 52,
   },
   content: {
     flex: 5,
     width: '100%',
-    backgroundColor: colors.background ,
+    backgroundColor: colors.background,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'relative',

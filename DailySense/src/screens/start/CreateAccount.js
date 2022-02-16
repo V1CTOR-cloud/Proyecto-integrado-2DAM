@@ -92,7 +92,8 @@ const CreateAccount = ({ navigation }) => {
 
         if (resultat.data.correct === "OK") {
 
-            navigation.navigate("Login")
+        Alert.alert("Create Account", "Account created succesfully")
+        navigation.navigate("Login")
 
         } else {
 

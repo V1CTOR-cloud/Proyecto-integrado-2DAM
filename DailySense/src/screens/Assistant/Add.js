@@ -9,10 +9,10 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
-
-import axios from 'axios';
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import Slider from '@react-native-community/slider';
 import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
@@ -62,8 +62,10 @@ const Add = ({ navigation }) => {
 
   const postDatos = async () => {
 
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "Add", idAssistant:2, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
-    diseases: Enfermedades, alergies: Alergias, dependency: Dependencia, gender: Sexo })
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
+      op: "Add", idAssistant: 2, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
+      diseases: Enfermedades, alergies: Alergias, dependency: Dependencia, gender: Sexo
+    })
 
     console.log(resultInser.data);
 
@@ -71,26 +73,25 @@ const Add = ({ navigation }) => {
 
     return resultInser;
 
-}
+  }
 
-const addPerson = async () => {
+  const addPerson = async () => {
 
-  const resultat = await postDatos()
+    const resultat = await postDatos()
 
-  console.log(JSON.stringify(resultat));
+    console.log(JSON.stringify(resultat));
 
-  if (resultat.data.correct === "OK") {
+    if (resultat.data.correct === "OK") {
 
-      navigation.navigate("IndexAssitant")
+      Alert.alert("Added", "Person added correctly")
+      navigation.navigate("IndexAssistant")
 
-  } else {
+    } else {
 
       resultat.log("Datos no es OK");
 
+    }
   }
-
-}
-
 
   return (
     <View style={styles.container}>

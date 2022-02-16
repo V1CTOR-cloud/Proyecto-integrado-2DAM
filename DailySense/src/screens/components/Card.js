@@ -6,14 +6,15 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 import LinearGradient from "react-native-linear-gradient";
-
-
+import Information from "../Assistant/Information";
+import { useNavigation } from '@react-navigation/native';
 
 const colors = {
     themeColor: "#4263ec",
@@ -23,29 +24,50 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const Card = ({ navigation }) => {
+const Card = (props) => {
+    const navigation = useNavigation();
+
+    const del = async () => {
+        const resultInser = await axios.delete('http:52.174.144.160:5000/test?', { data: { op: "delete", idDependent: props.id } })
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser;
+
+    }
+    
+    const deletePerson = async () =>{
+        const res = await del();
+        if (res.data.correct=== "OK"){
+            Alert.alert("Delete", "Delete completed")
+        }
+    }
 
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
+                
             </View>
             <View style={styles.body}>
                 <Image
                     source={require('../../assets/img/Dependiente.png')}
                     style={styles.img}
                 />
-                <Text style={styles.h1}>María</Text>
-                <Text style={styles.h2}>Luisa</Text>
+                <Text style={styles.h1}>María {props.name}</Text>
+                <Text style={styles.h2}>Luisa {props.lastName}</Text>
             </View>
             <View style={styles.footer}>
-                <LinearGradient
-                    style={styles.btn1}
-                    start={{ x: 1, y: 0 }}
-                    colors={[colors.tint, colors.themeColor]}
-                >
-                    <Text style={styles.btntext1}>More Info</Text>
-                </LinearGradient>
+                <TouchableOpacity onPress={() => navigation.navigate('Information')}>
+                    <LinearGradient
+                        style={styles.btn1}
+                        start={{ x: 1, y: 0 }}
+                        colors={[colors.tint, colors.themeColor]}
+                    >
+                        <Text style={styles.btntext1}>More Info</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.btn2}>
                     <Image
                         source={require('../../assets/img/icono_basura.png')}
