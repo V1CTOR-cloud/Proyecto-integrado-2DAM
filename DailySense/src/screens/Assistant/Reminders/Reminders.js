@@ -46,7 +46,7 @@ const Reminders = () => {
           mode='contained'
           color={colors.background}
           labelStyle={{ width: 120 }}
-          onPress={() => navigation.navigate('IndexAssistant')}
+          onPress={() => navigation.goBack()}
         >
           Home
         </Button>

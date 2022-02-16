@@ -35,8 +35,6 @@ const IndexAssistant = ({ route, navigation }) => {
   const { User, IdAssistant, Gender } = route.params;
   // const { IdAssistant } = route.params;
   //const { Gender } = route.params;
-  const [Id, setId] = React.useState();
-
   const [personesAsociades, setPersonesAsociades] = React.useState([]);
   //const [datos, setDatos] = React.useState([]);
 
@@ -56,13 +54,13 @@ const IndexAssistant = ({ route, navigation }) => {
 
     /*const res = indexAss();
     console.log(res +  " Nope");*/
-  }, [])
+  }, [navigation])
 
   const obtinPersonesAssociades = async () => {
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login2", id: IdAssistant })
 
 
-    console.log(JSON.stringify(resultInser.data) + " Aqui");
+    console.log(JSON.stringify(resultInser.data));
 
 
     setPersonesAsociades(resultInser.data.array);
@@ -70,7 +68,6 @@ const IndexAssistant = ({ route, navigation }) => {
   const ompliCards = () => {
     console.log(JSON.stringify(personesAsociades) + " persones");
     personesAsociades.map((element, pos) => {
-      console.log("Vaig a pintar unCard");
       return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} ></Card>);
     })
   }
@@ -107,13 +104,12 @@ const IndexAssistant = ({ route, navigation }) => {
       <View style={styles.content}>
         <ScrollView>
           {personesAsociades.map((element, pos) => {
-            console.log("Dieada: " + element.Diseases)
             return (<Card key={pos} id={element.IdDependents} name={element.Name} lastName={element.LastName} diseases={element.Diseases} tel={element.FamilyContact} 
               address={element.Address} age={element.Age} allergies={element.Allergies}></Card>);
           })}
         </ScrollView>
       </View>
-      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
+      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add', {User: User, IdAssistant: IdAssistant})}>
         <Image
           style={styles.imgbtn}
           source={require('../../assets/img/Add.png')}

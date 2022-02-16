@@ -26,7 +26,9 @@ const colors = {
   tint: "#2b49c3"
 }
 
-const Add = ({ navigation }) => {
+const Add = ({ route, navigation }) => {
+
+  const { User, IdAssistant } = route.params;
 
   const [Nombre, setNombre] = React.useState("");
   const [Apellidos, setApellidos] = React.useState("");
@@ -60,6 +62,7 @@ const Add = ({ navigation }) => {
     setSexo(sexe);
   }
 
+  
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
@@ -79,12 +82,10 @@ const Add = ({ navigation }) => {
 
     const resultat = await postDatos()
 
-    console.log(JSON.stringify(resultat));
-
     if (resultat.data.correct === "OK") {
 
       Alert.alert("Added", "Person added correctly")
-      navigation.navigate("IndexAssistant")
+      navigation.navigate("IndexAssistant", {User: User})
 
     } else {
 
