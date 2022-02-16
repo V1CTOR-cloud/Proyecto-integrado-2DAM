@@ -147,6 +147,9 @@ const styles = StyleSheet.create({
         borderRadius: 80,
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
+        bottom: 0,
+        left: 25
     },
     btntext1: {
         fontSize: 17,
