@@ -29,14 +29,10 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const IndexAssistant = ({ navigation }) => {
+const IndexAssistant = ({ route ,navigation }) => {
 
   const image = ["../../assets/img/Dependiente.png", "../../assets/img/Dependiente.png"]
-
-
-
-
-
+  const { User } = route.params;
   const [Id, setId] = React.useState();
   let card = [];
   //const [datos, setDatos] = React.useState([]);
@@ -84,7 +80,7 @@ const IndexAssistant = ({ navigation }) => {
             Welcome
           </Text>
           <Text style={styles.h1}>
-            Víctor
+            {User}
           </Text>
         </View>
         <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate('User')}>

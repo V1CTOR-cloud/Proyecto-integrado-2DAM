@@ -20,20 +20,21 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const TarjetaTask = () => {
+const CardTask = () => {
     const navigation = useNavigation();
+    const [Title, setTitle] = React.useState("Title");
+    const [Description, setDescription] = React.useState("Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo");
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.h1}>Title</Text>
+                <Text style={styles.h1}> {Title} </Text>
             </View>
             <View style={styles.body}>
                 <Text style={styles.h2}>
                     Description:
                 </Text>
                 <Text style={styles.h3}>
-                    Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo
-                    Ejemplo Ejemplo
+                    {Description}
                 </Text>
             </View>
             <View style={styles.footer}>
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 4,
         borderBottomRightRadius: 4
     },
-    contbtn:{
+    contbtn: {
         padding: 5,
         borderRadius: 200,
         backgroundColor: colors.background,
@@ -107,10 +108,10 @@ const styles = StyleSheet.create({
         left: 120,
         bottom: 20
     },
-    img:{
+    img: {
         height: 30,
         width: 30,
     }
 });
 
-export default TarjetaTask;
+export default CardTask;

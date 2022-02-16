@@ -17,9 +17,8 @@ import {
   ScrollView
 } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
-import Tarjetatask from '../../components/TarjetaTask';
+import CardTask from '../../components/CardTask';
 
 
 const colors = {
@@ -32,8 +31,11 @@ const colors = {
 }
 
 
-const Tasks = () => {
-  const navigation = useNavigation();
+const Tasks = ({route, navigation}) => {
+
+  const [Title, setTitle] = React.useState("");
+  const [Description, setDescription] = React.useState("");
+
   return (
     <View style={styles.cont}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
@@ -42,9 +44,9 @@ const Tasks = () => {
       </View>
       <View style={styles.body}>
         <ScrollView>
-          <Tarjetatask />
-          <Tarjetatask />
-          <Tarjetatask />
+          <CardTask/>
+          <CardTask/>
+          <CardTask/>
         </ScrollView>
       </View>
       <View style={styles.footer}>
