@@ -22,7 +22,6 @@ import {
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
-import { useNavigation } from '@react-navigation/native';
 
 const colors = {
   themeColor: "#4263ec",
@@ -32,21 +31,70 @@ const colors = {
   tint: "#2b49c3"
 }
 
+const AddPills = ({ navigation }) => {
 
-const AddPills = () => {
+  const [Pills, setPills] = React.useState("");
+  const [Day, setDay] = React.useState("");
 
-  const [Recordatorio, setRecordatorio] = React.useState("");
-  const navigation = useNavigation();
+  function validar() {
+    if (Day.length == 0 && Pills.length == 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
+    } else {
+      if (Day.length == 0) {
+        Alert.alert("Error", "The day field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      } else {
+        if(Pills.length == 0){
+          Alert.alert("Error", "The medication field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        }else {
+          return true;
+        }
+      }
+    }
+  }
 
+  function Añadir(){
+    if (validar()) {
+      navigation.navigate('Reminder');
+    }else{
+      Alert.alert("Error 404", "Cannot be added", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      
+    }
+  }
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
       <View style={styles.header}>
-        <Text style={styles.h1}>Day: MONDAY</Text>
+        <Text style={styles.h1}>Add pills</Text>
       </View>
       <View style={styles.content}>
         <View style={styles.form}>
+          <View style={styles.texti}>
+            <Image
+              style={styles.img}
+              source={require('../../../assets/img/days.png')}
+            />
+            <TextInput
+              placeholder='Ej:. Monday, Tuesday'
+              style={styles.box}
+              label='Days'
+              mode='outlined'
+              theme={{ colors: { primary: colors.tint } }}
+              value={Day}
+              onChangeText={(Day) => setDay(Day)}
+            />
+          </View>
           <View style={styles.texti}>
             <Image
               style={styles.img}
@@ -54,12 +102,14 @@ const AddPills = () => {
             />
             <TextInput
               placeholder='Ej:. Omeprazol at 10:22'
-              style={styles.box}
+              style={styles.boxA}
               label='Medication'
               numberOfLines={3}
               multiline
               mode='outlined'
               theme={{ colors: { primary: colors.tint } }}
+              value={Pills}
+              onChangeText={(Pills) => setPills(Pills)}
             />
           </View>
         </View>
@@ -110,7 +160,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   content: {
-    flex: 2,
+    flex: 3,
     width: '100%',
     backgroundColor: colors.white,
     borderRadius: 40,
@@ -128,6 +178,11 @@ const styles = StyleSheet.create({
     bottom: 20
   },
   box: {
+    height: 35,
+    margin: 15,
+    width: 250,
+  },
+  boxA: {
     height: 105,
     margin: 15,
     width: 250,
@@ -138,13 +193,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'relative',
-    bottom:0
+    bottom: 0
   },
   btn: {
     height: 45,
     width: 250,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+    top: 20,
+    left: 10
   },
   btnout: {
     height: 45,
