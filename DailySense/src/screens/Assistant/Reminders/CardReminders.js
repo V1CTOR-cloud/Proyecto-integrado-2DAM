@@ -73,7 +73,7 @@ const CardReminder = (props) => {
                     Time:
                 </Text>
                 <Text style={styles.h3}>
-                    {props.h}:{props.m}
+                    {props.time}
                 </Text>
             </View>
             <View style={styles.footer}>
@@ -115,7 +115,9 @@ const styles = StyleSheet.create({
     h1: {
         fontSize: 20,
         fontWeight: '400',
-        color: '#141414'
+        color: '#141414',
+        position: 'relative',
+        top: 2
     },
     h2: {
         fontSize: 12,

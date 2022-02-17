@@ -80,43 +80,61 @@ const AddTask = ({ navigation }) => {
 
 
   return (
-    <View style={styles.cont}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
+      <View style={styles.header}>
+        <Text style={styles.h1}>Add tasks</Text>
+      </View>
       <View style={styles.content}>
-        <Text style={styles.titulo}>Add tasks</Text>
-        <TextInput
-          style={styles.box}
-          placeholder='Title goes here...'
-          label='Title'
-          selectionColor={colors.themeColor}
-          mode='outlined'
-          outlineColor={colors.themeColor}
-          theme={{ colors: { primary: colors.themeColor } }}
-          value={Title}
-          onChangeText={(Title) => setTitle(Title)}
-        />
-        <TextInput
-          style={styles.boxArea}
-          placeholder='Description goes here...'
-          label='Description'
-          multiline
-          numberOfLines={3}
-          selectionColor={colors.themeColor}
-          mode='outlined'
-          outlineColor={colors.themeColor}
-          theme={{ colors: { primary: colors.themeColor } }}
-          value={Description}
-          onChangeText={(Description) => setDescription(Description)}
-        />
-        <Button
-          mode='contained'
-          color={colors.themeColor}
-          labelStyle={styles.btn}
-          onPress={() => creado()}
-          style={{ width: 150 }}
-        >
-          Add
-        </Button>
+        <View style={styles.form}>
+          <View style={styles.texti}>
+            <Image
+              style={styles.img}
+              source={require('../../../assets/img/label.png')}
+            />
+            <TextInput
+              style={styles.box}
+              placeholder='Title goes here...'
+              label='Title'
+              selectionColor={colors.themeColor}
+              mode='outlined'
+              outlineColor={colors.themeColor}
+              theme={{ colors: { primary: colors.themeColor } }}
+              value={Title}
+              onChangeText={(Title) => setTitle(Title)}
+            />
+          </View>
+          <View style={styles.texti}>
+            <Image
+              style={styles.img}
+              source={require('../../../assets/img/description.png')}
+            />
+            <TextInput
+              style={styles.boxA}
+              placeholder='Description goes here...'
+              label='Description'
+              multiline
+              numberOfLines={3}
+              selectionColor={colors.themeColor}
+              mode='outlined'
+              outlineColor={colors.themeColor}
+              theme={{ colors: { primary: colors.themeColor } }}
+              value={Description}
+              onChangeText={(Description) => setDescription(Description)}
+            />
+          </View>
+        </View>
+        <View style={styles.contbtn}>
+          <Button
+            mode='contained'
+            color={colors.themeColor}
+            style={styles.btn}
+            onPress={() => creado()}
+            labelStyle={{ color: colors.white, width: '99%' }}
+          >
+            SAVE
+          </Button>
+        </View>
       </View>
     </View>
   );
@@ -124,38 +142,93 @@ const AddTask = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
-  cont: {
+  container: {
     flex: 1,
-    backgroundColor: colors.themeColor,
+    backgroundColor: colors.tint,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  content: {
-    flex: 0.5,
-    width: '80%',
-    backgroundColor: colors.white,
-    borderRadius: 10,
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
+  header: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
-  titulo: {
-    color: '#444',
-    fontSize: 20,
-    fontWeight: 'bold'
+  texti: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 10
+  },
+  h1: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    position: 'relative',
+    left: 30,
+    color: colors.white
+  },
+  img: {
+    height: 20,
+    width: 20,
+  },
+  content: {
+    height: 600,
+    width: '100%',
+    backgroundColor: colors.white,
+    borderRadius: 40,
+    position: 'relative',
+    top: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  form: {
+    flex: 0.3,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 20
   },
   box: {
-    height: 45,
+    height: 35,
+    margin: 15,
     width: 250,
-    backgroundColor: '#F7F7F7'
   },
-  boxArea: {
+  boxA: {
     height: 105,
+    margin: 15,
     width: 250,
-    backgroundColor: '#F7F7F7'
+  },
+  contbtn: {
+    height: 150,
+    width: '80%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 0
   },
   btn: {
-    color: '#F7F7F7',
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    top: 20,
+    left: 10
   },
+  btnout: {
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: colors.themeColor,
+    borderWidth: 1,
+  },
+  context: {
+    height: 20,
+    position: 'relative',
+    top: 80
+  }
 });
 
 export default AddTask;

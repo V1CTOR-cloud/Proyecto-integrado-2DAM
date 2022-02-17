@@ -22,7 +22,6 @@ import {
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
-import { useNavigation } from '@react-navigation/native';
 
 import { arrayPills } from "../../components/Utils";
 
@@ -34,10 +33,7 @@ const colors = {
   tint: "#2b49c3"
 }
 
-
-const AddPills = () => {
-
-  const navigation = useNavigation()
+const AddPills = ({ navigation }) => {
 
   const [Day, setDay] = React.useState("");
   const [Med, setMed] = React.useState("");
@@ -82,6 +78,16 @@ const AddPills = () => {
     }
   }
 
+  function Añadir(){
+    if (validar()) {
+      navigation.navigate('Reminder');
+    }else{
+      Alert.alert("Error 404", "Cannot be added", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -171,7 +177,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   content: {
-    flex: 3,
+    height: 600,
     width: '100%',
     backgroundColor: colors.white,
     borderRadius: 40,

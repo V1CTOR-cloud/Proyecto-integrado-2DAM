@@ -6,7 +6,7 @@ import {
   View,
   Image,
   TouchableOpacity,
-  ImageBackground, 
+  ImageBackground,
   Alert
 } from 'react-native';
 
@@ -28,9 +28,9 @@ const User = ({ route, navigation }) => {
   const { User, IdAssistant, Gender, Mail } = route.params;
 
   const [UserName, setUserName] = React.useState(User);
-  
+
   const [eMail, setMail] = React.useState(Mail);
-  
+
 
 
 
@@ -39,20 +39,20 @@ const User = ({ route, navigation }) => {
       Alert.alert("Error", "All fields are empty", [
         { text: "Ok", onPress: () => console.log("error") }
       ]);
-      return false; 
+      return false;
     } else {
       if (UserName == null) {
         Alert.alert("Error", "The user field is empty", [
           { text: "Ok", onPress: () => console.log("error") }
         ]);
         return false;
-      }else{
-        if(eMail == null){
+      } else {
+        if (eMail == null) {
           Alert.alert("Error", "The email field is empty", [
             { text: "Ok", onPress: () => console.log("error") }
           ]);
           return false;
-        }else{
+        } else {
           Alert.alert("¡Success!", "The account was updated succesfully", [
             { text: "Ok", onPress: () => console.log("¡Success!") }
           ]);
@@ -81,8 +81,8 @@ const User = ({ route, navigation }) => {
 
       const resultat = await postDatos();
 
-      
-      if (resultat != 0 ) {
+
+      if (resultat != 0) {
         navigation.navigate('IndexAssistant', {
           User: UserName,
           IdAssistant: IdAssistant,
@@ -230,9 +230,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   box: {
-    height: 45,
-    margin: 20,
-    width: 250
+    height: 40,
+    margin: 10,
+    width: 250,
   },
   img: {
     height: 20,

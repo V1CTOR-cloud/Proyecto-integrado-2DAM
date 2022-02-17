@@ -92,7 +92,7 @@ const Login = ({ navigation, route }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
       <View style={styles.header}>
-        <Text style={styles.h1}>Welcome to DailySense </Text>
+        <Text style={styles.h1}>¡Welcome to DailySense! </Text>
       </View>
       <View style={styles.content}>
         <View style={styles.form}>
@@ -102,6 +102,8 @@ const Login = ({ navigation, route }) => {
               source={require('../../assets/img/user.png')}
             />
             <TextInput
+              selectionColor={colors.themeColor}
+              outlineColor={colors.themeColor}
               placeholder='Your Username goes here...'
               style={styles.box}
               label='Username'
@@ -118,6 +120,8 @@ const Login = ({ navigation, route }) => {
               source={require('../../assets/img/lock.png')}
             />
             <TextInput
+              selectionColor={colors.themeColor}
+              outlineColor={colors.themeColor}
               placeholder='Your Password goes here...'
               style={styles.box}
               label='Password'
@@ -171,7 +175,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   h1: {
-    fontSize: 25,
+    fontSize: 28,
     fontWeight: 'bold',
     position: 'relative',
     left: 30,
@@ -182,7 +186,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   content: {
-    flex: 5,
+    flex: 3,
     width: '100%',
     backgroundColor: colors.white,
     borderRadius: 40,
@@ -197,11 +201,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    bottom: 50
+    bottom: 20
   },
   box: {
-    height: 45,
-    margin: 15,
+    height: 40,
+    margin: 10,
     width: 250,
   },
   contbtn: {
@@ -210,7 +214,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'relative',
-    bottom: 0
+    top: 20,
+    left: 10,
   },
   btnin: {
     height: 45,

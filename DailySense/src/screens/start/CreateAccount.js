@@ -42,7 +42,7 @@ const CreateAccount = ({ navigation }) => {
             ConfirmPassword.length == 0 &&
             User.length == 0 &&
             MailAccount.length == 0
-            ) {
+        ) {
             Alert.alert("Error", "All fields are empty", [
                 { text: "Ok", onPress: () => console.log("error") }
             ]);
@@ -155,7 +155,7 @@ const CreateAccount = ({ navigation }) => {
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
-                <Text style={styles.h1}>Register Now!</Text>
+                <Text style={styles.h1}>¡Register Now!</Text>
             </View>
             <View style={styles.content}>
                 <View style={styles.form}>
@@ -165,6 +165,7 @@ const CreateAccount = ({ navigation }) => {
                             source={require('../../assets/img/mail.png')}
                         />
                         <TextInput
+                            outlineColor={colors.themeColor}
                             placeholder='Your Email goes here...'
                             style={styles.box}
                             label='Email'
@@ -180,6 +181,7 @@ const CreateAccount = ({ navigation }) => {
                             source={require('../../assets/img/user.png')}
                         />
                         <TextInput
+                            outlineColor={colors.themeColor}
                             placeholder='Your Username goes here...'
                             style={styles.box}
                             label='Username'
@@ -195,6 +197,7 @@ const CreateAccount = ({ navigation }) => {
                             source={require('../../assets/img/lock.png')}
                         />
                         <TextInput
+                            outlineColor={colors.themeColor}
                             placeholder='Your Password goes here...'
                             style={styles.box}
                             label='Password'
@@ -211,6 +214,7 @@ const CreateAccount = ({ navigation }) => {
                             source={require('../../assets/img/lock.png')}
                         />
                         <TextInput
+                            outlineColor={colors.themeColor}
                             placeholder='Confirm your password'
                             style={styles.box}
                             label='Confirm password'
@@ -268,7 +272,7 @@ const styles = StyleSheet.create({
         width: 20,
     },
     h1: {
-        fontSize: 25,
+        fontSize: 28,
         fontWeight: 'bold',
         position: 'relative',
         left: 30,
@@ -291,10 +295,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
         bottom: 50,
+        padding: 10,
     },
     box: {
-        height: 45,
-        margin: 15,
+        height: 40,
+        margin: 10,
         width: 250,
     },
     btn: {
@@ -331,12 +336,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         position: 'relative',
         top: 60
-      },
-      btninT: {
+    },
+    btninT: {
         fontSize: 16,
         color: colors.white,
         fontWeight: '300'
-      },
+    },
 });
 
 export default CreateAccount;
