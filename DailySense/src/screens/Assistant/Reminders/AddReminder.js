@@ -13,6 +13,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import { Button, TextInput } from 'react-native-paper';
@@ -25,75 +26,78 @@ const colors = {
   tint: "#2b49c3"
 }
 
-const AddReminder = () => {
+const AddReminder = ({ route, navigation }) => {
 
   const [Recordatorio, setRecordatorio] = React.useState("");
   const [Hour, setHour] = React.useState("");
   const [Min, setMin] = React.useState("");
-  const [visible, setVisible] = React.useState(false)
-  const onDismiss = React.useCallback(() => {
-    setVisible(false)
-  }, [setVisible])
-
-  const onConfirm = React.useCallback(
-    ({ hours, minutes }) => {
-      setVisible(false);
-      console.log({ hours, minutes });
-    },
-    [setVisible]
-  );
 
   return (
     <View style={styles.cont}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.header}>
+        <Text style={styles.h1}>Add Reminder</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.content}>
-          <Text style={styles.titulo}>
-            Add
-          </Text>
-          <TextInput
-            placeholder='Your title goes here...'
-            style={styles.box}
-            mode='outlined'
-            label='Title'
-            selectionColor={colors.themeColor}
-            value={Recordatorio}
-            onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-            theme={{ colors: { primary: colors.themeColor } }}
-          />
-          <TextInput
-            placeholder='Your description goes here...'
-            style={styles.boxArea}
-            mode='outlined'
-            label='Description'
-            selectionColor={colors.themeColor}
-            value={Recordatorio}
-            multiline
-            numberOfLines={3}
-            onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-            theme={{ colors: { primary: colors.themeColor } }}
-          />
-          <TextInput
-            placeholder='Hour goes here...'
-            style={styles.box}
-            mode='outlined'
-            label='Hour'
-            selectionColor={colors.themeColor}
-            value={Recordatorio}
-            onChangeText={Hour => setHour(Hour)}
-            theme={{ colors: { primary: colors.themeColor } }}
-          />
-          <TextInput
-            placeholder='Minutes goes here...'
-            style={styles.box}
-            mode='outlined'
-            label='Minutes'
-            selectionColor={colors.themeColor}
-            value={Min}
-            onChangeText={Min => setMin(Min)}
-            theme={{ colors: { primary: colors.themeColor } }}
-          />
+          <View style={styles.texti}>
+            <TextInput
+              placeholder='Your title goes here...'
+              style={styles.box}
+              mode='outlined'
+              label='Title'
+              selectionColor={colors.themeColor}
+              value={Recordatorio}
+              onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
+              theme={{ colors: { primary: colors.themeColor } }}
+            />
+          </View>
+          <View style={styles.texti}>
+            <TextInput
+              placeholder='Your description goes here...'
+              style={styles.boxArea}
+              mode='outlined'
+              label='Description'
+              selectionColor={colors.themeColor}
+              value={Recordatorio}
+              multiline
+              numberOfLines={3}
+              onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
+              theme={{ colors: { primary: colors.themeColor } }}
+            />
+          </View>
+          <View style={styles.texti}>
+            <TextInput
+              placeholder='Hour goes here...'
+              style={styles.box}
+              mode='outlined'
+              label='Hour'
+              selectionColor={colors.themeColor}
+              value={Recordatorio}
+              onChangeText={Hour => setHour(Hour)}
+              keyboardType="numeric"
+              theme={{ colors: { primary: colors.themeColor } }}
+            />
+          </View>
+          <View style={styles.texti}>
+            <TextInput
+              placeholder='Minutes goes here...'
+              style={styles.box}
+              mode='outlined'
+              label='Minutes'
+              selectionColor={colors.themeColor}
+              value={Min}
+              onChangeText={Min => setMin(Min)}
+              keyboardType="numeric"
+              theme={{ colors: { primary: colors.themeColor } }}
+            />
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.75}
+            style={styles.btnin}
+            onPress={() => navigation.navigate('Reminders')}>
+            <Text style={styles.btninT}>SIGN IN</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer}>
@@ -108,14 +112,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.themeColor,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomRightRadius: 350
   },
   header: {
     flex: 1,
     width: '100%',
   },
+  h1: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: colors.white,
+    position: 'relative',
+    top: 30,
+    left: 40
+  },
   body: {
-    flex: 7,
+    flex: 9,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -125,12 +138,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   content: {
-    flex: 1,
-    width: '80%',
-    backgroundColor: '#F7F7F7',
-    borderRadius: 10,
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
+    flex: 0.9,
+    width: '90%',
+    backgroundColor: colors.background,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
+  },
+  texti: {
+    position: 'relative',
+    bottom: 10
   },
   titulo: {
     color: '#444',
@@ -139,14 +157,50 @@ const styles = StyleSheet.create({
     letterSpacing: 2
   },
   box: {
-    height: 45,
+    height: 35,
     margin: 20,
     width: 250
   },
   boxArea: {
-    height: 85,
+    height: 75,
     margin: 20,
     width: 250
+  },
+  contbtn: {
+    height: 150,
+    width: '80%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 0,
+    flexDirection: 'column-reverse'
+  },
+  btnin: {
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.themeColor,
+    borderRadius: 5
+  },
+  btninT: {
+    fontSize: 16,
+    color: colors.white,
+    fontWeight: '300'
+  },
+  btnout: {
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderColor: colors.themeColor,
+    borderWidth: 1,
+  },
+  btnoutT: {
+    fontSize: 16,
+    color: colors.themeColor,
+    fontWeight: '300'
   },
 });
 
