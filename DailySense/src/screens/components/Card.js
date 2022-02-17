@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     },
     img: {
         height: 65,
-        width: 60,
+        width: 58,
         position: 'relative',
         right: 100,
         top: 40
