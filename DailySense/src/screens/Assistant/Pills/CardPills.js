@@ -6,12 +6,13 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground, 
+    ImageBackground,
     Alert
 } from 'react-native';
 
 
 import { useNavigation } from '@react-navigation/native';
+import { arrayPills } from "../../components/Utils";
 
 const colors = {
     themeColor: "#4263ec",
@@ -29,8 +30,9 @@ const CardPills = (props) => {
     const [dis, setDisplay] = React.useState("flex");
 
     const deleteFinal = () => {
-            setDisplay("none");
-            Alert.alert("Delete", "Delete was succefully");
+        arrayPills.splice(props.id - 1, 1)
+        setDisplay("none");
+        Alert.alert("Delete", "Delete was succefully");
     }
 
     const del = () => {
@@ -46,7 +48,8 @@ const CardPills = (props) => {
     }
 
     return (
-        <View style={{height: 180,
+        <View style={{
+            height: 180,
             width: 320,
             backgroundColor: colors.white,
             justifyContent: 'center',
@@ -54,8 +57,8 @@ const CardPills = (props) => {
             borderRadius: 5,
             marginBottom: 50,
             marginTop: 50,
-            display:dis,
-            }}>
+            display: dis,
+        }}>
             <View style={styles.header}>
                 <Text style={styles.h1}>{props.day} </Text>
             </View>
@@ -70,7 +73,7 @@ const CardPills = (props) => {
             <View style={styles.footer}>
                 <TouchableOpacity
                     style={styles.contbtn}
-                    onPress={()=> del()}
+                    onPress={() => del()}
                 >
                     <Image
                         style={styles.img}

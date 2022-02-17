@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -32,10 +32,8 @@ const colors = {
 }
 
 
-const Tasks = ({route, navigation}) => {
+const Tasks = ({ route, navigation }) => {
 
-  const [Title, setTitle] = React.useState("");
-  const [Description, setDescription] = React.useState("");
 
   return (
     <View style={styles.cont}>
@@ -45,11 +43,10 @@ const Tasks = ({route, navigation}) => {
       </View>
       <View style={styles.body}>
         <ScrollView>
-          {arrayTasks.map((element,pos)=>{
-            console.log("añado reminder");
-            return(
-              
-              <CardTask key={pos} desc={element.description} title={element.title} ></CardTask>
+          {arrayTasks.map((element, pos) => {
+            return (
+
+              <CardTask key={pos} id={element.id} desc={element.description} title={element.title} ></CardTask>
             )
           })}
         </ScrollView>

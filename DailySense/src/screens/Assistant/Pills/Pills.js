@@ -40,7 +40,7 @@ const Pills = ({ route, navigation }) => {
         <ScrollView>
           {arrayPills.map((element, pos) => {
             return (
-              <CardPills key={pos} med={element.medication} day={element.day} ></CardPills>
+              <CardPills key={pos} id={element.id} med={element.medication} day={element.day} ></CardPills>
             )
           })}
         </ScrollView>

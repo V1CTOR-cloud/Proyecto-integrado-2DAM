@@ -12,6 +12,7 @@ import {
 
 
 import { useNavigation } from '@react-navigation/native';
+import { arrayTasks } from "../../components/Utils";
 
 const colors = {
     themeColor: "#4263ec",
@@ -27,6 +28,7 @@ const CardTask = (props) => {
     const [dis, setDisplay] = React.useState("flex");
 
     const deleteFinal = () => {
+        arrayTasks.splice(props.id-1, 1)
         setDisplay("none");
         Alert.alert("Delete", "Delete was succefully");
     }

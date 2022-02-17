@@ -162,12 +162,6 @@ const Information = ({ route, navigation }) => {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add')}>
-                    <Image
-                        style={styles.imgbtn}
-                        source={require('../../assets/img/Add.png')}
-                    />
-                </TouchableOpacity>
             </View>
         </View>
     );
