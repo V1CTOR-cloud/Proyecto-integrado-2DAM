@@ -121,7 +121,7 @@ const Information = ({ route, navigation }) => {
                             </View>
                             <View style={styles.texti}>
                                 <Image
-                                    source={require('../../assets/img/userico.png')}
+                                    source={require('../../assets/img/dependency.png')}
                                     style={styles.img}
                                 />
                                 <Text style={styles.text}>
@@ -159,7 +159,6 @@ const Information = ({ route, navigation }) => {
                                     {diseases}
                                 </Text>
                             </View>
-                            
                         </View>
                     </View>
                 </View>
