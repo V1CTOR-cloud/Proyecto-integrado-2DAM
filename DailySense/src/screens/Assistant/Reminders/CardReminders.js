@@ -12,6 +12,7 @@ import {
 
 
 import { useNavigation } from '@react-navigation/native';
+import { arrayReminders } from "../../components/Utils";
 
 const colors = {
     themeColor: "#4263ec",
@@ -27,6 +28,7 @@ const CardReminder = (props) => {
     const [dis, setDisplay] = React.useState("flex");
 
     const deleteFinal = () => {
+        arrayReminders.splice(props.id-1, 1)
         setDisplay("none");
         Alert.alert("Delete", "Delete was succefully");
     }

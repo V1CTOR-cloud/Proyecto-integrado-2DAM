@@ -13,9 +13,11 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar
+  StatusBar, Alert
 } from 'react-native';
 
+
+import { arrayTasks } from '../../components/Utils';
 import { useNavigation } from '@react-navigation/native';
 import CardTask from './CardTask';
 
@@ -30,31 +32,51 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const AddTask = ({navigation}) => {
+const AddTask = ({ navigation }) => {
 
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
 
-  
+  function subir() {
+    arrayTasks.push({ id: 4, title: Title, description: Description })
+  }
 
-  function EnviaDatos() {
-    if (Title == "" && Description == "") {
-      alert('Error - All fields are empty');
+  function creado() {
+    if (validar()) {
+      subir();
+      Alert.alert("Alert Add", "Reminder added correctly", [{
+        text: "Ok",
+        onPress: () => navigation.navigate('Tasks'),
+      }])
+    }
+
+  }
+
+  function validar() {
+    if (Title.length == 0 && Description.length == 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
     } else {
-      if (Title == "") {
-        alert('Error - Title field empty');
+      if (Title.length == 0) {
+        Alert.alert("Error", "The day field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
       } else {
-        if (Description == "") {
-          alert('Error - Description field empty');
+        if (Description.length == 0) {
+          Alert.alert("Error", "The medication field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
         } else {
-          navigation.navigate('Tasks', {
-            Title: Title,
-            Description: Description
-          });
+          return true;
         }
       }
     }
   }
+
 
 
   return (
@@ -90,7 +112,7 @@ const AddTask = ({navigation}) => {
           mode='contained'
           color={colors.themeColor}
           labelStyle={styles.btn}
-          onPress={() => EnviaDatos()}
+          onPress={() => creado()}
           style={{ width: 150 }}
         >
           Add
@@ -98,7 +120,8 @@ const AddTask = ({navigation}) => {
       </View>
     </View>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
   cont: {

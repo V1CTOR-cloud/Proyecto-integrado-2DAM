@@ -44,7 +44,7 @@ const Reminders = () => {
         <ScrollView>
           {arrayReminders.map((element, pos) => {
             return (
-              <CardReminder key={pos} desc={element.description} title={element.title} h={element.hour} m={element.minutes} ></CardReminder>
+              <CardReminder key={pos} id={element.id} desc={element.description} title={element.title} h={element.hour} m={element.minutes} ></CardReminder>
             )
           })}
         </ScrollView>

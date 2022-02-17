@@ -13,8 +13,11 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Alert
 } from 'react-native';
+
+import { arrayReminders } from '../../components/Utils';
 
 import { Button, TextInput } from 'react-native-paper';
 
@@ -29,8 +32,50 @@ const colors = {
 const AddReminder = ({ route, navigation }) => {
 
   const [Recordatorio, setRecordatorio] = React.useState("");
+  const [Description, setDescription] = React.useState("");
   const [Hour, setHour] = React.useState("");
   const [Min, setMin] = React.useState("");
+
+  function subir() {
+    arrayReminders.push({ id: 4, title: Recordatorio, description: Description, hour: Hour, minutes: Min })
+  }
+
+  function creado() {
+    
+    if (EnviaDatos()) {
+      subir();
+      Alert.alert("Alert Add", "Reminder added correctly", [{
+        text: "Ok",
+        onPress: () => navigation.navigate('Reminders'),
+      }])
+    }
+
+  }
+
+  function EnviaDatos() {
+    if (Recordatorio.length === 0 && Description.length === 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
+    } else {
+      if (Recordatorio === "") {
+        Alert.alert("Error", "The title field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      } else {
+        if (Description === "") {
+          Alert.alert("Error", "The Description field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        } else {
+          return true;
+        };
+      }
+    }
+  }
 
   return (
     <View style={styles.cont}>
@@ -59,10 +104,10 @@ const AddReminder = ({ route, navigation }) => {
               mode='outlined'
               label='Description'
               selectionColor={colors.themeColor}
-              value={Recordatorio}
+              value={Description}
               multiline
               numberOfLines={3}
-              onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
+              onChangeText={Description => setDescription(Description)}
               theme={{ colors: { primary: colors.themeColor } }}
             />
           </View>
@@ -73,7 +118,7 @@ const AddReminder = ({ route, navigation }) => {
               mode='outlined'
               label='Hour'
               selectionColor={colors.themeColor}
-              value={Recordatorio}
+              value={Hour}
               onChangeText={Hour => setHour(Hour)}
               keyboardType="numeric"
               theme={{ colors: { primary: colors.themeColor } }}
@@ -95,8 +140,8 @@ const AddReminder = ({ route, navigation }) => {
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnin}
-            onPress={() => navigation.navigate('Reminders')}>
-            <Text style={styles.btninT}>SIGN IN</Text>
+            onPress={() => creado()}>
+            <Text style={styles.btninT}>Add</Text>
           </TouchableOpacity>
         </View>
       </View>
