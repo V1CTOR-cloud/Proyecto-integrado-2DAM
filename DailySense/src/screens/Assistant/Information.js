@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
         width: 40
     },
     content: {
-        height: 450,
+        height: 400,
         width: 330,
         justifyContent: 'center',
         alignItems: 'center',
@@ -254,8 +254,8 @@ const styles = StyleSheet.create({
         color: '#444'
     },
     img: {
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
     },
     wrapper: {
         flex: 1,

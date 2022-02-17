@@ -22,22 +22,19 @@ export const arrayReminders = [
         id:1,
         title: 'Go skating',
         description: "Do some skate-board awsome tricks",
-        hour: 20,
-        minutes: 34
+        time: '14:35'
     },
     {
         id:2,
         title: 'Walk the dog',
         description: "Walk the dog before dooing the dinner",
-        hour: 19,
-        minutes:30,
+        time: '21:15'
     },
     {
         id:3,
         title: 'Feed pets',
         description: "Feed the cat, and waters the dog",
-        hour: 18,
-        minutes: 32
+        time: '4:35'
     },
 ]
 

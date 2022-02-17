@@ -35,11 +35,6 @@ const colors = {
 
 const AddPills = ({ navigation }) => {
 
-  const [Pills, setPills] = React.useState("");
-  const [Day, setDay] = React.useState("");
-
-  const navigation = useNavigation()
-
   const [Day, setDay] = React.useState("");
   const [Med, setMed] = React.useState("");
 
@@ -182,7 +177,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   content: {
-    flex: 3,
+    height: 600,
     width: '100%',
     backgroundColor: colors.white,
     borderRadius: 40,

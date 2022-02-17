@@ -33,15 +33,14 @@ const AddReminder = ({ route, navigation }) => {
 
   const [Recordatorio, setRecordatorio] = React.useState("");
   const [Description, setDescription] = React.useState("");
-  const [Hour, setHour] = React.useState("");
-  const [Min, setMin] = React.useState("");
+  const [Time, setTime] = React.useState("");
 
   function subir() {
-    arrayReminders.push({ id: 4, title: Recordatorio, description: Description, hour: Hour, minutes: Min })
+    arrayReminders.push({ id: 4, title: Recordatorio, description: Description, time: Time})
   }
 
   function creado() {
-    
+
     if (EnviaDatos()) {
       subir();
       Alert.alert("Alert Add", "Reminder added correctly", [{
@@ -53,7 +52,9 @@ const AddReminder = ({ route, navigation }) => {
   }
 
   function EnviaDatos() {
-    if (Recordatorio.length === 0 && Description.length === 0) {
+    if (Recordatorio.length === 0 &&
+      Description.length === 0 &&
+      Time.length == 0) {
       Alert.alert("Error", "All fields are empty", [
         { text: "Ok", onPress: () => console.log("error") }
       ]);
@@ -71,145 +72,155 @@ const AddReminder = ({ route, navigation }) => {
           ]);
           return false;
         } else {
-          return true;
+          if (Time.length === 0) {
+            Alert.alert("Error", "The Time field is empty", [
+              { text: "Ok", onPress: () => console.log("error") }
+            ]);
+            return false;
+          }else{
+            return true;
+          }
         };
       }
     }
   }
 
   return (
-    <View style={styles.cont}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
       <View style={styles.header}>
-        <Text style={styles.h1}>Add Reminder</Text>
+        <Text style={styles.h1}>Add reminders</Text>
       </View>
-      <View style={styles.body}>
-        <View style={styles.content}>
+      <View style={styles.content}>
+        <View style={styles.form}>
           <View style={styles.texti}>
+            <Image
+              style={styles.img}
+              source={require('../../../assets/img/label.png')}
+            />
             <TextInput
-              placeholder='Your title goes here...'
+              placeholder='Title of reminder here...'
               style={styles.box}
-              mode='outlined'
               label='Title'
+              mode='outlined'
               selectionColor={colors.themeColor}
+              outlineColor={colors.themeColor}
+              theme={{ colors: { primary: colors.tint } }}
               value={Recordatorio}
-              onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-              theme={{ colors: { primary: colors.themeColor } }}
+              onChangeText={(Recordatorio) => setRecordatorio(Recordatorio)}
             />
           </View>
           <View style={styles.texti}>
+            <Image
+              style={styles.img}
+              source={require('../../../assets/img/description.png')}
+            />
             <TextInput
-              placeholder='Your description goes here...'
-              style={styles.boxArea}
-              mode='outlined'
+              placeholder='Description of reminder here...'
+              style={styles.boxA}
               label='Description'
-              selectionColor={colors.themeColor}
-              value={Description}
-              multiline
               numberOfLines={3}
-              onChangeText={Description => setDescription(Description)}
-              theme={{ colors: { primary: colors.themeColor } }}
+              multiline
+              selectionColor={colors.themeColor}
+              outlineColor={colors.themeColor}
+              mode='outlined'
+              theme={{ colors: { primary: colors.tint } }}
+              value={Description}
+              onChangeText={(Description) => setDescription(Description)}
             />
           </View>
           <View style={styles.texti}>
+            <Image
+              style={styles.img}
+              source={require('../../../assets/img/time.png')}
+            />
             <TextInput
-              placeholder='Hour goes here...'
+              placeholder='Ej:. 20:34'
               style={styles.box}
+              label='Time'
               mode='outlined'
-              label='Hour'
               selectionColor={colors.themeColor}
-              value={Hour}
-              onChangeText={Hour => setHour(Hour)}
-              keyboardType="numeric"
-              theme={{ colors: { primary: colors.themeColor } }}
+              outlineColor={colors.themeColor}
+              theme={{ colors: { primary: colors.tint } }}
+              value={Time}
+              onChangeText={(Time) => setTime(Time)}
             />
           </View>
-          <View style={styles.texti}>
-            <TextInput
-              placeholder='Minutes goes here...'
-              style={styles.box}
-              mode='outlined'
-              label='Minutes'
-              selectionColor={colors.themeColor}
-              value={Min}
-              onChangeText={Min => setMin(Min)}
-              keyboardType="numeric"
-              theme={{ colors: { primary: colors.themeColor } }}
-            />
-          </View>
-          <TouchableOpacity
-            activeOpacity={0.75}
-            style={styles.btnin}
-            onPress={() => creado()}>
-            <Text style={styles.btninT}>Add</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.footer}>
 
+        </View>
+        <View style={styles.contbtn}>
+          <Button
+            mode='contained'
+            color={colors.themeColor}
+            style={styles.btn}
+            onPress={() => creado()}
+            labelStyle={{ color: colors.white, width: '99%' }}
+          >
+            SAVE
+          </Button>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  cont: {
+  container: {
     flex: 1,
-    backgroundColor: colors.themeColor,
+    backgroundColor: colors.tint,
     justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomRightRadius: 350
+    alignItems: 'center'
   },
   header: {
     flex: 1,
     width: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  texti: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 10
   },
   h1: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: colors.white,
     position: 'relative',
-    top: 30,
-    left: 40
+    left: 30,
+    color: colors.white
   },
-  body: {
-    flex: 9,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footer: {
-    flex: 1,
-    width: '100%',
+  img: {
+    height: 20,
+    width: 20,
   },
   content: {
-    flex: 0.9,
-    width: '90%',
-    backgroundColor: colors.background,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-  },
-  texti: {
+    height: 600,
+    width: '100%',
+    backgroundColor: colors.white,
+    borderRadius: 40,
     position: 'relative',
-    bottom: 10
+    top: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  titulo: {
-    color: '#444',
-    fontSize: 35,
-    fontWeight: 'bold',
-    letterSpacing: 2
+  form: {
+    flex: 0.3,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 20
   },
   box: {
     height: 35,
-    margin: 20,
-    width: 250
+    margin: 15,
+    width: 250,
   },
-  boxArea: {
-    height: 75,
-    margin: 20,
-    width: 250
+  boxA: {
+    height: 105,
+    margin: 15,
+    width: 250,
   },
   contbtn: {
     height: 150,
@@ -217,36 +228,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'relative',
-    bottom: 0,
-    flexDirection: 'column-reverse'
+    bottom: 0
   },
-  btnin: {
+  btn: {
     height: 45,
     width: 250,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.themeColor,
-    borderRadius: 5
-  },
-  btninT: {
-    fontSize: 16,
-    color: colors.white,
-    fontWeight: '300'
+    position: 'relative',
+    top: 70,
+    left: 10
   },
   btnout: {
     height: 45,
     width: 250,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
     borderColor: colors.themeColor,
     borderWidth: 1,
   },
-  btnoutT: {
-    fontSize: 16,
-    color: colors.themeColor,
-    fontWeight: '300'
-  },
+  context: {
+    height: 20,
+    position: 'relative',
+    top: 80
+  }
 });
 
 export default AddReminder;

@@ -200,6 +200,7 @@ const Add = ({ route, navigation }) => {
               Add Person
             </Text>
             <TextInput
+            outlineColor={colors.themeColor}
               placeholder='Name'
               style={styles.box}
               label='Name'
@@ -209,6 +210,7 @@ const Add = ({ route, navigation }) => {
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
+            outlineColor={colors.themeColor}
               placeholder='Last name'
               style={styles.box}
               mode='outlined'
@@ -218,11 +220,11 @@ const Add = ({ route, navigation }) => {
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
+            outlineColor={colors.themeColor}
               placeholder='Address'
               style={styles.box}
               mode='outlined'
               label='Address'
-
               selectionColor='#99c8de'
               value={Direccion}
               onChangeText={Direccion => setDireccion(Direccion)}
@@ -244,16 +246,17 @@ const Add = ({ route, navigation }) => {
               <Chip style={styles.chips} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
             </View>
             <TextInput
+            outlineColor={colors.themeColor}
               placeholder='Contact phone'
               style={styles.box}
               label='Contact Phone'
               mode='outlined'
-              
               value={Telefono}
               onChangeText={Telefono => setTelefono(Telefono)}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
+            outlineColor={colors.themeColor}
               placeholder='Diseases'
               style={styles.box}
               label='Diseases'
@@ -263,6 +266,7 @@ const Add = ({ route, navigation }) => {
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
+            outlineColor={colors.themeColor}
               placeholder='Allergies'
               style={styles.box}
               label='Allergies'
@@ -329,7 +333,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 0.8,
-    width: '85%',
+    width: '90%',
     backgroundColor: '#f7f7f7',
     borderRadius: 8,
     flexDirection: 'column',
@@ -343,8 +347,8 @@ const styles = StyleSheet.create({
     width: "35%",
   },
   box: {
-    height: 45,
-    margin: 20,
+    height: 40,
+    margin: 10,
     width: 250
   },
   subtext: {

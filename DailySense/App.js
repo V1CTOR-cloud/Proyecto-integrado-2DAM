@@ -48,7 +48,11 @@ const colors = {
 
 function Landing({ navigation }) {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Login')}
+      activeOpacity={0.55}
+    >
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.circle}>
 

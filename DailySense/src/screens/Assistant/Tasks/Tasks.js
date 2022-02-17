@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -37,7 +37,7 @@ const Tasks = ({ route, navigation }) => {
 
   return (
     <View style={styles.cont}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.header}>
         <Text style={styles.titulo}>Tasks</Text>
       </View>
@@ -52,23 +52,20 @@ const Tasks = ({ route, navigation }) => {
         </ScrollView>
       </View>
       <View style={styles.footer}>
-        <Button
-          mode='contained'
-          color={colors.background}
-          labelStyle={{ width: 120 }}
-          onPress={() => navigation.goBack()}
-        >
-          Home
-        </Button>
-        <Button
-          mode='outlined'
-          color={colors.white}
-          style={styles.btnout}
-          labelStyle={{ width: 75 }}
-          onPress={() => navigation.navigate('AddTask')}
-        >
-          Add
-        </Button>
+        <View style={styles.contbtn}>
+          <TouchableOpacity
+            activeOpacity={0.75}
+            style={styles.btnin}
+            onPress={() => navigation.goBack()}>
+            <Text style={styles.btninT}>HOME</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.75}
+            style={styles.btnout}
+            onPress={() => navigation.navigate('AddTask')}>
+            <Text style={styles.btnoutT}>ADD</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -77,7 +74,7 @@ const Tasks = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: colors.tint
+    backgroundColor: colors.themeColor
   },
   header: {
     flex: 0.5,
@@ -101,24 +98,43 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 2
   },
-  contbtn: {
-    height: 50,
-    width: 170,
-    backgroundColor: colors.white,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 200,
-  },
   imgbtn: {
     height: 40,
     width: 40
   },
+  contbtn: {
+    height: 150,
+    width: '80%',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  btnin: {
+    height: 45,
+    width: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    borderRadius: 5
+  },
+  btninT: {
+    fontSize: 16,
+    color: colors.themeColor,
+    fontWeight: '300'
+  },
   btnout: {
+    height: 45,
     width: 100,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 5,
     borderColor: colors.white,
     borderWidth: 1,
+  },
+  btnoutT: {
+    fontSize: 16,
+    color: colors.white,
+    fontWeight: '300'
   },
 });
 
