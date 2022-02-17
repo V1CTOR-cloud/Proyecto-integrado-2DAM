@@ -147,18 +147,7 @@ const Information = ({ route, navigation }) => {
                                     {diseases}
                                 </Text>
                             </View>
-                            <View style={styles.texti}>
-                                <Image
-                                    source={require('../../assets/img/Pills.png')}
-                                    style={styles.img}
-                                />
-                                <Text style={styles.text}>
-                                    Medication:
-                                </Text>
-                                <Text style={{ color: '#444' }}>
-                                    Omaprazol, Ramipril
-                                </Text>
-                            </View>
+                            
                         </View>
                     </View>
                 </View>

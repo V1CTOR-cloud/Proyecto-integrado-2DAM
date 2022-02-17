@@ -39,7 +39,7 @@ const IndexAssistant = ({ route, navigation }) => {
 
   useEffect(() => {
     // write your code here, it's like componentWillMount
-
+    
     obtinPersonesAssociades();
 
 

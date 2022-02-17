@@ -19,7 +19,16 @@ import { TextInput, Button } from 'react-native-paper';
 import { TimePickerModal } from 'react-native-paper-dates';
 
 
-const AddReminder = () => {
+const colors = {
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3",
+  pink: "#D16BA5"
+}
+
+const AddReminder = ({ route, navigation }) => {
 
   const [Recordatorio, setRecordatorio] = React.useState("");
   const [visible, setVisible] = React.useState(false)
@@ -42,9 +51,7 @@ const AddReminder = () => {
       </View>
       <View style={styles.body}>
         <View style={styles.content}>
-          <Text style={styles.titulo}>
-            Add
-          </Text>
+
           <TextInput
             placeholder='Your title goes here...'
             style={styles.box}
@@ -53,7 +60,7 @@ const AddReminder = () => {
             selectionColor='#99c8de'
             value={Recordatorio}
             onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-            theme={{ colors: { primary: '#99c8de' } }}
+            theme={{ colors: { primary: colors.themeColor } }}
           />
           <TextInput
             placeholder='Your description goes here...'
@@ -65,7 +72,7 @@ const AddReminder = () => {
             multiline
             numberOfLines={3}
             onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-            theme={{ colors: { primary: '#99c8de' } }}
+            theme={{ colors: { primary: colors.themeColor } }}
           />
           <TimePickerModal
             visible={visible}
@@ -77,16 +84,22 @@ const AddReminder = () => {
             cancelLabel="Cancel"
             confirmLabel="Ok"
             animationType="fade"
-            locale={'es'}
+            locale={'en'}
           />
-          <Button
-            mode='contained'
-            color='#99c8de'
-            icon='watch'
-            style={{ width: 140 }}
-            onPress={() => setVisible(true)}>
-            Pick time
-          </Button>
+          <View style={styles.contbtn}>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              style={styles.btnin}
+              onPress={() => navigation.goBack()}>
+              <Text style={styles.btninT}>SAVE CHANGES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              style={styles.btnout}
+              onPress={() => setVisible(true)}>
+              <Text style={styles.btnoutT}>PICK TIME</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
       <View style={styles.footer}>
@@ -99,9 +112,10 @@ const AddReminder = () => {
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: '#99c8de',
+    backgroundColor: colors.themeColor,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomRightRadius: 350
   },
   header: {
     flex: 1,
@@ -118,10 +132,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   content: {
-    flex: 0.75,
+    flex: 0.7,
     width: '80%',
     backgroundColor: '#F7F7F7',
-    borderRadius: 10,
+    borderRadius: 5,
     justifyContent: 'space-evenly',
     alignItems: 'center'
   },
@@ -140,6 +154,42 @@ const styles = StyleSheet.create({
     height: 85,
     margin: 20,
     width: 250
+  },
+  contbtn: {
+    height: 150,
+    width: '80%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 0,
+    flexDirection: 'column-reverse'
+  },
+  btnin: {
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.themeColor,
+    borderRadius: 5
+  },
+  btninT: {
+    fontSize: 16,
+    color: colors.white,
+    fontWeight: '300'
+  },
+  btnout: {
+    height: 45,
+    width: 250,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderColor: colors.themeColor,
+    borderWidth: 1,
+  },
+  btnoutT: {
+    fontSize: 16,
+    color: colors.themeColor,
+    fontWeight: '300'
   },
 });
 
