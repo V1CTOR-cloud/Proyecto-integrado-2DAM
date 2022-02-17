@@ -12,11 +12,12 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from 'react-native';
 
-import { TextInput, Button } from 'react-native-paper';
-import { TimePickerModal } from 'react-native-paper-dates';
+import { Button } from 'react-native-paper';
+
 
 
 const colors = {
@@ -74,32 +75,6 @@ const AddReminder = ({ route, navigation }) => {
             onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
             theme={{ colors: { primary: colors.themeColor } }}
           />
-          <TimePickerModal
-            visible={visible}
-            onDismiss={onDismiss}
-            onConfirm={onConfirm}
-            hours={12}
-            minutes={14}
-            label="Select time"
-            cancelLabel="Cancel"
-            confirmLabel="Ok"
-            animationType="fade"
-            locale={'en'}
-          />
-          <View style={styles.contbtn}>
-            <TouchableOpacity
-              activeOpacity={0.75}
-              style={styles.btnin}
-              onPress={() => navigation.goBack()}>
-              <Text style={styles.btninT}>SAVE CHANGES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.75}
-              style={styles.btnout}
-              onPress={() => setVisible(true)}>
-              <Text style={styles.btnoutT}>PICK TIME</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
       <View style={styles.footer}>

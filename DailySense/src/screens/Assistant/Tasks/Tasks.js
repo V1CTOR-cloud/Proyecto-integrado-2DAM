@@ -18,7 +18,8 @@ import {
 } from 'react-native';
 
 import { Button } from 'react-native-paper';
-import CardTask from '../../components/CardTask';
+import CardTask from './CardTask';
+import { arrayTasks } from '../../components/Utils';
 
 
 const colors = {
@@ -44,9 +45,13 @@ const Tasks = ({route, navigation}) => {
       </View>
       <View style={styles.body}>
         <ScrollView>
-          <CardTask/>
-          <CardTask/>
-          <CardTask/>
+          {arrayTasks.map((element,pos)=>{
+            console.log("añado reminder");
+            return(
+              
+              <CardTask key={pos} desc={element.description} title={element.title} ></CardTask>
+            )
+          })}
         </ScrollView>
       </View>
       <View style={styles.footer}>
