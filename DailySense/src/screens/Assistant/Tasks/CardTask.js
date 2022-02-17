@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 
 
@@ -22,95 +23,123 @@ const colors = {
 
 const CardTask = (props) => {
     const navigation = useNavigation();
-    return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.h1}>{props.title} </Text>
-            </View>
-            <View style={styles.body}>
-                <Text style={styles.h2}>
-                    Description:
-                </Text>
-                <Text style={styles.h3}>
-                    {props.desc}
-                </Text>
-            </View>
-            <View style={styles.footer}>
-                <TouchableOpacity
-                    style={styles.contbtn}
-                >
-                    <Image
-                        style={styles.img}
-                        source={require('../../../assets/img/icono_basura.png')}
-                    />
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
 
+    const [dis, setDisplay] = React.useState("flex");
 
-}
-
-const styles = StyleSheet.create({
-    container: {
-        height: 180,
-        width: 320,
-        backgroundColor: colors.white,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        marginBottom: 50,
-        marginTop: 50
-    },
-    header: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        paddingLeft: 20,
-        borderTopLeftRadius: 4,
-        borderTopRightRadius: 4
-    },
-    h1: {
-        fontSize: 20,
-        fontWeight: '400',
-        color: '#141414'
-    },
-    h2: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#141414'
-    },
-    h3: {
-        width: 220,
-        fontSize: 10,
-        color:'#141414'
-    },
-    body: {
-        flex: 2,
-        width: '100%',
-        paddingTop: 10,
-        paddingLeft: 20,
-    },
-    footer: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderBottomLeftRadius: 4,
-        borderBottomRightRadius: 4
-    },
-    contbtn: {
-        padding: 5,
-        borderRadius: 200,
-        backgroundColor: colors.background,
-        position: 'relative',
-        left: 120,
-        bottom: 20
-    },
-    img: {
-        height: 30,
-        width: 30,
+    const deleteFinal = () => {
+        setDisplay("none");
+        Alert.alert("Delete", "Delete was succefully");
     }
-});
 
-export default CardTask;
+    const del = () => {
+        Alert.alert("Delete", "Are you sure you want to do the delete", [
+            {
+                text: "Cancel",
+            },
+            { text: "OK", onPress: () => deleteFinal() }
+        ])
+    }
+
+        return (
+            <View style={{
+                height: 180,
+                width: 320,
+                backgroundColor: colors.white,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 5,
+                marginBottom: 50,
+                marginTop: 50,
+                display: dis,
+            }}>
+                <View style={styles.header}>
+                    <Text style={styles.h1}>{props.title} </Text>
+                </View>
+                <View style={styles.body}>
+                    <Text style={styles.h2}>
+                        Description:
+                    </Text>
+                    <Text style={styles.h3}>
+                        {props.desc}
+                    </Text>
+                </View>
+                <View style={styles.footer}>
+                    <TouchableOpacity
+                        style={styles.contbtn}
+                        onPress={()=> del()}
+                    >
+                        <Image
+                            style={styles.img}
+                            source={require('../../../assets/img/icono_basura.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        );
+
+
+    }
+
+    const styles = StyleSheet.create({
+        container: {
+            height: 180,
+            width: 320,
+            backgroundColor: colors.white,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 5,
+            marginBottom: 50,
+            marginTop: 50
+        },
+        header: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            paddingLeft: 20,
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4
+        },
+        h1: {
+            fontSize: 20,
+            fontWeight: '400',
+            color: '#141414'
+        },
+        h2: {
+            fontSize: 12,
+            fontWeight: 'bold',
+            color: '#141414'
+        },
+        h3: {
+            width: 220,
+            fontSize: 10,
+            color: '#141414'
+        },
+        body: {
+            flex: 2,
+            width: '100%',
+            paddingTop: 10,
+            paddingLeft: 20,
+        },
+        footer: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4
+        },
+        contbtn: {
+            padding: 5,
+            borderRadius: 200,
+            backgroundColor: colors.background,
+            position: 'relative',
+            left: 120,
+            bottom: 20
+        },
+        img: {
+            height: 30,
+            width: 30,
+        }
+    });
+
+    export default CardTask;

@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground, 
+    Alert
 } from 'react-native';
 
 
@@ -22,8 +23,38 @@ const colors = {
 
 const CardReminder = (props) => {
     const navigation = useNavigation();
+
+    const [dis, setDisplay] = React.useState("flex");
+
+    const deleteFinal = () => {
+        setDisplay("none");
+        Alert.alert("Delete", "Delete was succefully");
+    }
+
+    const del = () => {
+        Alert.alert("Delete", "Are you sure you want to do the delete", [
+            {
+                text: "Cancel",
+            },
+            { text: "OK", onPress: () => deleteFinal() }
+        ])
+
+
+
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={{
+            height: 180,
+            width: 320,
+            backgroundColor: colors.white,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 5,
+            marginBottom: 50,
+            marginTop: 50,
+            display: dis,
+        }}>
             <View style={styles.header}>
                 <Text style={styles.h1}>{props.title} </Text>
             </View>
@@ -46,6 +77,7 @@ const CardReminder = (props) => {
             <View style={styles.footer}>
                 <TouchableOpacity
                     style={styles.contbtn}
+                    onPress={() => del()}
                 >
                     <Image
                         style={styles.img}

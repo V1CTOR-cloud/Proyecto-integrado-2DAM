@@ -13,16 +13,23 @@ import {
   View,
   Image,
   TouchableOpacity,
-  TextInput
 } from 'react-native';
 
-import { Button } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 
-
+const colors = {
+  themeColor: "#4263ec",
+  white: "#fff",
+  background: "#f4f6fc",
+  greyish: "#a4a4a4",
+  tint: "#2b49c3"
+}
 
 const AddReminder = () => {
 
   const [Recordatorio, setRecordatorio] = React.useState("");
+  const [Hour, setHour] = React.useState("");
+  const [Min, setMin] = React.useState("");
   const [visible, setVisible] = React.useState(false)
   const onDismiss = React.useCallback(() => {
     setVisible(false)
@@ -39,7 +46,6 @@ const AddReminder = () => {
   return (
     <View style={styles.cont}>
       <View style={styles.header}>
-
       </View>
       <View style={styles.body}>
         <View style={styles.content}>
@@ -51,22 +57,42 @@ const AddReminder = () => {
             style={styles.box}
             mode='outlined'
             label='Title'
-            selectionColor='#99c8de'
+            selectionColor={colors.themeColor}
             value={Recordatorio}
             onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-            theme={{ colors: { primary: '#99c8de' } }}
+            theme={{ colors: { primary: colors.themeColor } }}
           />
           <TextInput
             placeholder='Your description goes here...'
             style={styles.boxArea}
             mode='outlined'
             label='Description'
-            selectionColor='#99c8de'
+            selectionColor={colors.themeColor}
             value={Recordatorio}
             multiline
             numberOfLines={3}
             onChangeText={Recordatorio => setRecordatorio(Recordatorio)}
-            theme={{ colors: { primary: '#99c8de' } }}
+            theme={{ colors: { primary: colors.themeColor } }}
+          />
+          <TextInput
+            placeholder='Hour goes here...'
+            style={styles.box}
+            mode='outlined'
+            label='Hour'
+            selectionColor={colors.themeColor}
+            value={Recordatorio}
+            onChangeText={Hour => setHour(Hour)}
+            theme={{ colors: { primary: colors.themeColor } }}
+          />
+          <TextInput
+            placeholder='Minutes goes here...'
+            style={styles.box}
+            mode='outlined'
+            label='Minutes'
+            selectionColor={colors.themeColor}
+            value={Min}
+            onChangeText={Min => setMin(Min)}
+            theme={{ colors: { primary: colors.themeColor } }}
           />
         </View>
       </View>
@@ -80,7 +106,7 @@ const AddReminder = () => {
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: '#99c8de',
+    backgroundColor: colors.themeColor,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -99,7 +125,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   content: {
-    flex: 0.75,
+    flex: 1,
     width: '80%',
     backgroundColor: '#F7F7F7',
     borderRadius: 10,

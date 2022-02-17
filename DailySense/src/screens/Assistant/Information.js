@@ -121,7 +121,7 @@ const Information = ({ route, navigation }) => {
                             </View>
                             <View style={styles.texti}>
                                 <Image
-                                    source={require('../../assets/img/userico.png')}
+                                    source={require('../../assets/img/dependency.png')}
                                     style={styles.img}
                                 />
                                 <Text style={styles.text}>
@@ -157,18 +157,6 @@ const Information = ({ route, navigation }) => {
                                 </Text>
                                 <Text style={{ color: '#444' }}>
                                     {diseases}
-                                </Text>
-                            </View>
-                            <View style={styles.texti}>
-                                <Image
-                                    source={require('../../assets/img/Pills.png')}
-                                    style={styles.img}
-                                />
-                                <Text style={styles.text}>
-                                    Medication:
-                                </Text>
-                                <Text style={{ color: '#444' }}>
-                                    Omaprazol, Ramipril
                                 </Text>
                             </View>
                         </View>
