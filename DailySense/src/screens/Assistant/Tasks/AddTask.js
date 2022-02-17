@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import CardTask from '../../components/CardTask';
+import CardTask from './CardTask';
 
 import { TextInput, Button } from 'react-native-paper';
 

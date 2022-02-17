@@ -48,7 +48,6 @@ const Login = ({ navigation, route }) => {
 
       const { correct } = resultat;
       if (correct === "OK") {
-
         navigation.navigate('IndexAssistant', {
           User: resultat.User,
           IdAssistant: resultat.IdAssistant,

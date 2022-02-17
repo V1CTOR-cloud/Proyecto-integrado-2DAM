@@ -13,11 +13,12 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar
+  StatusBar, ScrollView
 } from 'react-native';
 
 import { Button, Title } from 'react-native-paper';
-
+import { arrayPills } from '../../components/Utils';
+import CardPills from './CardPills';
 
 const colors = {
   themeColor: "#4263ec",
@@ -28,7 +29,7 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const Pills = ({route, navigation}) => {
+const Pills = ({ route, navigation }) => {
   return (
     <View style={styles.cont}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -36,7 +37,13 @@ const Pills = ({route, navigation}) => {
         <Text style={styles.titulo}>Medication</Text>
       </View>
       <View style={styles.body}>
-        <Text></Text>
+        <ScrollView>
+          {arrayPills.map((element, pos) => {
+            return (
+              <CardPills key={pos} med={element.medication} day={element.day} ></CardPills>
+            )
+          })}
+        </ScrollView>
       </View>
       <View style={styles.footer}>
         <Button

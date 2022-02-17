@@ -13,12 +13,14 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar
+  StatusBar, 
+  ScrollView
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
-
+import CardReminder from './CardReminders';
+import { arrayReminders } from '../../components/Utils';
 
 const colors = {
   themeColor: "#4263ec",
@@ -39,7 +41,13 @@ const Reminders = () => {
         <Text style={styles.titulo}>Reminders</Text>
       </View>
       <View style={styles.body}>
-
+        <ScrollView>
+          {arrayReminders.map((element, pos) => {
+            return (
+              <CardReminder key={pos} desc={element.description} title={element.title} h={element.hour} m={element.minutes} ></CardReminder>
+            )
+          })}
+        </ScrollView>
       </View>
       <View style={styles.footer}>
         <Button

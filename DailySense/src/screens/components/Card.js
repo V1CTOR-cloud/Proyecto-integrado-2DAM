@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     StatusBar,
     StyleSheet,
@@ -16,6 +16,7 @@ import { TextInput, Button } from "react-native-paper";
 import LinearGradient from "react-native-linear-gradient";
 import Information from "../Assistant/Information";
 import { useNavigation } from '@react-navigation/native';
+import react from "react";
 
 const colors = {
     themeColor: "#4263ec",
@@ -34,7 +35,42 @@ const colors = {
 const Card = (props) => {
     const navigation = useNavigation();
 
-    const [sure, setSure] = React.useState();
+    const imgMale = require('../../assets/img/Dependiente.png');
+    const imgFemale = require('../../assets/img/Cuidadora.png');
+    const imgOther = require('../../assets/img/Other.png');
+    const [img, setImg] = React.useState(imgMale);
+
+    const imgFile = () => {
+        if (props.gender === "Female") {
+            setImg(imgFemale);
+        } else if (props.gender === "Other") {
+            setImg(imgOther);
+        }
+    }
+
+
+    const [col, setColor] = React.useState(colors.low);
+    const [dis, setDisplay] = React.useState("flex");
+
+
+    useEffect(() => {
+        // write your code here, it's like componentWillMount
+
+        compruebaDependencia();
+
+        imgFile();
+
+
+        //setDatos(response.data); 
+
+
+
+
+
+        /*const res = indexAss();
+        console.log(res +  " Nope");*/
+    }, [])
+
 
     const postDelete = async () => {
 
@@ -48,23 +84,14 @@ const Card = (props) => {
 
     }
 
-    const del = async () => {
-
-        Alert.alert("Delete", "Are you sure you want to do the delete", [
-            {
-                text: "Cancel",
-                onPress: () => setSure("Cancel"),
-                style: "cancel"
-            },
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-        ])
+    const deleteFinal = async () => {
 
         const resultat = await postDelete();
 
         const { correct } = resultat;
         if (correct === "OK") {
-
-            Alert.alert("Delete", "Delete was succefully")
+            setDisplay("none");
+            Alert.alert("Delete", "Delete was succefully");
 
         } else {
 
@@ -73,29 +100,68 @@ const Card = (props) => {
         }
     }
 
+    const del = () => {
+
+        Alert.alert("Delete", "Are you sure you want to do the delete", [
+            {
+                text: "Cancel",
+            },
+            { text: "OK", onPress: () => deleteFinal() }
+        ])
+
+
+
+    }
+
+
     function compruebaDependencia() {
-        let color = props.dependency;
-        if (color == 'Bajo') {
-            color = colors.low
-        }else{
-            if(color == 'Medio'){
-                color = colors.medium
-            }else{
-                color = colors.high
-            }
+
+        switch (props.dependency) {
+            case "Low":
+
+                setColor(colors.low);
+                break;
+            case "Medium":
+
+                setColor(colors.medium);
+                break;
+            case "High":
+
+                setColor(colors.high);
+                break;
         }
     }
 
 
+
     return (
-        <View style={styles.container}>
+        <View style={{
+            height: 180,
+            width: 320,
+            backgroundColor: colors.col,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 20,
+            marginBottom: 50,
+            marginTop: 50,
+            display:dis,
+        }}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-            <View style={styles.header}>
+            <View style={{
+                flex: 0.6,
+                width: '100%',
+                backgroundColor: col,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+                opacity: 0.8
+            }}>
 
             </View>
             <View style={styles.body}>
                 <Image
-                    source={require('../../assets/img/Dependiente.png')}
+                    source={img}
                     style={styles.img}
                 />
                 <Text style={styles.h1}>{props.name}</Text>
@@ -111,6 +177,7 @@ const Card = (props) => {
                     address: props.address,
                     name: props.name,
                     lastName: props.lastName,
+                    dependency: props.dependency,
                 })}>
                     <LinearGradient
                         style={styles.btn1}
@@ -137,7 +204,7 @@ const styles = StyleSheet.create({
     container: {
         height: 180,
         width: 320,
-        backgroundColor: colors.white,
+        backgroundColor: colors.col,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
