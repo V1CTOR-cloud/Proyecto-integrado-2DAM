@@ -4,7 +4,7 @@
 
 - Rubén Pérez Castillo ( rupeca01@floridauniversitaria.es / rubenpecasti@gmail.com )
 - Victor Martinez Zapata ( vimaza@floridauniversitaria.es / victorbg189@gmail.com ) 
-- Alejandro Giner Ferrando  ( algife02@@floridauniversitaria.es / alginbike@gmail.com )
+- Alejandro Giner Ferrando  ( algife02@floridauniversitaria.es / alginbike@gmail.com )
 - Nestor Lújan Valiente  ( neluva@floridauniversitaria.es / nestorvaliente@gmail.com )
 - Manel Barrado Serrano ( mabase@floridauniversitaria.es / barradomanel@gmail.com ) 
 
