@@ -20,21 +20,19 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const CardTask = () => {
+const CardTask = (props) => {
     const navigation = useNavigation();
-    const [Title, setTitle] = React.useState("Title");
-    const [Description, setDescription] = React.useState("Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo Ejemplo");
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.h1}> {Title} </Text>
+                <Text style={styles.h1}>{props.title} </Text>
             </View>
             <View style={styles.body}>
                 <Text style={styles.h2}>
                     Description:
                 </Text>
                 <Text style={styles.h3}>
-                    {Description}
+                    {props.desc}
                 </Text>
             </View>
             <View style={styles.footer}>
@@ -43,7 +41,7 @@ const CardTask = () => {
                 >
                     <Image
                         style={styles.img}
-                        source={require('../../assets/img/icono_basura.png')}
+                        source={require('../../../assets/img/icono_basura.png')}
                     />
                 </TouchableOpacity>
             </View>
@@ -85,6 +83,7 @@ const styles = StyleSheet.create({
     h3: {
         width: 220,
         fontSize: 10,
+        color:'#141414'
     },
     body: {
         flex: 2,

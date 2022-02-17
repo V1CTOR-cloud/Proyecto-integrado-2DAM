@@ -28,7 +28,7 @@ const colors = {
 
 const Add = ({ route, navigation }) => {
 
-  const { User, IdAssistant } = route.params;
+  const { User, IdAssistant, Gender, Mail } = route.params;
 
   const [Nombre, setNombre] = React.useState("");
   const [Apellidos, setApellidos] = React.useState("");
@@ -176,7 +176,7 @@ const Add = ({ route, navigation }) => {
       if (resultat.data.correct === "OK") {
 
         Alert.alert("Added", "Person added correctly")
-        navigation.navigate("IndexAssistant", { User: User, IdAssistant:IdAssistant })
+        navigation.navigate("IndexAssistant", { User: User, IdAssistant:IdAssistant, Gender: Gender, Mail: Mail })
 
       } else {
 

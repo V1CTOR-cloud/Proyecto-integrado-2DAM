@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -6,9 +6,11 @@ import {
   View,
   Image,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground, 
+  Alert
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 
@@ -23,17 +25,79 @@ const colors = {
 }
 
 const User = ({ route, navigation }) => {
-  const { User , Mail} = route.params;
-  console.log(Mail)
-  const [UserName, setUserName] = React.useState(User);
-  const [eMail, setMail] = React.useState(Mail);
-  const [Val, setVal] = React.useState("");
+  const { User, IdAssistant, Gender, Mail } = route.params;
 
-  function cambiaNombre() {
-    navigation.navigate("IndexAssistant", {
-      User: UserName
-    })
+  const [UserName, setUserName] = React.useState(User);
+  
+  const [eMail, setMail] = React.useState(Mail);
+  
+
+
+
+  function validar() {
+    if (UserName == null && eMail == null) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false; 
+    } else {
+      if (UserName == null) {
+        Alert.alert("Error", "The user field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      }else{
+        if(eMail == null){
+          Alert.alert("Error", "The email field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        }else{
+          Alert.alert("¡Success!", "The account was updated succesfully", [
+            { text: "Ok", onPress: () => console.log("¡Success!") }
+          ]);
+          return true;
+        }
+      }
+    }
   }
+
+
+  const postDatos = async () => {
+
+    const resultInser = await axios.put('http:52.174.144.160:5000/test?', { id: IdAssistant, user: UserName, mail: eMail })
+
+    console.log(resultInser.data);
+
+    //setDatos(response.data);
+
+    return resultInser.data;
+
+  }
+
+  const updateUser = async () => {
+
+    if (validar()) {
+
+      const resultat = await postDatos();
+
+      
+      if (resultat != 0 ) {
+        navigation.navigate('IndexAssistant', {
+          User: UserName,
+          IdAssistant: IdAssistant,
+          Gender: Gender,
+          Mail: eMail,
+        })
+      } else {
+        Alert.alert("Error 404", "The account could not be found", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+      }
+    }
+  }
+
+
 
   return (
     <View style={styles.container}>
@@ -86,13 +150,13 @@ const User = ({ route, navigation }) => {
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnin}
-            onPress={() => cambiaNombre()}>
+            onPress={() => updateUser()}>
             <Text style={styles.btninT}>SAVE CHANGES</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate('CreateAccount', {
+            onPress={() => navigation.navigate('Login', {
               User: User
             })}>
             <Text style={styles.btnoutT}>LOG OUT</Text>
@@ -109,7 +173,7 @@ const User = ({ route, navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  
+
   container: {
     flex: 1,
     backgroundColor: colors.themeColor,
@@ -122,7 +186,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    
+
   },
   contheader: {
     height: 50,
@@ -186,7 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
-    
+
   },
   btnin: {
     height: 40,

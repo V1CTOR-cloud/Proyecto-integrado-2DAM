@@ -40,11 +40,6 @@ const IndexAssistant = ({ route, navigation }) => {
   const imgOther = require('../../assets/img/Other.png');
   const [img, setImg] = React.useState(imgMale);
 
-
-
-
-
-
   const { User, IdAssistant, Gender, Mail } = route.params;
 
   
@@ -116,7 +111,7 @@ const IndexAssistant = ({ route, navigation }) => {
           </Text>
         </View>
         <TouchableOpacity style={styles.contimg} onPress={() => navigation.navigate("User", {
-          User: User, Mail: Mail,
+          User: User, IdAssistant: IdAssistant, Gender: Gender, Mail: Mail,
         })}>
           <Image
             style={styles.logo}
@@ -133,7 +128,7 @@ const IndexAssistant = ({ route, navigation }) => {
           })}
         </ScrollView>
       </View>
-      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add', { User: User, IdAssistant: IdAssistant })}>
+      <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('Add', { User: User, IdAssistant: IdAssistant, Gender: Gender, Mail: Mail })}>
         <Image
           style={styles.imgbtn}
           source={require('../../assets/img/Add.png')}
