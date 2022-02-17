@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import {
     SafeAreaView,
     ScrollView,
@@ -8,7 +8,8 @@ import {
     useColorScheme,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import axios from 'axios';
@@ -36,6 +37,59 @@ const CreateAccount = ({ navigation }) => {
     const [SelectedChipFemale, selectedChipFemale] = React.useState(false);
     const [SelectedChipOther, selectedChipOther] = React.useState(false);
 
+    function validar() {
+        if (Password.length == 0 &&
+            ConfirmPassword.length == 0 &&
+            User.length == 0 &&
+            MailAccount.length == 0
+            ) {
+            Alert.alert("Error", "All fields are empty", [
+                { text: "Ok", onPress: () => console.log("error") }
+            ]);
+            return false;
+        } else {
+            if (MailAccount.length == 0) {
+                Alert.alert("Error", "Mail field is empty", [
+                    { text: "Ok", onPress: () => console.log("error") }
+                ]);
+                return false;
+            } else {
+                if (User.length == 0) {
+                    Alert.alert("Error", "User password field is empty", [
+                        { text: "Ok", onPress: () => console.log("error") }
+                    ]);
+                    return false;
+                } else {
+                    if (Password.length == 0) {
+                        Alert.alert("Error", "User field is empty", [
+                            { text: "Ok", onPress: () => console.log("error") }
+                        ]);
+                        return false;
+                    } else {
+                        if (ConfirmPassword.length == 0) {
+                            Alert.alert("Error", "Mail field is empty", [
+                                { text: "Ok", onPress: () => console.log("error") }
+                            ]);
+                            return false;
+                        } else {
+                            if (SelectedChipMale == false &&
+                                SelectedChipFemale == false &&
+                                SelectedChipOther == false) {
+                                Alert.alert("Error", "Chips field is empty", [
+                                    { text: "Ok", onPress: () => console.log("error") }
+                                ]);
+                                return false;
+                            } else {
+                                alert('Success - has been successfully added');
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     const estableixSexe = (sexe) => {
         if (sexe === 'Male') {
             selectedChipMale(!SelectedChipMale);
@@ -58,23 +112,42 @@ const CreateAccount = ({ navigation }) => {
 
 
     const [datos, setDatos] = React.useState("a");
-    const post = "{\"op\": \"register\", \"user\": " + User + ", \"pass\": " + Password + ", \"email\": " + MailAccount + ", \"gender\": " + Sexo + "}";
+    const registreUsuari = async () => {
 
-    const postDatos = async () => {
-        console.log("hoa");
-        const res = await axios.post('http:52.174.144.160:5000/test?', { post });
-        setDatos(res);
-        console.log(datos);
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
+
+
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser;
+
     }
 
-    const next = () => {
-        console.log("He llegado");
-        postDatos();
-        console.log(datos)
-        if (datos.correct === "OK") {
-            navigation.navigate("Login")
-        } else {
-            console.log("Datos no es OK")
+
+    const validation = () => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(text) === true) {
+            console.log("Email is Correct");
+            this.setState({ email: text })
+            return false;
+        }
+    }
+
+    const createAccount = async () => {
+        if (validar()) {
+            const resultat = await registreUsuari()
+
+            console.log(JSON.stringify(resultat));
+
+            if (resultat.data.correct === "OK") {
+
+                navigation.navigate("Login");
+
+            } else {
+                resultat.log("Datos no es OK");
+            }
         }
     }
 
@@ -156,16 +229,13 @@ const CreateAccount = ({ navigation }) => {
                         <Chip style={styles.chip} selected={SelectedChipOther} onPress={() => estableixSexe('Other')}>Other</Chip>
                     </View>
                 </View>
-
-                <Button
-                    mode='contained'
-                    color={colors.themeColor}
-                    style={styles.btn}
-                    onPress={() => next()}
-                    labelStyle={{ color: colors.white, width: '100%' }}
+                <TouchableOpacity
+                    activeOpacity={0.75}
+                    style={styles.btnin}
+                    onPress={() => createAccount()}
                 >
-                    Register
-                </Button>
+                    <Text style={styles.btninT}>SIGN UP</Text>
+                </TouchableOpacity>
                 <View style={styles.context}>
                     <Text>Developed by DailySense Team</Text>
                 </View>
@@ -252,6 +322,21 @@ const styles = StyleSheet.create({
         position: 'relative',
         top: 80
     },
+    btnin: {
+        height: 45,
+        width: 250,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.themeColor,
+        borderRadius: 5,
+        position: 'relative',
+        top: 60
+      },
+      btninT: {
+        fontSize: 16,
+        color: colors.white,
+        fontWeight: '300'
+      },
 });
 
 export default CreateAccount;

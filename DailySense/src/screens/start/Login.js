@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,8 +12,8 @@ import {
   Alert
 } from 'react-native';
 
-import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
-import { TextInput, Button } from "react-native-paper";
+import axios from "axios";
+import { TextInput } from "react-native-paper";
 
 
 const colors = {
@@ -24,66 +24,68 @@ const colors = {
   tint: "#2b49c3"
 }
 
-
-function Validation() {
-  setVal(true)
-
-  if (User == "" && Password == "") {
-    setVal(false)
-  } else {
-    if (User == "") {
-      setVal(false)
-    } else {
-      if (Password == "") {
-        setVal(false)
-      }
-    }
-  }
-}
-
-function IniciarSesion() {
-  if (Validation) {
-
-  } else {
-
-  }
-}
-
-
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route }) => {
 
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
-
-  const [Userbd, setUserbd] = React.useState("");
-  const [Gender, setGender] = React.useState("");
-
-  const [datos, setDatos] = React.useState([]);
-  const post = "[{op: login, user: " + User + ", pass: " + Password + "}]";
-  const [Id, setId] = React.useState();
+  //const [datos, setDatos] = React.useState("");
 
   const postDatos = async () => {
-    const res = await axios.post('http:52.174.144.160:5000/127.0.0.1/test?', { post });
-    setDatos(res.data.items);
-    console.log(datos);
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
+
+    console.log(resultInser.data);
+
+    //setDatos(response.data);
+
+    return resultInser.data;
+
   }
 
-  const logIn = () => {
-    postDatos;
-    if (datos.length !== 0) {
-      if (datos[0].correct === "true") {
-        setId(datos[0].IdAssistant);
-        setUserbd(datos[0].User);
-        setGender(datos[0].Gender);
+  const logIn = async () => {
+    if (validar()) {
+      const resultat = await postDatos();
 
-        navigation.navigate("IndexAssistant", { id: Id, user: Userbd, gender: Gender });
+      const { correct } = resultat;
+      if (correct === "OK") {
+
+        navigation.navigate('IndexAssistant', {
+          User: resultat.User,
+          IdAssistant: resultat.IdAssistant,
+          Gender: resultat.Gender,
+          Mail: resultat.Email,
+        })
       } else {
-        Alert.alert("Error", "Username or password incorrect try again")
+        Alert.alert("Error 404", "The account could not be found", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
       }
-    } else {
-      Alert.alert("Error", "Username or password incorrect try again")
     }
+  }
 
+  function validar() {
+    if (User.length == 0 && Password.length == 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
+    } else {
+      if (User.length == 0) {
+        Alert.alert("Error", "The user field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      } else {
+        if (Password.length == 0) {
+          Alert.alert("Error", "The password field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
   }
 
 
@@ -91,7 +93,7 @@ const Login = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
       <View style={styles.header}>
-        <Text style={styles.h1}>Welcome to DailySense</Text>
+        <Text style={styles.h1}>Welcome to DailySense </Text>
       </View>
       <View style={styles.content}>
         <View style={styles.form}>
@@ -129,24 +131,18 @@ const Login = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.contbtn}>
-          <Button
-            mode='contained'
-            color={colors.themeColor}
-            style={styles.btn}
-            onPress={() => navigation.navigate("IndexAssistant")}
-            labelStyle={{ color: colors.white, width: '99%' }}
-          >
-            Sign in
-          </Button>
-          <Button
-            mode='outlined'
-            color={colors.themeColor}
+          <TouchableOpacity
+            activeOpacity={0.75}
+            style={styles.btnin}
+            onPress={() => logIn()}>
+            <Text style={styles.btninT}>SIGN IN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate("CreateAccount")}
-            labelStyle={{ width: '90%' }}
-          >
-            Sign up
-          </Button>
+            onPress={() => navigation.navigate('CreateAccount')}>
+            <Text style={styles.btnoutT}>SIGN UP</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.context}>
           <Text style={{ color: "black" }}>Florida - DAM 2 - DailySense - 2022©</Text>
@@ -217,25 +213,38 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: 0
   },
-  btn: {
+  btnin: {
     height: 45,
     width: 250,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: colors.themeColor,
+    borderRadius: 5
+  },
+  btninT: {
+    fontSize: 16,
+    color: colors.white,
+    fontWeight: '300'
   },
   btnout: {
     height: 45,
     width: 250,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 5,
     borderColor: colors.themeColor,
     borderWidth: 1,
+  },
+  btnoutT: {
+    fontSize: 16,
+    color: colors.themeColor,
+    fontWeight: '300'
   },
   context: {
     height: 20,
     position: 'relative',
     top: 80
-  }
+  },
 });
 
 export default Login;

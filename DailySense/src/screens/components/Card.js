@@ -6,47 +6,121 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
 import LinearGradient from "react-native-linear-gradient";
-
-
+import Information from "../Assistant/Information";
+import { useNavigation } from '@react-navigation/native';
 
 const colors = {
     themeColor: "#4263ec",
     white: "#fff",
     background: "#f4f6fc",
     greyish: "#a4a4a4",
-    tint: "#2b49c3"
+    tint: "#2b49c3",
+
+    high: '#FF5252',
+    medium: '#FFC107',
+    low: '#4CAF50'
 }
 
-const Card = ({ navigation }) => {
+
+
+const Card = (props) => {
+    const navigation = useNavigation();
+
+    const [sure, setSure] = React.useState();
+
+    const postDelete = async () => {
+
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "delete", id: props.id })
+
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser.data;
+
+    }
+
+    const del = async () => {
+
+        Alert.alert("Delete", "Are you sure you want to do the delete", [
+            {
+                text: "Cancel",
+                onPress: () => setSure("Cancel"),
+                style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+        ])
+
+        const resultat = await postDelete();
+
+        const { correct } = resultat;
+        if (correct === "OK") {
+
+            Alert.alert("Delete", "Delete was succefully")
+
+        } else {
+
+            Alert.alert("Error", "Unable to delete")
+
+        }
+    }
+
+    function compruebaDependencia() {
+        let color = props.dependency;
+        if (color == 'Bajo') {
+            color = colors.low
+        }else{
+            if(color == 'Medio'){
+                color = colors.medium
+            }else{
+                color = colors.high
+            }
+        }
+    }
+
 
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
             <View style={styles.header}>
+
             </View>
             <View style={styles.body}>
                 <Image
                     source={require('../../assets/img/Dependiente.png')}
                     style={styles.img}
                 />
-                <Text style={styles.h1}>María</Text>
-                <Text style={styles.h2}>Luisa</Text>
+                <Text style={styles.h1}>{props.name}</Text>
+                <Text style={styles.h2}>{props.lastName}</Text>
             </View>
             <View style={styles.footer}>
-                <LinearGradient
-                    style={styles.btn1}
-                    start={{ x: 1, y: 0 }}
-                    colors={[colors.tint, colors.themeColor]}
-                >
-                    <Text style={styles.btntext1}>More Info</Text>
-                </LinearGradient>
-                <TouchableOpacity style={styles.btn2}>
+                <TouchableOpacity onPress={() => navigation.navigate('Information', {
+                    id: props.id,
+                    tel: props.tel,
+                    age: props.age,
+                    allergies: props.allergies,
+                    diseases: props.diseases,
+                    address: props.address,
+                    name: props.name,
+                    lastName: props.lastName,
+                })}>
+                    <LinearGradient
+                        style={styles.btn1}
+                        start={{ x: 1, y: 0 }}
+                        colors={[colors.tint, colors.themeColor]}
+                    >
+                        <Text style={styles.btntext1}>More Info</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn2} onPress={() => del()}>
                     <Image
                         source={require('../../assets/img/icono_basura.png')}
                         style={styles.bin}
@@ -73,7 +147,7 @@ const styles = StyleSheet.create({
     header: {
         flex: 0.6,
         width: '100%',
-        backgroundColor: '#FF5252',
+        backgroundColor: colors.low,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         justifyContent: 'center',
@@ -133,6 +207,9 @@ const styles = StyleSheet.create({
         borderRadius: 80,
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
+        bottom: 0,
+        left: 25
     },
     btntext1: {
         fontSize: 17,

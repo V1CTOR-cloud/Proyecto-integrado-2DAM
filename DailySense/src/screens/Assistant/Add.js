@@ -9,8 +9,10 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
+import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import Slider from '@react-native-community/slider';
 import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
@@ -24,7 +26,9 @@ const colors = {
   tint: "#2b49c3"
 }
 
-const Add = ({ navigation }) => {
+const Add = ({ route, navigation }) => {
+
+  const { User, IdAssistant } = route.params;
 
   const [Nombre, setNombre] = React.useState("");
   const [Apellidos, setApellidos] = React.useState("");
@@ -38,6 +42,98 @@ const Add = ({ navigation }) => {
   const [SelectedChipMale, selectedChipMale] = React.useState(false);
   const [SelectedChipFemale, selectedChipFemale] = React.useState(false);
   const [SelectedChipOther, selectedChipOther] = React.useState(false);
+
+  function validar() {
+    if (Nombre.length == 0 &&
+      Apellidos.length == 0 &&
+      Direccion.length == 0 &&
+      Edad == 0 &&
+      Telefono.length == 0 &&
+      Enfermedades.length == 0 &&
+      Alergias.length == 0 &&
+      Dependencia.length == 0 &&
+      Sexo.length == 0) {
+      Alert.alert("Error", "All fields are empty", [
+        { text: "Ok", onPress: () => console.log("error") }
+      ]);
+      return false;
+    } else {
+      if (Nombre.length == 0) {
+        Alert.alert("Error", "Name field is empty", [
+          { text: "Ok", onPress: () => console.log("error") }
+        ]);
+        return false;
+      } else {
+        if (Apellidos.length == 0) {
+          Alert.alert("Error", "Last Name field is empty", [
+            { text: "Ok", onPress: () => console.log("error") }
+          ]);
+          return false;
+        } else {
+          if (Direccion.length == 0) {
+            Alert.alert("Error", "Adress field is empty", [
+              { text: "Ok", onPress: () => console.log("error") }
+            ]);
+            return false;
+          } else {
+            if (Edad == 0) {
+              Alert.alert("Error", "Age field incorrect", [
+                { text: "Ok", onPress: () => console.log("error") }
+              ]);
+              return false;
+            } else {
+              if (Telefono.length == 0) {
+                Alert.alert("Error", "Phone field is empty", [
+                  { text: "Ok", onPress: () => console.log("error") }
+                ]);
+                return false;
+              } else {
+                if (Enfermedades.length == 0) {
+                  Alert.alert("Error", "Diseases field is empty", [
+                    { text: "Ok", onPress: () => console.log("error") }
+                  ]);
+                  return false;
+                } else {
+                  if (Alergias.length == 0) {
+                    Alert.alert("Error", "Diseases field is empty", [
+                      { text: "Ok", onPress: () => console.log("error") }
+                    ]);
+                    return false;
+                  } else {
+                    if (Dependencia.length == 0) {
+                      Alert.alert("Error", "Dependency field is empty", [
+                        { text: "Ok", onPress: () => console.log("error") }
+                      ]);
+                      return false;
+                    } else {
+                      if (Sexo.length == 0) {
+                        Alert.alert("Error", "Gender field is empty", [
+                          { text: "Ok", onPress: () => console.log("error") }
+                        ]);
+                        return false;
+                      } else {
+                        if (SelectedChipMale == false &&
+                          SelectedChipFemale == false &&
+                          SelectedChipOther == false) {
+                          Alert.alert("Error", "chips field is empty", [
+                            { text: "Ok", onPress: () => console.log("error") }
+                          ]);
+                          return false;
+                        } else {
+                          return true;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 
   const estableixSexe = (sexe) => {
     if (sexe === 'Male') {
@@ -58,6 +154,38 @@ const Add = ({ navigation }) => {
     setSexo(sexe);
   }
 
+
+  const postDatos = async () => {
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
+      op: "Add", idAssistant: IdAssistant, name: Nombre, lastName: Apellidos, adress: Direccion, age: Edad, tel: Telefono,
+      diseases: Enfermedades, alergies: Alergias, dependency: Dependencia, gender: Sexo
+    })
+
+    console.log(resultInser.data);
+    //setDatos(response.data);
+
+    return resultInser;
+
+  }
+
+  const addPerson = async () => {
+    if (validar()) {
+      const resultat = await postDatos()
+
+      if (resultat.data.correct === "OK") {
+
+        Alert.alert("Added", "Person added correctly")
+        navigation.navigate("IndexAssistant", { User: User })
+
+      } else {
+
+        resultat.log("Datos no es OK");
+
+      }
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
@@ -68,7 +196,9 @@ const Add = ({ navigation }) => {
         />
         <ScrollView >
           <View>
-            <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>Add Person</Text>
+            <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>
+              Add Person
+            </Text>
             <TextInput
               placeholder='Name'
               style={styles.box}
@@ -85,7 +215,6 @@ const Add = ({ navigation }) => {
               label='Last name'
               value={Apellidos}
               onChangeText={Apellidos => setApellidos(Apellidos)}
-              secureTextEntry={true}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <TextInput
@@ -96,7 +225,6 @@ const Add = ({ navigation }) => {
               selectionColor='#99c8de'
               value={Direccion}
               onChangeText={Direccion => setDireccion(Direccion)}
-              secureTextEntry={true}
               theme={{ colors: { primary: colors.themeColor } }}
             />
             <Text style={{ color: "black", margin: 10 }}>Age: {Edad}</Text>
@@ -176,7 +304,7 @@ const Add = ({ navigation }) => {
               mode='contained'
               color={colors.themeColor}
               style={{ width: "65%", alignSelf: "center", margin: 20 }}
-              onPress={() => navigation.navigate("IndexAssistant")}
+              onPress={() => addPerson()}
               labelStyle={{ color: 'white' }}
             >
               Add
