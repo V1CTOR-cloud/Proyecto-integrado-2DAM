@@ -21,6 +21,9 @@ Since this is not a exploded field we could easily stand out for the few compete
 
 # Download:
 
-You can downloand the app from here https://mega.nz/file/5SZ1gYTb#nGR88IuzmgaVVLoN7cdEDG2OTaam4wfEGB0Q900d9vc or from the qr code
+You can downloand the app from here https://mega.nz/file/ILoghbIB#499jjo8E8saTJCntRw9JPjAsDNttQy68eQ5ooczoqEo or from the qr code
 
-![qrMega](https://user-images.githubusercontent.com/73492280/154568884-8347d33b-927c-4d92-9ae2-0262b001ef1d.PNG)
+
+
+![QRDailySense](https://user-images.githubusercontent.com/73492280/154722054-c2fce689-2312-4b7a-9581-024420692601.png)
+
