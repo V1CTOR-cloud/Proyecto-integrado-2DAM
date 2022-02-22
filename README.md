@@ -2,11 +2,11 @@
 
 # Contact:
 
-- Rubén Pérez Castillo ( rupeca01@floridauniversitaria.es / rubenpecasti@gmail.com )
-- Victor Martinez Zapata ( vimaza@floridauniversitaria.es / victorbg189@gmail.com ) 
-- Alejandro Giner Ferrando  ( algife02@floridauniversitaria.es / alginbike@gmail.com )
-- Nestor Lújan Valiente  ( neluva@floridauniversitaria.es / nestorvaliente@gmail.com )
-- Manel Barrado Serrano ( mabase@floridauniversitaria.es / barradomanel@gmail.com ) 
+- Rubén Pérez Castillo ( rupeca01@floridauniversitaria.es / rubenpecasti@gmail.com ) Full stack developer
+- Victor Martinez Zapata ( vimaza@floridauniversitaria.es / victorbg189@gmail.com ) Front end developer
+- Alejandro Giner Ferrando  ( algife02@floridauniversitaria.es / alginbike@gmail.com ) Scrum Master 
+- Nestor Lújan Valiente  ( neluva@floridauniversitaria.es / nestorvaliente@gmail.com ) Documentation 
+- Manel Barrado Serrano ( mabase@floridauniversitaria.es / barradomanel@gmail.com ) Back end developer
 
 # About our App:
 
