@@ -63,7 +63,6 @@ function Landing({ navigation }) {
       />
       <Text style={styles.h1}>DailySense</Text>
     </TouchableOpacity>
-
   );
 }
 

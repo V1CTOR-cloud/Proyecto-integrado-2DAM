@@ -21,7 +21,7 @@ import react from "react";
 const colors = {
     themeColor: "#4263ec",
     white: "#fff",
-    background: "#f4f6fc",
+    background: "#f8f8ff",
     greyish: "#a4a4a4",
     tint: "#2b49c3",
 
@@ -138,7 +138,7 @@ const Card = (props) => {
         <View style={{
             height: 180,
             width: 320,
-            backgroundColor: colors.col,
+            backgroundColor: colors.background,
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 20,
