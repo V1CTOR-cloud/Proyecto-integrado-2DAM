@@ -34,6 +34,7 @@ You can downloand the app from here https://mega.nz/file/ILoghbIB#499jjo8E8saTJC
 
 
 
+
 REQUERIMIENTOS: 
 1. npm install
 2. npm install react-navigation/native
