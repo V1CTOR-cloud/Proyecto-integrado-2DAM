@@ -1,20 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, Box } from "native-base";
-import { StyleSheet, Text, View } from 'react-native';
+import Main from './src/Main';
+import Chat from './src/Chat';
 
-export default function App() {
-    return ( 
-        <NativeBaseProvider>
-          <Box style={styles.container}>Hello world</Box>
-        </NativeBaseProvider>
-    );
-}
+import { createStackNavigator } from 'react-navigation';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+const navigator = createStackNavigator({
+    Main: { screen: Main},
+    Chat: { screen: Chat},
 });
+
+
+export default navigator;
