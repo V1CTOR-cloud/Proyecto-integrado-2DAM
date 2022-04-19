@@ -4,14 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Login from './src/Login';
+import Registro from './src/Registro';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
+      <Stack.Navigator initialRouteName='Login' >
         <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Registro' component={Registro} />
       </Stack.Navigator>
     </NavigationContainer>
   );
