@@ -1,4 +1,6 @@
-# Proyecto-integrado-2DAM
+# DailySense
+
+<img height="100" src="Proyecto-integrado-2DAM/DailySense/src/assets/img/logo1.png" />
 
 # Contact:
 
