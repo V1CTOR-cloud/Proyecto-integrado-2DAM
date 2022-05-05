@@ -1,6 +1,6 @@
 # DailySense
 
-<img height="100" src="https://github.com/V1CTOR-cloud/Proyecto-integrado-2DAM/DailySense/src/assets/img/logo1.png" />
+<img height="100" src=![logo1](https://user-images.githubusercontent.com/74670245/166901316-110cd4f3-1bb9-45ca-b520-dc301a4df701.png) />
 
 # Contact:
 
