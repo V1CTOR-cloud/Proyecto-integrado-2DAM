@@ -1,6 +1,7 @@
 # DailySense
 
-<img height="100" src=![logo1](https://user-images.githubusercontent.com/74670245/166901316-110cd4f3-1bb9-45ca-b520-dc301a4df701.png) />
+![logo1](https://user-images.githubusercontent.com/74670245/166901387-7f629db6-b75b-480e-aa8c-e3dd54530528.png)
+
 
 # Contact:
 
