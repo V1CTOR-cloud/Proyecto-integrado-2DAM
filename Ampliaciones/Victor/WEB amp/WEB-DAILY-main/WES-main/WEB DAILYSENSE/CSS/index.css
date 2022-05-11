@@ -25,6 +25,9 @@ body::-webkit-scrollbar-thumb {
     --ruben: #a4c4db;
     --alejandro: #ddcab6;
     --nestor: #3d5583;
+    --border: .1rem solid rgba(0, 0, 0, .1);
+    --border-hover: .1rem solid black;
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
 }
 
 * {
@@ -41,24 +44,9 @@ html {
 }
 
 .ball {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: var(--themeColor);
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-2%, -2%);
-    z-index: 2;
-    transition: transform .2s;
-}
-
-.ball-onfooter {
-    width: 30px;
-    height: 30px;
-    background-color: var(--fondo);
     position: fixed;
     top: 0;
     left: 0;
@@ -78,7 +66,7 @@ header {
 }
 
 .logo {
-    height: 20vh;
+    height: 25vh;
     z-index: 3;
     position: absolute;
 }
@@ -123,7 +111,7 @@ nav a {
 }
 
 .container {
-    height: 100vh;
+    height: 110vh;
     width: 100%;
     background: var(--fondo);
 }
@@ -1844,4 +1832,173 @@ footer {
 .empty li a {
     color: white;
     text-decoration: none;
+}
+
+.contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .9);
+    position: fixed;
+    top: 0;
+    right: -105%;
+    z-index: 10000;
+    height: 100vh;
+    width: 100%;
+    cursor: pointer;
+}
+
+.contact-container.active {
+    right: 0;
+}
+
+.contact-container form {
+    background: #fff;
+    border: var(--border);
+    width: 85%;
+    height: 90%;
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--fondo);
+    cursor: pointer;
+}
+
+#close-contact-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+}
+
+.form-header {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.form-header span {
+    color: var(--themeColor);
+}
+
+.form-body {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    cursor: pointer;
+}
+
+.form-footer {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.form-footer p {
+    font-size: small;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-col1 {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.form-col1 .form-blob {
+    height: 60%;
+    position: absolute;
+    opacity: 0.28;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.form-col1 .form-dayloo {
+    height: 60%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.form-col2 {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    gap: 2rem;
+    cursor: pointer;
+}
+
+.form-col2 .grp-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.form-col2 .grp-box h4 {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.form-col2 .box {
+    padding: 8px;
+    border-radius: 8px;
+    width: 350px;
+    border: var(--border);
+    cursor: pointer;
+}
+
+.form-col2 .boxArea {
+    padding: 8px;
+    border-radius: 8px;
+    height: 20vh;
+    width: 350px;
+    border: var(--border);
+    cursor: pointer;
+}
+
+.form-col2 .boxArea:hover {
+    border: var(--border-hover);
+}
+
+.form-col2 .box:hover {
+    border: var(--border-hover);
+}
+
+.btn {
+    position: relative;
+    top: 10%;
+    left: 5%;
+    width: 50%;
+    padding: .7rem;
+    background: var(--themeColor);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }

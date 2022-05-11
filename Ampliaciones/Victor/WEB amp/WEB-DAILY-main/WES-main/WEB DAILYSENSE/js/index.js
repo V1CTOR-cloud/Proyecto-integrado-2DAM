@@ -33,14 +33,14 @@ function raton() {
             if (acceleration > 0) {
                 gsap.to('.ball', {
                     duration: 1,
-                    rotationX: 45,
-                    scale: 2
+                    height: speed / 80,
+                    width: speed / 80
                 });
             } else {
                 gsap.to('.ball', {
                     duration: 1,
-                    rotationX: 45,
-                    scale: 1
+                    height: 20,
+                    width: 20
                 });
             }
             */
@@ -436,3 +436,13 @@ navigation8.addEventListener("mouseout", () => {
         ease: "power4"
     });
 })
+
+let contactForm = document.querySelector('.contact-container');
+document.querySelector('#contacto-btn').onclick = () => {
+    contactForm.classList.toggle('active');
+}
+
+
+document.querySelector('#close-contact-btn').onclick = () => {
+    contactForm.classList.remove('active');
+}
