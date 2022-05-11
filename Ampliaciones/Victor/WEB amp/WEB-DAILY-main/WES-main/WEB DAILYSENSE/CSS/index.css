@@ -23,6 +23,8 @@ body::-webkit-scrollbar-thumb {
     --react-color: #1AC8EB;
     --manel: #ff816c;
     --ruben: #a4c4db;
+    --alejandro: #ddcab6;
+    --nestor: #3d5583;
 }
 
 * {
@@ -181,6 +183,15 @@ nav a {
     font-size: 3.8rem;
 }
 
+.box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.box p {
+    font-size: 1.1rem;
+}
+
 .gif-blob1 {
     height: 30vh;
     position: relative;
@@ -208,7 +219,7 @@ nav a {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -235,7 +246,79 @@ nav a {
 .cont-product {
     height: 100vh;
     width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background: var(--fondo);
+}
+
+.cont-product-tittles {
+    height: 25%;
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cont-product-tittle1 {
+    color: var(--themeColor);
+}
+
+.cont-product-text {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--fondo);
+}
+
+.cont-product p {
+    font-size: 2rem;
+    font-weight: 100;
+    width: 40%;
+}
+
+.cont-product-blob1 {
+    height: 40vh;
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    opacity: 0.28;
+}
+
+.cont-product-blob2 {
+    height: 30vh;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+}
+
+.cont-product-footer {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cont-product-footer p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.cont-product-footer img {
+    height: 70%;
+    transition: 0.5s;
+}
+
+.cont-product-footer:hover img {
+    transform: translateY(20px);
 }
 
 .cont-pers {
@@ -309,10 +392,10 @@ nav a {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-bottom-left-radius: 60%;
-    border-bottom-right-radius: 30%;
-    border-top-left-radius: 80%;
-    border-top-right-radius: 50%;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 130%;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 150%;
     /* box-shadow: 5px 10px var(--themeColor); */
     /*box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;*/
     box-shadow: rgba(66, 99, 236, 0.4) 5px 5px, rgba(66, 99, 236, 0.3) 10px 10px, rgba(66, 99, 236, 0.2) 15px 15px, rgba(66, 99, 236, 0.1) 20px 20px, rgba(66, 99, 236, 0.05) 25px 25px;
@@ -443,9 +526,9 @@ nav a {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-bottom-left-radius: 60%;
-    border-bottom-right-radius: 30%;
-    border-top-left-radius: 80%;
+    border-bottom-left-radius: 80%;
+    border-bottom-right-radius: 80%;
+    border-top-left-radius: 120%;
     border-top-right-radius: 50%;
     /* box-shadow: 5px 10px var(--themeColor); */
     /*box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;*/
@@ -571,7 +654,7 @@ nav a {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-bottom-left-radius: 60%;
+    border-bottom-left-radius: 110%;
     border-bottom-right-radius: 30%;
     border-top-left-radius: 80%;
     border-top-right-radius: 50%;
@@ -631,7 +714,7 @@ nav a {
     width: 6rem;
     background: var(--manel);
     border-bottom-left-radius: 120%;
-    border-bottom-right-radius: 80%;
+    border-bottom-right-radius: 100%;
     border-top-left-radius: 60%;
     border-top-right-radius: 90%;
     display: flex;
@@ -678,6 +761,262 @@ nav a {
 }
 
 .git-cont-manel h2 {
+    color: black;
+}
+
+
+/* Alejandro */
+
+.blob-img-alejandro {
+    height: 70vh;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blob-img-alejandro img {
+    z-index: 1;
+    position: relative;
+    left: -25%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-bottom-left-radius: 70%;
+    border-bottom-right-radius: 60%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 90%;
+    /* box-shadow: 5px 10px var(--themeColor); */
+    /*box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;*/
+    box-shadow: rgba(221, 202, 182, 0.5) 5px 5px, rgba(221, 202, 182, 0.4) 10px 10px, rgba(221, 202, 182, 0.3) 15px 15px, rgba(221, 202, 182, 0.2) 20px 20px, rgba(221, 202, 182, 0.1) 25px 25px;
+    transition: 2s;
+}
+
+.blob-img-alejandro img:hover {
+    box-shadow: rgba(221, 202, 182, 0.4) 10px 10px, rgba(221, 202, 182, 0.3) 20px 20px, rgba(221, 202, 182, 0.2) 30px 30px, rgba(255, 129, 108, 0.1) 40px 40px, rgba(221, 202, 182, 0.1) 50px 50px;
+}
+
+.circle1-alejandro {
+    position: absolute;
+    right: 15%;
+    top: 8%;
+    height: 6rem;
+    width: 6rem;
+    background: var(--alejandro);
+    border-bottom-left-radius: 80%;
+    border-bottom-right-radius: 100%;
+    border-top-left-radius: 80%;
+    border-top-right-radius: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.circle-img {
+    height: 50%;
+}
+
+.circle2-alejandro {
+    position: absolute;
+    right: 2%;
+    top: 38%;
+    height: 6rem;
+    width: 6rem;
+    background: var(--alejandro);
+    border-bottom-left-radius: 70%;
+    border-bottom-right-radius: 120%;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.circle3-alejandro {
+    position: absolute;
+    right: 15%;
+    top: 68%;
+    height: 6rem;
+    width: 6rem;
+    background: var(--alejandro);
+    border-bottom-left-radius: 120%;
+    border-bottom-right-radius: 80%;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.git-cont-alejandro {
+    height: 8rem;
+    width: 20rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    text-decoration: none;
+}
+
+.github-alejandro {
+    height: 80%;
+    width: 6.5em;
+    background: var(--alejandro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.circle-alejandro {
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.git-logo-alejandro {
+    height: 50%;
+}
+
+.git-cont-alejandro h2 {
+    color: black;
+}
+
+
+/* NESTOR */
+
+.blob-img-nestor {
+    height: 70vh;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blob-img-nestor img {
+    z-index: 1;
+    position: relative;
+    left: -25%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-bottom-left-radius: 70%;
+    border-bottom-right-radius: 60%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 90%;
+    /* box-shadow: 5px 10px var(--themeColor); */
+    /*box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;*/
+    box-shadow: rgba(61, 85, 131, 0.5) 5px 5px, rgba(61, 85, 131, 0.4) 10px 10px, rgba(61, 85, 131, 0.3) 15px 15px, rgba(61, 85, 131, 0.2) 20px 20px, rgba(61, 85, 131, 0.1) 25px 25px;
+    transition: 2s;
+}
+
+.blob-img-nestor img:hover {
+    box-shadow: rgba(61, 85, 131, 0.4) 10px 10px, rgba(61, 85, 131, 0.3) 20px 20px, rgba(61, 85, 131, 0.2) 30px 30px, rgba(61, 85, 131, 0.1) 40px 40px, rgba(61, 85, 131, 0.05) 50px 50px;
+}
+
+.circle1-nestor {
+    position: absolute;
+    right: 15%;
+    top: 8%;
+    height: 6rem;
+    width: 6rem;
+    background: var(--nestor);
+    border-bottom-left-radius: 80%;
+    border-bottom-right-radius: 100%;
+    border-top-left-radius: 80%;
+    border-top-right-radius: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.circle-img {
+    height: 50%;
+}
+
+.circle2-nestor {
+    position: absolute;
+    right: 2%;
+    top: 38%;
+    height: 6rem;
+    width: 6rem;
+    background: var(--nestor);
+    border-bottom-left-radius: 70%;
+    border-bottom-right-radius: 120%;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.circle3-nestor {
+    position: absolute;
+    right: 15%;
+    top: 68%;
+    height: 6rem;
+    width: 6rem;
+    background: var(--nestor);
+    border-bottom-left-radius: 120%;
+    border-bottom-right-radius: 80%;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.git-cont-nestor {
+    height: 8rem;
+    width: 20rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    text-decoration: none;
+}
+
+.github-nestor {
+    height: 80%;
+    width: 6.5em;
+    background: var(--nestor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.circle-nestor {
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.git-logo-nestor {
+    height: 50%;
+}
+
+.git-cont-nestor h2 {
     color: black;
 }
 
