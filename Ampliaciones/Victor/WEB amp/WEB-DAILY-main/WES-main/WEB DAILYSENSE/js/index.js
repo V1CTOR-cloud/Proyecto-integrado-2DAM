@@ -1,3 +1,15 @@
+//preoloader
+const tl = gsap.timeline({ default: { ease: 'power4.out' } });
+
+tl.to('.text', { y: '0%', duration: 1, stagger: 0.25 });
+tl.to('.slider', { y: '-100%', duration: 1.5, delay: 0.5 });
+//tl.to('.slider1', { y: '-100%', duration: 1.5, delay: 0.5 });
+tl.to('.intro', { y: '-100%', duration: 1 }, "-=1");
+tl.fromTo('.blob-top', { opacity: 0 }, { opacity: 1, duration: 1 });
+tl.fromTo('.blob2', { opacity: 0 }, { opacity: 1, duration: 1 }, );
+tl.fromTo('header', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=1');
+tl.fromTo('.content', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=1');
+
 //custom cursor
 gsap.set(".ball", { xPercent: -50, yPercent: -50 });
 
@@ -51,6 +63,7 @@ function raton() {
 
 }
 raton();
+
 
 
 
@@ -144,7 +157,6 @@ let navigation = document.getElementById('navigation');
 let navigation1 = document.getElementById('navigation1');
 let navigation2 = document.getElementById('navigation2');
 let navigation3 = document.getElementById('navigation3');
-let navigation4 = document.getElementById('navigation4');
 // FOOTER
 let navigation5 = document.getElementById('navigation5');
 let navigation6 = document.getElementById('navigation6');
@@ -315,30 +327,6 @@ navigation3.addEventListener("mouseout", () => {
     });
 })
 
-navigation4.addEventListener("mouseover", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "transparent",
-            opacity: 0,
-            scale: 3
-        },
-        ease: "power4"
-    });
-})
-
-navigation4.addEventListener("mouseout", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "#4263ec",
-            opacity: 1,
-            scale: 1
-        },
-        ease: "power4"
-    });
-})
-
 // FOOTER
 
 navigation5.addEventListener("mouseover", () => {
@@ -439,10 +427,24 @@ navigation8.addEventListener("mouseout", () => {
 
 let contactForm = document.querySelector('.contact-container');
 document.querySelector('#contacto-btn').onclick = () => {
-    contactForm.classList.toggle('active');
+
+    gsap.to('.contact-container', {
+        duration: 1.5,
+        css: {
+            left: 0,
+            top: 0
+        }, //back, elastic, bounce, circ, power4
+        ease: "power4"
+    });
 }
 
 
 document.querySelector('#close-contact-btn').onclick = () => {
-    contactForm.classList.remove('active');
+    gsap.to('.contact-container', {
+        duration: 1.5,
+        css: {
+            left: 2000
+        },
+        ease: "power4"
+    });
 }

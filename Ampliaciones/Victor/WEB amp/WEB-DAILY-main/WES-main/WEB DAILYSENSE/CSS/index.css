@@ -39,10 +39,6 @@ body::-webkit-scrollbar-thumb {
     cursor: none;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 .ball {
     width: 20px;
     height: 20px;
@@ -74,6 +70,7 @@ header {
 .esp {
     height: 100%;
     width: 70%;
+    background: var(--fondo);
 }
 
 nav {
@@ -83,6 +80,7 @@ nav {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
+    background: var(--fondo);
 }
 
 nav a {
@@ -94,6 +92,7 @@ nav a {
 .magnetic-wrap {
     display: inline-block;
     position: relative;
+    background: var(--fondo);
 }
 
 .magnetic-size {
@@ -108,6 +107,58 @@ nav a {
 
 .size1 {
     margin: 3rem;
+}
+
+.intro {
+    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.slider {
+    background: var(--themeColor);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    z-index: 999999;
+}
+
+.slider1 {
+    background: var(--tint);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    z-index: 999999;
+}
+
+.intro-text {
+    color: #f8f8ff;
+    font-family: 'Comfortaa';
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.hide {
+    background: black;
+    overflow: hidden;
+}
+
+.hide span {
+    transform: translateY(100%);
+    display: inline-block;
 }
 
 .container {
@@ -1254,7 +1305,6 @@ nav a {
 .info-time-box2-body-circle1 {
     height: 4.5rem;
     width: 4.5rem;
-    background: #4263ec;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1289,7 +1339,6 @@ nav a {
 .info-time-box2-body-circle2 {
     height: 4.5rem;
     width: 4.5rem;
-    background: #4263ec;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1327,7 +1376,6 @@ nav a {
 .info-time-box2-body-circle3 {
     height: 4.5rem;
     width: 4.5rem;
-    background: #4263ec;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1365,7 +1413,6 @@ nav a {
 .info-time-box2-body-circle4 {
     height: 4.5rem;
     width: 4.5rem;
-    background: #4263ec;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1403,7 +1450,6 @@ nav a {
 .info-time-box2-body-circle5 {
     height: 4.5rem;
     width: 4.5rem;
-    background: #4263ec;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1799,6 +1845,15 @@ footer {
 .license p {
     font-weight: 400;
     font-size: small;
+    text-decoration: none;
+    color: white;
+}
+
+.license a {
+    font-weight: 400;
+    font-size: small;
+    text-decoration: none;
+    color: white;
 }
 
 .empty {
@@ -1841,7 +1896,7 @@ footer {
     background: rgba(255, 255, 255, .9);
     position: fixed;
     top: 0;
-    right: -105%;
+    left: -105%;
     z-index: 10000;
     height: 100vh;
     width: 100%;
@@ -1913,6 +1968,16 @@ footer {
     font-size: small;
     font-weight: 400;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.form-footer a {
+    font-size: small;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 .form-col1 {
