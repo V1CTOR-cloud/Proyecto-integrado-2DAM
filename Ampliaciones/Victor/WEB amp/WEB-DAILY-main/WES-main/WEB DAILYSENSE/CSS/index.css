@@ -54,6 +54,11 @@ body::-webkit-scrollbar-thumb {
     transition: transform .2s;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 header {
     height: 13vh;
     width: 100%;
