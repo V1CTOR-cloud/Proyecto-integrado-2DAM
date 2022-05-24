@@ -614,6 +614,10 @@ footer {
     cursor: pointer;
 }
 
+#lottie {
+    cursor: pointer;
+}
+
 #close-code-btn {
     position: absolute;
     top: 1.5rem;
@@ -634,6 +638,10 @@ footer {
 
 .code-header span {
     color: var(--themeColor);
+    cursor: pointer;
+}
+
+.code-header h2 {
     cursor: pointer;
 }
 
@@ -661,6 +669,7 @@ footer {
     font-size: 1.3rem;
     font-weight: 100;
     width: 60%;
+    cursor: pointer;
 }
 
 .code-footer {
@@ -727,6 +736,10 @@ footer {
     cursor: pointer;
 }
 
+.dayloo-header h1 {
+    cursor: pointer;
+}
+
 .dayloo-header span {
     color: var(--themeColor);
     cursor: pointer;
@@ -748,16 +761,19 @@ footer {
     position: absolute;
     bottom: 0px;
     z-index: 1000;
+    cursor: pointer;
 }
 
 .dayloo-col1 h1 {
     color: var(--themeColor);
+    cursor: pointer;
 }
 
 .dayloo-col2 p {
     font-size: 1.3rem;
     font-weight: 100;
     width: 60%;
+    cursor: pointer;
 }
 
 .dayloo-footer {
