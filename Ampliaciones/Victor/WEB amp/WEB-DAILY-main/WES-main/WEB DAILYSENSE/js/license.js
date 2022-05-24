@@ -1,3 +1,15 @@
+//preoloader
+const tl = gsap.timeline({ default: { ease: 'power4.out' } });
+
+tl.to('.text', { y: '0%', duration: 1, stagger: 0.25 });
+tl.to('.slider', { y: '-100%', duration: 1.5, delay: 0.5 });
+//tl.to('.slider1', { y: '-100%', duration: 1.5, delay: 0.5 });
+tl.to('.intro', { y: '-100%', duration: 1 }, "-=1");
+tl.fromTo('.blob-top', { opacity: 0 }, { opacity: 1, duration: 1 });
+tl.fromTo('.blob2', { opacity: 0 }, { opacity: 1, duration: 1 }, );
+tl.fromTo('header', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=1');
+tl.fromTo('.content', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=1');
+
 //custom cursor
 gsap.set(".ball", { xPercent: -50, yPercent: -50 });
 
@@ -110,7 +122,6 @@ blobs.addEventListener("mouseout", () => {
 })
 
 // LOGO
-
 logo.addEventListener("mouseover", () => {
     gsap.to('.ball', {
         duration: 1.5,
@@ -135,125 +146,7 @@ logo.addEventListener("mouseout", () => {
 
 // LINKS Y NAVEGACIÓN
 
-navigation.addEventListener("mouseover", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "transparent",
-            opacity: 0,
-            scale: 3
-        },
-        ease: "power4"
-    });
-})
 
-navigation.addEventListener("mouseout", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "#4263ec",
-            opacity: 1,
-            scale: 1
-        },
-        ease: "power4"
-    });
-})
-
-navigation1.addEventListener("mouseover", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "transparent",
-            opacity: 0,
-            scale: 3
-        },
-        ease: "power4"
-    });
-})
-
-navigation1.addEventListener("mouseout", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "#4263ec",
-            opacity: 1,
-            scale: 1
-        },
-        ease: "power4"
-    });
-})
-
-navigation2.addEventListener("mouseover", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "transparent",
-            opacity: 0,
-            scale: 3
-        },
-        ease: "power4"
-    });
-})
-
-navigation2.addEventListener("mouseout", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "#4263ec",
-            opacity: 1,
-            scale: 1
-        },
-        ease: "power4"
-    });
-})
-
-navigation3.addEventListener("mouseover", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "transparent",
-            opacity: 0,
-            scale: 3
-        },
-        ease: "power4"
-    });
-})
-
-navigation3.addEventListener("mouseout", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "#4263ec",
-            opacity: 1,
-            scale: 1
-        },
-        ease: "power4"
-    });
-})
-
-navigation4.addEventListener("mouseover", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "transparent",
-            opacity: 0,
-            scale: 3
-        },
-        ease: "power4"
-    });
-})
-
-navigation4.addEventListener("mouseout", () => {
-    gsap.to('.ball', {
-        duration: 1.5,
-        css: {
-            backgroundColor: "#4263ec",
-            opacity: 1,
-            scale: 1
-        },
-        ease: "power4"
-    });
-})
 
 // FOOTER
 
@@ -352,3 +245,48 @@ navigation8.addEventListener("mouseout", () => {
         ease: "power4"
     });
 })
+
+let contactForm = document.querySelector('.contact-container');
+document.querySelector('#contacto-btn').onclick = () => {
+    gsap.to('.contact-container', {
+        duration: 1.5,
+        css: {
+            left: 0,
+            top: 0
+        }, //back, elastic, bounce, circ, power4
+        ease: "power4"
+    });
+}
+
+
+document.querySelector('#close-contact-btn').onclick = () => {
+    gsap.to('.contact-container', {
+        duration: 1.5,
+        css: {
+            left: 2000
+        },
+        ease: "power4"
+    });
+}
+
+let code = document.querySelector('.code-container');
+document.querySelector('#code-btn').onclick = () => {
+    gsap.to('.code-container', {
+        duration: 1.5,
+        css: {
+            left: 0,
+            top: 0
+        }, //back, elastic, bounce, circ, power4
+        ease: "power4"
+    });
+}
+
+document.querySelector('#close-code-btn').onclick = () => {
+    gsap.to('.code-container', {
+        duration: 1.5,
+        css: {
+            left: 2000
+        },
+        ease: "power4"
+    });
+}

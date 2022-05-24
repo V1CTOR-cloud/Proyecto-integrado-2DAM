@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="32x32" href="/Assets/FAV/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/Assets/FAV/favicon-16x16.png">
-    <link rel="manifest" href="/Assets/FAV/site.webmanifest">
-    <link rel="mask-icon" href="/Assets/FAV/safari-pinned-tab.svg" color="#4263EC">
+    <link rel="icon" type="image/png" sizes="32x32" href="../Assets/FAV/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../Assets/FAV/favicon-16x16.png">
+    <link rel="manifest" href="../Assets/FAV/site.webmanifest">
+    <link rel="mask-icon" href="../Assets/FAV/safari-pinned-tab.svg" color="#4263EC">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <meta name="msapplication-TileColor" content="#4263EC">
     <meta name="theme-color" content="#4263EC">
     <link rel="stylesheet" href="../CSS/license.css">
@@ -20,7 +21,7 @@
     <header>
         <div class="img-box">
             <a href="../index.html">
-                <img src="../Assets/logo-png.png">
+                <img src="../Assets/logo-png.png" class="logo">
             </a>
         </div>
         <div class="navi">
@@ -38,6 +39,26 @@
             </nav>
         </div>
     </header>
+    <div class="intro">
+        <div class="intro-text">
+            <h1 class="hide">
+                <span class="text">
+                    DailySense
+                </span>
+            </h1>
+            <h1 class="hide">
+                <span class="text">
+                    Check our License
+                </span>
+            </h1>
+            <h1 class="hide">
+                <span class="text">
+                    Here :)
+                </span>
+            </h1>
+        </div>
+    </div>
+    <div class="slider"></div>
     <div class="container">
         <div class="blobs">
             <img src="../Assets/BLOBS/trambolico.svg" class="blob-top">
@@ -61,7 +82,7 @@
                 <img src="../Assets/logo1.png" class="footer-logo">
                 <h1>DAILYSENSE</h1>
             </div>
-            <div class="footer-wrapper2">
+            <div class="footer-wrapper2" id="contacto-btn">
                 <div class="boton" id="navigation8">
                     <p>Contact Us</p>
                 </div>
@@ -98,13 +119,6 @@
                             </div>
                         </div>
                     </a>
-                    <a href="">
-                        <div class="footer-circle">
-                            <div class="footer-circle1-in">
-                                <img src="../Assets/SOCIAL/instagram original.svg" class="social">
-                            </div>
-                        </div>
-                    </a>
                 </div>
                 <div class="license">
                     <p>DailySense© - 2022</p>
@@ -115,19 +129,72 @@
                     <h1>Interests</h1>
                     <ul>
                         <li>
-                            <a href="#Home">Dayloo</a>
+                            <a href="/WES-main/WEB DAILYSENSE/index.html#Dayloo">Dayloo</a>
                         </li>
                         <li>
                             <a href="License.html">License</a>
                         </li>
                         <li>
-                            <a href="#Timeline">Code</a>
+                            <a id="code-btn">Security</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
+    <div class="contact-container">
+
+        <div id="close-contact-btn" class="fas fa-times"></div>
+
+        <form action="">
+            <div class="form-header">
+                <h1>Contact Us <span> Here </span></h1>
+            </div>
+            <div class="form-body">
+                <div class="form-col1">
+                    <img src="../Assets/BLOBS/svg-blob (1) (1).png" class="form-blob">
+                    <img src="../Assets/DAYLOO 2.png" class="form-dayloo">
+                </div>
+                <div class="form-col2">
+
+                    <div class="grp-box">
+                        <h4>Your Email</h4>
+                        <input type="text" class="box">
+                    </div>
+                    <div class="grp-box">
+                        <h4>Message</h4>
+                        <input type="text" multiple class="boxArea">
+                    </div>
+                    <button class="btn">Send</button>
+                </div>
+            </div>
+            <div class="form-footer">
+                <a href="HTML/License.html">
+                    <p>DailySense© - 2022</p>
+                </a>
+            </div>
+        </form>
+    </div>
+    <div class="code-container">
+        <div id="close-code-btn" class="fas fa-times"></div>
+
+        <div class="code-content">
+            <div class="code-header">
+                <h2>We care about our data, check <span> how </span></h2>
+            </div>
+            <div class="code-body">
+                <div class="html">
+                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_pCsReX.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                    <h3>Safety first</h3>
+                </div>
+                <div class="css">
+
+                </div>
+            </div>
+            <div class="code-footer"></div>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/TextPlugin.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/ScrollTrigger.min.js "></script>
