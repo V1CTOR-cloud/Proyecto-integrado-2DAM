@@ -647,35 +647,120 @@ footer {
     cursor: pointer;
 }
 
-.html {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 50%;
-    cursor: pointer;
-}
-
-xmp {
-    border: 1px solid black;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
 .css {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100%;
-    width: 50%;
+    width: 100%;
     cursor: pointer;
 }
 
+.css p {
+    font-size: 1.3rem;
+    font-weight: 100;
+    width: 60%;
+}
+
 .code-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+/* DAYLOO INFO */
+
+.dayloo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .9);
+    position: fixed;
+    top: 0;
+    left: -105%;
+    z-index: 10000;
+    height: 100vh;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dayloo-container.active {
+    right: 0;
+}
+
+.dayloo-container .dayloo-content {
+    background: #fff;
+    border: var(--border);
+    width: 85%;
+    height: 90%;
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--fondo);
+    cursor: pointer;
+}
+
+#close-dayloo-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+}
+
+.dayloo-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dayloo-header span {
+    color: var(--themeColor);
+    cursor: pointer;
+}
+
+.dayloo-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+    flex-direction: row;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+#lottie-player {
+    position: absolute;
+    bottom: 0px;
+    z-index: 1000;
+}
+
+.dayloo-col1 h1 {
+    color: var(--themeColor);
+}
+
+.dayloo-col2 p {
+    font-size: 1.3rem;
+    font-weight: 100;
+    width: 60%;
+}
+
+.dayloo-footer {
     display: flex;
     justify-content: center;
     align-items: center;

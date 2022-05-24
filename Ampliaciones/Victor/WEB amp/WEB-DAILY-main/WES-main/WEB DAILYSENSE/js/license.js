@@ -6,9 +6,8 @@ tl.to('.slider', { y: '-100%', duration: 1.5, delay: 0.5 });
 //tl.to('.slider1', { y: '-100%', duration: 1.5, delay: 0.5 });
 tl.to('.intro', { y: '-100%', duration: 1 }, "-=1");
 tl.fromTo('.blob-top', { opacity: 0 }, { opacity: 1, duration: 1 });
-tl.fromTo('.blob2', { opacity: 0 }, { opacity: 1, duration: 1 }, );
 tl.fromTo('header', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=1');
-tl.fromTo('.content', { opacity: 0 }, { opacity: 1, duration: 1 }, '-=1');
+
 
 //custom cursor
 gsap.set(".ball", { xPercent: -50, yPercent: -50 });
@@ -283,6 +282,30 @@ document.querySelector('#code-btn').onclick = () => {
 
 document.querySelector('#close-code-btn').onclick = () => {
     gsap.to('.code-container', {
+        duration: 1.5,
+        css: {
+            left: 2000
+        },
+        ease: "power4"
+    });
+}
+
+// Dayloo
+
+let dayloo = document.querySelector('.dayloo-container');
+document.querySelector('#dayloo-btn').onclick = () => {
+    gsap.to('.dayloo-container', {
+        duration: 1.5,
+        css: {
+            left: 0,
+            top: 0
+        }, //back, elastic, bounce, circ, power4
+        ease: "power4"
+    });
+}
+
+document.querySelector('#close-dayloo-btn').onclick = () => {
+    gsap.to('.dayloo-container', {
         duration: 1.5,
         css: {
             left: 2000
