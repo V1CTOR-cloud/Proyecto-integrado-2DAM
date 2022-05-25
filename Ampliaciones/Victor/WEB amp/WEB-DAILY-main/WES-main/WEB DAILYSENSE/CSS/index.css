@@ -60,7 +60,6 @@ a {
 }
 
 header {
-    height: 13vh;
     width: 100%;
     display: flex;
     background: var(--fondo);
