@@ -12,7 +12,6 @@ import {
 
 
 import { useNavigation } from '@react-navigation/native';
-import { arrayTasks } from "../../components/Utils";
 
 const colors = {
     themeColor: "#4263ec",
@@ -27,10 +26,31 @@ const CardTask = (props) => {
 
     const [dis, setDisplay] = React.useState("flex");
 
+    const postDelete = async () => {
+
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "delete", id: props.id })
+
+        console.log(resultInser.data);
+
+        //setDatos(response.data);
+
+        return resultInser.data;
+
+    }
+
     const deleteFinal = () => {
-        arrayTasks.splice(props.id-1, 1)
-        setDisplay("none");
-        Alert.alert("Delete", "Delete was succefully");
+        //axios delete
+        const resultat = await postDelete();
+        const { correct } = resultat;
+        if (correct === "OK") {
+            setDisplay("none");
+            Alert.alert("Delete", "Delete was succefully");
+
+        } else {
+
+            Alert.alert("Error", "Unable to delete")
+
+        }
     }
 
     const del = () => {

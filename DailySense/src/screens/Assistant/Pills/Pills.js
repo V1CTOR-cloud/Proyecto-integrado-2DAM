@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 
 import { Button, Title } from 'react-native-paper';
-import { arrayPills } from '../../components/Utils';
+//import { arrayPills } from '../../components/Utils';
 import CardPills from './CardPills';
 
 const colors = {
@@ -30,6 +30,24 @@ const colors = {
 }
 
 const Pills = ({ route, navigation }) => {
+
+  const {IdDependent} = route.params;
+
+  const [pillsAsociades, setPillsAsociades] = React.useState([]);
+
+  const obtinPillsAsociades = async () => {
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "crearnuevaop", id: IdDependent })
+
+
+    console.log(JSON.stringify(resultInser.data));
+
+
+    setPillsAsociades(resultInser.data.array);
+
+
+
+  }
+
   return (
     <View style={styles.cont}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -38,11 +56,16 @@ const Pills = ({ route, navigation }) => {
       </View>
       <View style={styles.body}>
         <ScrollView>
-          {arrayPills.map((element, pos) => {
+        {pillsAsociades.map((element, pos) => {
+            return (<CardPills key={pos} id={element.IdAtribute} name={element.Name} 
+              descrition={element.Description} date={element.Date}></CardPills>);
+          })}
+
+          {/* {arrayPills.map((element, pos) => {
             return (
               <CardPills key={pos} id={element.id} med={element.medication} day={element.day} ></CardPills>
             )
-          })}
+          })} */}
         </ScrollView>
       </View>
       <View style={styles.footer}>

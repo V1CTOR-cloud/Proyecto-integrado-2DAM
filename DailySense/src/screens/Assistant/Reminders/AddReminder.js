@@ -30,19 +30,16 @@ const colors = {
 }
 
 const AddReminder = ({ route, navigation }) => {
+  const { IdDependent } = route.params;
 
-  const [Recordatorio, setRecordatorio] = React.useState("");
+  const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
   const [Time, setTime] = React.useState("");
-
-  function subir() {
-    arrayReminders.push({ id: 4, title: Recordatorio, description: Description, time: Time})
-  }
+  const Type=2;
 
   function creado() {
 
     if (EnviaDatos()) {
-      subir();
       Alert.alert("Alert Add", "Reminder added correctly", [{
         text: "Ok",
         onPress: () => navigation.navigate('Reminders'),
@@ -78,6 +75,8 @@ const AddReminder = ({ route, navigation }) => {
             ]);
             return false;
           }else{
+
+            
             return true;
           }
         };

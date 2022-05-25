@@ -20,7 +20,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import CardReminder from './CardReminders';
-import { arrayReminders } from '../../components/Utils';
+// import { arrayReminders } from '../../components/Utils';
 
 const colors = {
   themeColor: "#4263ec",
@@ -32,8 +32,25 @@ const colors = {
 }
 
 
-const Reminders = () => {
-  const navigation = useNavigation();
+const Reminders = ({ route, navigation }) => {
+
+  const {IdDependent} = route.params;
+
+  const [remindersAsociades, setRemindersAsociades] = React.useState([]);
+
+  const obtinRemindersAsociades = async () => {
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "crearnuevaop", id: IdDependent, type: Type })
+
+
+    console.log(JSON.stringify(resultInser.data));
+
+
+    setRemindersAsociades(resultInser.data.array);
+
+
+
+  }
+
   return (
     <View style={styles.cont}>
       <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
@@ -42,11 +59,16 @@ const Reminders = () => {
       </View>
       <View style={styles.body}>
         <ScrollView>
-          {arrayReminders.map((element, pos) => {
+
+        {remindersAsociades.map((element, pos) => {
+            return (<CardReminder key={pos} id={element.IdAtribute} name={element.Name} 
+              descrition={element.Description} date={element.Date}></CardReminder>);
+          })}
+          {/* {arrayReminders.map((element, pos) => {
             return (
               <CardReminder key={pos} id={element.id} desc={element.description} title={element.title} time={element.time} ></CardReminder>
             )
-          })}
+          })} */}
         </ScrollView>
       </View>
       <View style={styles.footer}>

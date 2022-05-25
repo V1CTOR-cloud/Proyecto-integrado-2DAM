@@ -60,17 +60,17 @@ const Information = ({ route, navigation }) => {
                         selectedColor={textColor}
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => navigation.navigate('Tasks')}
+                        onPress={() => navigation.navigate('Tasks', {IdDependents: id})}
                     >Tasks</Chip>
                     <Chip
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => navigation.navigate('Reminders')}
+                        onPress={() => navigation.navigate('Reminders', {IdDependents: id})}
                     >Reminders</Chip>
                     <Chip
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => navigation.navigate('Pills')}
+                        onPress={() => navigation.navigate('Pills', {IdDependents: id})}
                     >Pills</Chip>
                 </View>
             </View>

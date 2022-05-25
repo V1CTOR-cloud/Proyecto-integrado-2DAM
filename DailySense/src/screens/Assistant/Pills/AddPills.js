@@ -38,13 +38,11 @@ const AddPills = ({ navigation }) => {
   const [Day, setDay] = React.useState("");
   const [Med, setMed] = React.useState("");
 
-  function subir() {
-    arrayPills.push({ id: 4, day: Day, medication: Med })
-  }
+
 
   function creado() {
     if (validar()) {
-      subir();
+      //
       Alert.alert("Alert Add", "Reminder added correctly", [{
         text: "Ok",
         onPress: () => navigation.navigate('Pills'),
@@ -75,17 +73,6 @@ const AddPills = ({ navigation }) => {
           return true;
         }
       }
-    }
-  }
-
-  function Añadir(){
-    if (validar()) {
-      navigation.navigate('Reminder');
-    }else{
-      Alert.alert("Error 404", "Cannot be added", [
-        { text: "Ok", onPress: () => console.log("error") }
-      ]);
-      
     }
   }
 

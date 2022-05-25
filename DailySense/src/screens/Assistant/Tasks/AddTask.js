@@ -13,11 +13,9 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar, Alert
+  StatusBar
 } from 'react-native';
 
-
-import { arrayTasks } from '../../components/Utils';
 import { useNavigation } from '@react-navigation/native';
 import CardTask from './CardTask';
 
@@ -32,203 +30,143 @@ const colors = {
   pink: "#D16BA5"
 }
 
-const AddTask = ({ navigation }) => {
+const AddTask = ({route, navigation}) => {
+  const { IdDependent } = route.params;
+
 
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
+  const Type=3;
 
-  function subir() {
-    arrayTasks.push({ id: 4, title: Title, description: Description })
-  }
-
-  function creado() {
-    if (validar()) {
-      subir();
-      Alert.alert("Alert Add", "Reminder added correctly", [{
-        text: "Ok",
-        onPress: () => navigation.navigate('Tasks'),
-      }])
-    }
-
-  }
+  
 
   function validar() {
-    if (Title.length == 0 && Description.length == 0) {
-      Alert.alert("Error", "All fields are empty", [
-        { text: "Ok", onPress: () => console.log("error") }
-      ]);
-      return false;
+    if (Title == "" && Description == "") {
+      alert('Error - All fields are empty');
     } else {
-      if (Title.length == 0) {
-        Alert.alert("Error", "The day field is empty", [
-          { text: "Ok", onPress: () => console.log("error") }
-        ]);
-        return false;
+      if (Title == "") {
+        alert('Error - Title field empty');
       } else {
-        if (Description.length == 0) {
-          Alert.alert("Error", "The medication field is empty", [
-            { text: "Ok", onPress: () => console.log("error") }
-          ]);
-          return false;
+        if (Description == "") {
+          alert('Error - Description field empty');
         } else {
-          return true;
+          //post add
+          navigation.navigate('Tasks', {
+            //borrar esto es en local
+            Title: Title,
+            Description: Description
+          });
         }
       }
     }
   }
 
+  const postDatos = async () => {
 
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
+      op: "AddTask", idDependent: IdDependent, type: Type, title: Title, description: Description
+    })
+
+    console.log(resultInser.data);
+    //setDatos(response.data);
+
+    return resultInser;
+
+  }
+
+  const addTask = async () => {
+    if (validar()) {
+      const resultat = await postDatos()
+
+      if (resultat.data.correct === "OK") {
+
+        Alert.alert("Added", "Person added correctly")
+        navigation.navigate("IndexAssistant", { User: User, IdAssistant:IdAssistant, Gender: Gender, Mail: Mail })
+
+      } else {
+
+        resultat.log("Datos no es OK");
+
+      }
+    }
+  }
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
-      <View style={styles.header}>
-        <Text style={styles.h1}>Add tasks</Text>
-      </View>
+    <View style={styles.cont}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
       <View style={styles.content}>
-        <View style={styles.form}>
-          <View style={styles.texti}>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/img/label.png')}
-            />
-            <TextInput
-              style={styles.box}
-              placeholder='Title goes here...'
-              label='Title'
-              selectionColor={colors.themeColor}
-              mode='outlined'
-              outlineColor={colors.themeColor}
-              theme={{ colors: { primary: colors.themeColor } }}
-              value={Title}
-              onChangeText={(Title) => setTitle(Title)}
-            />
-          </View>
-          <View style={styles.texti}>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/img/description.png')}
-            />
-            <TextInput
-              style={styles.boxA}
-              placeholder='Description goes here...'
-              label='Description'
-              multiline
-              numberOfLines={3}
-              selectionColor={colors.themeColor}
-              mode='outlined'
-              outlineColor={colors.themeColor}
-              theme={{ colors: { primary: colors.themeColor } }}
-              value={Description}
-              onChangeText={(Description) => setDescription(Description)}
-            />
-          </View>
-        </View>
-        <View style={styles.contbtn}>
-          <Button
-            mode='contained'
-            color={colors.themeColor}
-            style={styles.btn}
-            onPress={() => creado()}
-            labelStyle={{ color: colors.white, width: '99%' }}
-          >
-            SAVE
-          </Button>
-        </View>
+        <Text style={styles.titulo}>Add tasks</Text>
+        <TextInput
+          style={styles.box}
+          placeholder='Title goes here...'
+          label='Title'
+          selectionColor={colors.themeColor}
+          mode='outlined'
+          outlineColor={colors.themeColor}
+          theme={{ colors: { primary: colors.themeColor } }}
+          value={Title}
+          onChangeText={(Title) => setTitle(Title)}
+        />
+        <TextInput
+          style={styles.boxArea}
+          placeholder='Description goes here...'
+          label='Description'
+          multiline
+          numberOfLines={3}
+          selectionColor={colors.themeColor}
+          mode='outlined'
+          outlineColor={colors.themeColor}
+          theme={{ colors: { primary: colors.themeColor } }}
+          value={Description}
+          onChangeText={(Description) => setDescription(Description)}
+        />
+        <Button
+          mode='contained'
+          color={colors.themeColor}
+          labelStyle={styles.btn}
+          onPress={() => EnviaDatos()}
+          style={{ width: 150 }}
+        >
+          Add
+        </Button>
       </View>
     </View>
   );
-}
-
+};
 
 const styles = StyleSheet.create({
-  container: {
+  cont: {
     flex: 1,
-    backgroundColor: colors.tint,
+    backgroundColor: colors.themeColor,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  header: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-  texti: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    padding: 10
-  },
-  h1: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    position: 'relative',
-    left: 30,
-    color: colors.white
-  },
-  img: {
-    height: 20,
-    width: 20,
-  },
   content: {
-    height: 600,
-    width: '100%',
-    backgroundColor: colors.white,
-    borderRadius: 40,
-    position: 'relative',
-    top: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  form: {
-    flex: 0.3,
+    flex: 0.5,
     width: '80%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    bottom: 20
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+  },
+  titulo: {
+    color: '#444',
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   box: {
-    height: 35,
-    margin: 15,
+    height: 45,
     width: 250,
+    backgroundColor: '#F7F7F7'
   },
-  boxA: {
+  boxArea: {
     height: 105,
-    margin: 15,
     width: 250,
-  },
-  contbtn: {
-    height: 150,
-    width: '80%',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    position: 'relative',
-    bottom: 0
+    backgroundColor: '#F7F7F7'
   },
   btn: {
-    height: 45,
-    width: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    top: 20,
-    left: 10
+    color: '#F7F7F7',
   },
-  btnout: {
-    height: 45,
-    width: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: colors.themeColor,
-    borderWidth: 1,
-  },
-  context: {
-    height: 20,
-    position: 'relative',
-    top: 80
-  }
 });
 
 export default AddTask;
