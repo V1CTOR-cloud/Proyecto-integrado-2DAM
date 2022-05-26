@@ -43,7 +43,7 @@ const CardPills = (props) => {
 
     const deleteFinal = () => {
         //axios delete
-        const resultat = await postDelete();
+        const resultat =  postDelete();
         const { correct } = resultat;
         if (correct === "OK") {
             setDisplay("none");

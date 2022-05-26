@@ -28,7 +28,7 @@ const colors = {
 const Information = ({ route, navigation }) => {
 
     const { id, tel, age, allergies, diseases, address, name, lastName, dependency } = route.params;
-
+    console.log(id);
     const [ColorText, setColorText] = React.useState(colors.greyish);
     const [selected, setSelected] = useState(false);
     const [textColor, setTextColor] = useState(colors.white);
@@ -60,17 +60,17 @@ const Information = ({ route, navigation }) => {
                         selectedColor={textColor}
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => navigation.navigate('Tasks', {IdDependents: id})}
+                        onPress={() => navigation.navigate('Tasks', {id: id})}
                     >Tasks</Chip>
                     <Chip
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => navigation.navigate('Reminders', {IdDependents: id})}
+                        onPress={() => navigation.navigate('Reminders', {id: id})}
                     >Reminders</Chip>
                     <Chip
                         textStyle={{ color: textColor }}
                         style={styles.chip}
-                        onPress={() => navigation.navigate('Pills', {IdDependents: id})}
+                        onPress={() => navigation.navigate('Pills', {id: id})}
                     >Pills</Chip>
                 </View>
             </View>

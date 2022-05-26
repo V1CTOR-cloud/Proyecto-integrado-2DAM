@@ -6,7 +6,6 @@
  * @flow strict-local
  */
 
-import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,12 +14,14 @@ import {
   TouchableOpacity,
   StatusBar, ScrollView
 } from 'react-native';
+import axios from "axios";
 
+import React, { useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
 import { Button, Title } from 'react-native-paper';
 import CardPills from './CardPills';
-import Information from "./Information";
+import Information from "../Information";
 //import { arrayPills } from '../../components/Utils';
 
 const colors = {

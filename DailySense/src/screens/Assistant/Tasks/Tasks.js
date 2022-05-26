@@ -6,7 +6,6 @@
  * @flow strict-local
  */
 
-import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,14 +13,17 @@ import {
   Image,
   TouchableOpacity,
   StatusBar,
-  ScrollView
+  ScrollView,
 } from 'react-native';
+import axios from "axios";
+
+import React, { useEffect } from "react";
 
 import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import CardTask from './CardTask';
-import Information from "./Information";
+import Information from '../Information';
 //import { arrayTasks } from '../../components/Utils';
 
 
@@ -38,22 +40,27 @@ const colors = {
 const Tasks = ({route, navigation}) => {
 
   const isFocused = useIsFocused();
-  const {IdDependent} = route.params;
+  const {id} = route.params;
   const [tasksAsociades, setTasksAsociades] = React.useState([]);
-
+  
   const obtinTasksAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinTasks", id: IdDependent})
+    //console.log(id);
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getTasks", id: id}).then(response => {
+      
+      console.log("FUNCIONA");
+    
+    }).catch(function (error) {
+      console.log(error);
+    });
 
     console.log(JSON.stringify(resultInser.data));
     setTasksAsociades(resultInser.data.array);
   }
 
   useEffect(() => {
-
-    if (isFocused) {
-      obtinTasksAsociades();
-    }
+    obtinTasksAsociades();
   }, [navigation, isFocused])
+
 
   return (
     <View style={styles.cont}>
@@ -64,14 +71,14 @@ const Tasks = ({route, navigation}) => {
       <View style={styles.body}>
         <ScrollView>
         {tasksAsociades.map((element, pos) => {
-            return (<CardTask key={pos} id={element.IdAtribute} name={element.Name} 
-              descrition={element.Description} date={element.Date}></CardTask>);
+            return (<CardTask key={pos} id={element.IdAtributte} name={element.Name} 
+              descrition={element.Description} date={element.Date} ></CardTask>);
           })}
           {/* {arrayTasks.map((element,pos)=>{
             console.log("añado reminder");
             return(
               
-              <CardTask key={pos} desc={element.description} title={element.title} id={element.id}></CardTask>
+              <CardTask key={pos} desc={element.description} title={element.title} IdDependents={element.IdDependents}></CardTask>
             )
           })} */}
         </ScrollView>
@@ -143,7 +150,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: colors.white,
-    borderWidth: 1,
+    borderwidth: 1,
   },
 });
 

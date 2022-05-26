@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,14 +14,15 @@ import {
   Image,
   TouchableOpacity,
   StatusBar, 
-  ScrollView
+  ScrollView,
 } from 'react-native';
+import axios from "axios";
 
 import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import CardReminder from './CardReminders';
-import Information from "./Information";
+import Information from "../Information";
 // import { arrayReminders } from '../../components/Utils';
 
 const colors = {
@@ -42,10 +43,8 @@ const Reminders = ({ route, navigation }) => {
 
   const obtinRemindersAsociades = async () => {
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinReminder", id: IdDependent })
-
     console.log(JSON.stringify(resultInser.data));
     setRemindersAsociades(resultInser.data.array);
-
   }
 
   useEffect(() => {
