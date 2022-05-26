@@ -17,8 +17,11 @@ import {
   ScrollView
 } from 'react-native';
 
+import { useIsFocused } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import CardTask from './CardTask';
+import Information from "./Information";
 //import { arrayTasks } from '../../components/Utils';
 
 
@@ -34,22 +37,23 @@ const colors = {
 
 const Tasks = ({route, navigation}) => {
 
+  const isFocused = useIsFocused();
   const {IdDependent} = route.params;
-
   const [tasksAsociades, setTasksAsociades] = React.useState([]);
 
   const obtinTasksAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "crearnuevaop", id: IdDependent, type: Type })
-
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinTasks", id: IdDependent})
 
     console.log(JSON.stringify(resultInser.data));
-
-
     setTasksAsociades(resultInser.data.array);
-
-
-
   }
+
+  useEffect(() => {
+
+    if (isFocused) {
+      obtinTasksAsociades();
+    }
+  }, [navigation, isFocused])
 
   return (
     <View style={styles.cont}>

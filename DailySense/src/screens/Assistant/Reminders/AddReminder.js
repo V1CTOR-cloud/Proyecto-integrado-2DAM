@@ -30,26 +30,27 @@ const colors = {
 }
 
 const AddReminder = ({ route, navigation }) => {
-  const { IdDependent } = route.params;
 
+  const { IdDependent } = route.params;
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
   const [Time, setTime] = React.useState("");
-  const Type=2;
+  const Type=1;
+  
 
   function creado() {
 
     if (EnviaDatos()) {
       Alert.alert("Alert Add", "Reminder added correctly", [{
         text: "Ok",
-        onPress: () => navigation.navigate('Reminders'),
+        onPress: () => navigation.navigate('Reminders', { id:IdDependent}),
       }])
     }
 
   }
 
-  function EnviaDatos() {
-    if (Recordatorio.length === 0 &&
+  function validar() {
+    if (Title.length === 0 &&
       Description.length === 0 &&
       Time.length == 0) {
       Alert.alert("Error", "All fields are empty", [
@@ -57,7 +58,7 @@ const AddReminder = ({ route, navigation }) => {
       ]);
       return false;
     } else {
-      if (Recordatorio === "") {
+      if (Title === "") {
         Alert.alert("Error", "The title field is empty", [
           { text: "Ok", onPress: () => console.log("error") }
         ]);
@@ -74,12 +75,40 @@ const AddReminder = ({ route, navigation }) => {
               { text: "Ok", onPress: () => console.log("error") }
             ]);
             return false;
-          }else{
-
-            
+          }else{            
             return true;
           }
         };
+      }
+    }
+  }
+
+  const postDatos = async () => {
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
+      op: "AddReminder", idDependent: IdDependent, type: Type, title: Title, description: Description, date: Time
+    })
+
+    console.log(resultInser.data);
+    //setDatos(response.data);
+
+    return resultInser;
+
+  }
+
+  const addReminder = async () => {
+    if (validar()) {
+      const resultat = await postDatos()
+
+      if (resultat.data.correct === "OK") {
+
+        Alert.alert("Added", "Reminder added correctly")
+        navigation.navigate('Reminders', { id:IdDependent})
+
+      } else {
+
+        resultat.log("Datos no es OK");
+
       }
     }
   }
@@ -105,8 +134,8 @@ const AddReminder = ({ route, navigation }) => {
               selectionColor={colors.themeColor}
               outlineColor={colors.themeColor}
               theme={{ colors: { primary: colors.tint } }}
-              value={Recordatorio}
-              onChangeText={(Recordatorio) => setRecordatorio(Recordatorio)}
+              value={Title}
+              onChangeText={(Title) => setTitle(Title)}
             />
           </View>
           <View style={styles.texti}>
@@ -152,7 +181,7 @@ const AddReminder = ({ route, navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => creado()}
+            onPress={() => addReminder()}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             SAVE

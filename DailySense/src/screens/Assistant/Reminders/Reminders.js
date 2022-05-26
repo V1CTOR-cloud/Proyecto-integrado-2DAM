@@ -17,9 +17,11 @@ import {
   ScrollView
 } from 'react-native';
 
+import { useIsFocused } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 import CardReminder from './CardReminders';
+import Information from "./Information";
 // import { arrayReminders } from '../../components/Utils';
 
 const colors = {
@@ -34,22 +36,24 @@ const colors = {
 
 const Reminders = ({ route, navigation }) => {
 
+  const isFocused = useIsFocused();
   const {IdDependent} = route.params;
-
   const [remindersAsociades, setRemindersAsociades] = React.useState([]);
 
   const obtinRemindersAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "crearnuevaop", id: IdDependent, type: Type })
-
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinReminder", id: IdDependent })
 
     console.log(JSON.stringify(resultInser.data));
-
-
     setRemindersAsociades(resultInser.data.array);
 
-
-
   }
+
+  useEffect(() => {
+
+    if (isFocused) {
+      obtinRemindersAsociades();
+    }
+  }, [navigation, isFocused])
 
   return (
     <View style={styles.cont}>
@@ -62,7 +66,7 @@ const Reminders = ({ route, navigation }) => {
 
         {remindersAsociades.map((element, pos) => {
             return (<CardReminder key={pos} id={element.IdAtribute} name={element.Name} 
-              descrition={element.Description} date={element.Date}></CardReminder>);
+              description={element.Description} date={element.Date}></CardReminder>);
           })}
           {/* {arrayReminders.map((element, pos) => {
             return (

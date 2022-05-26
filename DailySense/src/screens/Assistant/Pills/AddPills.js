@@ -35,8 +35,10 @@ const colors = {
 
 const AddPills = ({ navigation }) => {
 
+  const { IdDependent } = route.params;
   const [Day, setDay] = React.useState("");
   const [Med, setMed] = React.useState("");
+  const Type=3;
 
 
 
@@ -45,7 +47,7 @@ const AddPills = ({ navigation }) => {
       //
       Alert.alert("Alert Add", "Reminder added correctly", [{
         text: "Ok",
-        onPress: () => navigation.navigate('Pills'),
+        onPress: () => navigation.navigate('Pills', { id:IdDependent}),
       }])
     }
 

@@ -31,7 +31,7 @@ const CardPills = (props) => {
 
     const postDelete = async () => {
 
-        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "delete", id: props.id })
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "deleteAttribute", id: props.id })
 
         console.log(resultInser.data);
 

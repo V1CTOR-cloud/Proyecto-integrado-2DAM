@@ -31,12 +31,11 @@ const colors = {
 }
 
 const AddTask = ({route, navigation}) => {
+  
   const { IdDependent } = route.params;
-
-
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
-  const Type=3;
+  const Type=2;
 
   
 
@@ -64,7 +63,7 @@ const AddTask = ({route, navigation}) => {
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "AddTask", idDependent: IdDependent, type: Type, title: Title, description: Description
+      op: "newAttribute", idDependent: IdDependent, type: Type, title: Title, description: Description
     })
 
     console.log(resultInser.data);
@@ -80,9 +79,8 @@ const AddTask = ({route, navigation}) => {
 
       if (resultat.data.correct === "OK") {
 
-        Alert.alert("Added", "Person added correctly")
-        navigation.navigate("IndexAssistant", { User: User, IdAssistant:IdAssistant, Gender: Gender, Mail: Mail })
-
+        Alert.alert("Added", "Task added correctly")
+        navigation.navigate('Tasks', { id:IdDependent})
       } else {
 
         resultat.log("Datos no es OK");
@@ -124,7 +122,7 @@ const AddTask = ({route, navigation}) => {
           mode='contained'
           color={colors.themeColor}
           labelStyle={styles.btn}
-          onPress={() => EnviaDatos()}
+          onPress={() => addTask()}
           style={{ width: 150 }}
         >
           Add

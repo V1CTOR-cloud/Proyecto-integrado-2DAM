@@ -16,9 +16,12 @@ import {
   StatusBar, ScrollView
 } from 'react-native';
 
+import { useIsFocused } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 import { Button, Title } from 'react-native-paper';
-//import { arrayPills } from '../../components/Utils';
 import CardPills from './CardPills';
+import Information from "./Information";
+//import { arrayPills } from '../../components/Utils';
 
 const colors = {
   themeColor: "#4263ec",
@@ -31,22 +34,24 @@ const colors = {
 
 const Pills = ({ route, navigation }) => {
 
+  const isFocused = useIsFocused();
   const {IdDependent} = route.params;
-
   const [pillsAsociades, setPillsAsociades] = React.useState([]);
 
   const obtinPillsAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "crearnuevaop", id: IdDependent })
-
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinPills", id: IdDependent })
 
     console.log(JSON.stringify(resultInser.data));
-
-
     setPillsAsociades(resultInser.data.array);
 
-
-
   }
+
+  useEffect(() => {
+
+    if (isFocused) {
+      obtinPillsAsociades();
+    }
+  }, [navigation, isFocused])
 
   return (
     <View style={styles.cont}>

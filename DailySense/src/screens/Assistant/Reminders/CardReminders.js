@@ -12,7 +12,7 @@ import {
 
 
 import { useNavigation } from '@react-navigation/native';
-import { arrayReminders } from "../../components/Utils";
+//import { arrayReminders } from "../../components/Utils";
 
 const colors = {
     themeColor: "#4263ec",
@@ -28,7 +28,7 @@ const CardReminder = (props) => {
     const [dis, setDisplay] = React.useState("flex");
     const postDelete = async () => {
 
-        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "delete", id: props.id })
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "deleteAttribute", id: props.id })
 
         console.log(resultInser.data);
 
@@ -78,14 +78,14 @@ const CardReminder = (props) => {
             display: dis,
         }}>
             <View style={styles.header}>
-                <Text style={styles.h1}>{props.title} </Text>
+                <Text style={styles.h1}>{props.name} </Text>
             </View>
             <View style={styles.body}>
                 <Text style={styles.h2}>
                     Description:
                 </Text>
                 <Text style={styles.h3}>
-                    {props.desc}
+                    {props.description}
                 </Text>
             </View>
             <View style={styles.body}>
@@ -93,7 +93,7 @@ const CardReminder = (props) => {
                     Time:
                 </Text>
                 <Text style={styles.h3}>
-                    {props.time}
+                    {props.date}
                 </Text>
             </View>
             <View style={styles.footer}>
