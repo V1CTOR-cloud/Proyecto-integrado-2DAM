@@ -759,7 +759,7 @@ footer {
 
 #lottie-player {
     position: absolute;
-    bottom: 0px;
+    bottom: -50px;
     z-index: 1000;
     cursor: pointer;
 }
