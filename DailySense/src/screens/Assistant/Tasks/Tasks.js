@@ -71,8 +71,8 @@ const Tasks = ({route, navigation}) => {
       <View style={styles.body}>
         <ScrollView>
         {tasksAsociades.map((element, pos) => {
-            return (<CardTask key={pos} id={element.IdAtributte} name={element.Name} 
-              descrition={element.Description} date={element.Date} ></CardTask>);
+            return (<CardTask key={pos} id={element.IdAtributte} description={element.Description}  
+              name={element.Name} ></CardTask>);
           })}
           {/* {arrayTasks.map((element,pos)=>{
             console.log("añado reminder");

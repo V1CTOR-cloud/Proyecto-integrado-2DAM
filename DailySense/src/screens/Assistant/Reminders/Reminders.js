@@ -70,8 +70,8 @@ const Reminders = ({ route, navigation }) => {
         <ScrollView>
 
         {remindersAsociades.map((element, pos) => {
-            return (<CardReminder key={pos} id={element.IdAtribute} name={element.Name} 
-              description={element.Description} date={element.Date}></CardReminder>);
+            return (<CardReminder key={pos} id={element.IdAtributte} description={element.Description}  
+              name={element.Name}></CardReminder>);
           })}
           {/* {arrayReminders.map((element, pos) => {
             return (

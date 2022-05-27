@@ -69,8 +69,8 @@ const Pills = ({ route, navigation }) => {
       <View style={styles.body}>
         <ScrollView>
         {pillsAsociades.map((element, pos) => {
-            return (<CardPills key={pos} id={element.IdAtribute} name={element.Name} 
-              descrition={element.Description} ></CardPills>);
+            return (<CardPills key={pos} id={element.IdAtributte} description={element.Description}  
+              name={element.Name} ></CardPills>);
           })}
 
           {/* {arrayPills.map((element, pos) => {
