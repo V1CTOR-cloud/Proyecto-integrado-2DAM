@@ -15,6 +15,7 @@ import {
 import axios from 'axios';
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button, Chip, HelperText } from "react-native-paper";
+import { hex_md5 } from "react-native-md5";
 
 
 const colors = {
@@ -28,6 +29,7 @@ const colors = {
 const CreateAccount = ({ navigation }) => {
 
     const [Password, setPassword] = React.useState("");
+    const encryptedPwd = hex_md5(Password);
     const [ConfirmPassword, setConfirmPassword] = React.useState("");
     const [User, setUser] = React.useState("");
     const [MailAccount, setMailAccount] = React.useState("");
@@ -114,7 +116,7 @@ const CreateAccount = ({ navigation }) => {
     const [datos, setDatos] = React.useState("a");
     const registreUsuari = async () => {
 
-        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: Password, email: MailAccount, gender: Sexo })
+        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "register", user: User, pass: encryptedPwd, email: MailAccount, gender: Sexo })
 
 
         console.log(resultInser.data);
@@ -204,7 +206,6 @@ const CreateAccount = ({ navigation }) => {
                             mode='outlined'
                             secureTextEntry={true}
                             onChangeText={Password => setPassword(Password)}
-                            secureTextEntry={true}
                             theme={{ colors: { primary: colors.tint } }}
                         />
                     </View>

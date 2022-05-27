@@ -14,6 +14,7 @@ import {
 
 import axios from "axios";
 import { TextInput } from "react-native-paper";
+import { hex_md5 } from "react-native-md5";
 
 
 const colors = {
@@ -28,11 +29,13 @@ const Login = ({ navigation, route }) => {
 
   const [User, setUser] = React.useState("");
   const [Password, setPassword] = React.useState("");
+  const encryptedPwd = hex_md5(Password);
   //const [datos, setDatos] = React.useState("");
+  
 
   const postDatos = async () => {
 
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: Password })
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "login", user: User, pass: encryptedPwd })
 
     console.log(resultInser.data);
 
