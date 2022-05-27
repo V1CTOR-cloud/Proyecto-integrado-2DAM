@@ -35,13 +35,11 @@ const AddReminder = ({ route, navigation }) => {
   const { IdDependent } = route.params;
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
-  const [Time, setTime] = React.useState("");
-  const type=1;
-  
+  const type = 1;
+
   function validar() {
     if (Title.length === 0 &&
-      Description.length === 0 &&
-      Time.length == 0) {
+      Description.length === 0) {
       Alert.alert("Error", "All fields are empty", [
         { text: "Ok", onPress: () => console.log("error") }
       ]);
@@ -58,24 +56,19 @@ const AddReminder = ({ route, navigation }) => {
             { text: "Ok", onPress: () => console.log("error") }
           ]);
           return false;
+
         } else {
-          if (Time.length === 0) {
-            Alert.alert("Error", "The Time field is empty", [
-              { text: "Ok", onPress: () => console.log("error") }
-            ]);
-            return false;
-          }else{            
-            return true;
-          }
-        };
-      }
+          return true;
+        }
+      };
     }
   }
+
 
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "newAttribute", idDependent: IdDependent, type: type, title: Title, description: Description, date: Time
+      op: "newAttribute", dependents: IdDependent, type: type, name: Title, description: Description,
     })
 
     console.log(resultInser.data);
@@ -92,7 +85,7 @@ const AddReminder = ({ route, navigation }) => {
       if (resultat.data.correct === "OK") {
 
         Alert.alert("Added", "Reminder added correctly")
-        navigation.navigate('Reminders', { id:IdDependent})
+        navigation.navigate('Reminders', { id: IdDependent })
 
       } else {
 
@@ -144,23 +137,6 @@ const AddReminder = ({ route, navigation }) => {
               theme={{ colors: { primary: colors.tint } }}
               value={Description}
               onChangeText={(Description) => setDescription(Description)}
-            />
-          </View>
-          <View style={styles.texti}>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/img/time.png')}
-            />
-            <TextInput
-              placeholder='Ej:. 20:34'
-              style={styles.box}
-              label='Time'
-              mode='outlined'
-              selectionColor={colors.themeColor}
-              outlineColor={colors.themeColor}
-              theme={{ colors: { primary: colors.tint } }}
-              value={Time}
-              onChangeText={(Time) => setTime(Time)}
             />
           </View>
 

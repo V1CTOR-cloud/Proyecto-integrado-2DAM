@@ -13,7 +13,7 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar, 
+  StatusBar,
   ScrollView,
 } from 'react-native';
 import axios from "axios";
@@ -38,18 +38,18 @@ const colors = {
 const Reminders = ({ route, navigation }) => {
 
   const isFocused = useIsFocused();
-  const {id} = route.params;
+  const { id } = route.params;
   const [remindersAsociades, setRemindersAsociades] = React.useState([]);
 
   const obtinRemindersAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getReminders", id: id }).then(response => {
-      
-      console.log("FUNCIONA");
-    
-    }).catch(function (error) {
-      console.log(error);
-    });
-    console.log(JSON.stringify(resultInser.data));
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getReminders", id: id })//.then(response => {
+
+    // console.log("FUNCIONA");
+
+    //}).catch(function (error) {
+    // console.log(error);
+    //});
+    console.log(resultInser.data);
     setRemindersAsociades(resultInser.data.array);
   }
 
@@ -69,8 +69,8 @@ const Reminders = ({ route, navigation }) => {
       <View style={styles.body}>
         <ScrollView>
 
-        {remindersAsociades.map((element, pos) => {
-            return (<CardReminder key={pos} id={element.IdAtributte} description={element.Description}  
+          {remindersAsociades.map((element, pos) => {
+            return (<CardReminder key={pos} id={element.IdAttribute} description={element.Description}
               name={element.Name}></CardReminder>);
           })}
           {/* {arrayReminders.map((element, pos) => {
@@ -81,7 +81,7 @@ const Reminders = ({ route, navigation }) => {
         </ScrollView>
       </View>
       <View style={styles.footer}>
-      <View style={styles.contbtn}>
+        <View style={styles.contbtn}>
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnin}
@@ -91,7 +91,9 @@ const Reminders = ({ route, navigation }) => {
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate('AddReminder')}>
+            onPress={() => navigation.navigate('AddReminder', {
+              IdDependent: id,
+            })}>
             <Text style={styles.btnoutT}>ADD</Text>
           </TouchableOpacity>
         </View>

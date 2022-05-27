@@ -37,23 +37,23 @@ const colors = {
 }
 
 
-const Tasks = ({route, navigation}) => {
+const Tasks = ({ route, navigation }) => {
 
   const isFocused = useIsFocused();
-  const {id} = route.params;
+  const { id } = route.params;
   const [tasksAsociades, setTasksAsociades] = React.useState([]);
-  
+
   const obtinTasksAsociades = async () => {
     //console.log(id);
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getTasks", id: id}).then(response => {
-      
-      console.log("FUNCIONA");
-    
-    }).catch(function (error) {
-      console.log(error);
-    });
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getTasks", id: id })//.then(response => {
 
-    console.log(JSON.stringify(resultInser.data));
+    console.log("FUNCIONA");
+
+    //}).catch(function (error) {
+    // console.log(error);
+    //});
+
+    console.log(resultInser.data);
     setTasksAsociades(resultInser.data.array);
   }
 
@@ -70,8 +70,8 @@ const Tasks = ({route, navigation}) => {
       </View>
       <View style={styles.body}>
         <ScrollView>
-        {tasksAsociades.map((element, pos) => {
-            return (<CardTask key={pos} id={element.IdAtributte} description={element.Description}  
+          {tasksAsociades.map((element, pos) => {
+            return (<CardTask key={pos} id={element.IdAttribute} description={element.Description}
               name={element.Name} ></CardTask>);
           })}
           {/* {arrayTasks.map((element,pos)=>{
@@ -97,7 +97,9 @@ const Tasks = ({route, navigation}) => {
           color={colors.white}
           style={styles.btnout}
           labelStyle={{ width: 75 }}
-          onPress={() => navigation.navigate('AddTask')}
+          onPress={() => navigation.navigate('AddTask', {
+            IdDependent: id,
+          })}
         >
           Add
         </Button>

@@ -10,6 +10,7 @@ import {
     Alert
 } from 'react-native';
 
+import axios from "axios";
 
 import { useNavigation } from '@react-navigation/native';
 //import { arrayPills } from "../../components/Utils";
@@ -41,9 +42,9 @@ const CardPills = (props) => {
 
     }
 
-    const deleteFinal = () => {
+    const deleteFinal = async() => {
         //axios delete
-        const resultat =  postDelete();
+        const resultat =  await postDelete();
         const { correct } = resultat;
         if (correct === "OK") {
             setDisplay("none");

@@ -13,7 +13,7 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar
+  StatusBar, Alert
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -49,12 +49,7 @@ const AddTask = ({route, navigation}) => {
         if (Description == "") {
           alert('Error - Description field empty');
         } else {
-          //post add
-          navigation.navigate('Tasks', {
-            //borrar esto es en local
-            Title: Title,
-            Description: Description
-          });
+          return true;
         }
       }
     }
@@ -62,8 +57,10 @@ const AddTask = ({route, navigation}) => {
 
   const postDatos = async () => {
 
+    console.log(IdDependent);
+
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "newAttribute", idDependent: IdDependent, type: type, title: Title, description: Description
+      op: "newAttribute", dependents: IdDependent, type: type, name: Title, description: Description
     })
 
     console.log(resultInser.data);

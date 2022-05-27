@@ -40,13 +40,13 @@ const Pills = ({ route, navigation }) => {
   const [pillsAsociades, setPillsAsociades] = React.useState([]);
 
   const obtinPillsAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getPills", id: id }).then(response => {
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getPills", id: id })//.then(response => {
       
-      console.log("FUNCIONA");
+      //console.log("FUNCIONA");
     
-    }).catch(function (error) {
-      console.log(error);
-    });
+    //}).catch(function (error) {
+      //console.log(error);
+    //});
 
     console.log(JSON.stringify(resultInser.data));
     setPillsAsociades(resultInser.data.array);
@@ -69,7 +69,7 @@ const Pills = ({ route, navigation }) => {
       <View style={styles.body}>
         <ScrollView>
         {pillsAsociades.map((element, pos) => {
-            return (<CardPills key={pos} id={element.IdAtributte} description={element.Description}  
+            return (<CardPills key={pos} id={element.IdAttribute} description={element.Description}  
               name={element.Name} ></CardPills>);
           })}
 
@@ -91,7 +91,9 @@ const Pills = ({ route, navigation }) => {
           <TouchableOpacity
             activeOpacity={0.75}
             style={styles.btnout}
-            onPress={() => navigation.navigate('AddPills')}>
+            onPress={() => navigation.navigate('AddPills',{
+              IdDependent : id,
+            })}>
             <Text style={styles.btnoutT}>ADD</Text>
           </TouchableOpacity>
         </View>

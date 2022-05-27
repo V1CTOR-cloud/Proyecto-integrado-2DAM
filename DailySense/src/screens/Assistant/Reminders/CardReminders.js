@@ -10,6 +10,7 @@ import {
     Alert
 } from 'react-native';
 
+import axios from "axios";
 
 import { useNavigation } from '@react-navigation/native';
 //import { arrayReminders } from "../../components/Utils";
@@ -38,9 +39,9 @@ const CardReminder = (props) => {
 
     }
 
-    const deleteFinal = () => {
+    const deleteFinal = async () => {
         //axios delete
-        const resultat =  postDelete();
+        const resultat =  await postDelete();
         const { correct } = resultat;
         if (correct === "OK") {
             setDisplay("none");
@@ -86,14 +87,6 @@ const CardReminder = (props) => {
                 </Text>
                 <Text style={styles.h3}>
                     {props.description}
-                </Text>
-            </View>
-            <View style={styles.body}>
-                <Text style={styles.h2}>
-                    Time:
-                </Text>
-                <Text style={styles.h3}>
-                    {props.date}
                 </Text>
             </View>
             <View style={styles.footer}>

@@ -35,7 +35,7 @@ const colors = {
   tint: "#2b49c3"
 }
 
-const AddPills = ({ navigation }) => {
+const AddPills = ({ navigation, route }) => {
 
   const { IdDependent } = route.params;
   const [Day, setDay] = React.useState("");
@@ -72,7 +72,7 @@ const AddPills = ({ navigation }) => {
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "newAttribute", idDependent: IdDependent, type: type, title: Day, description: Med, date: Time
+      op: "newAttribute", dependents: IdDependent, type: type, name: Day, description: Med,
     })
 
     console.log(resultInser.data);
