@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\Users\manel\Desktop\DAM2\DailySense\SERVIDORAPI\ServerDailySense\.metadata\.plugins\org.eclipse.jdt.core
+4002526135.index

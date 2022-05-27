@@ -198,16 +198,7 @@ public class GestorHTTP implements HttpHandler {
 
 		System.out.println("El servidor pasa a procesar el body de la peticion DELETE: " + requestParamValue);
 
-		//* MEJORA A FUTURO
-		//DELETE HECHO CON POST
-		/*OutputStream outputStream = httpExchange.getResponseBody();
-		---> String htmlResponse = deleteOperacion(requestParamValue);
-		System.out.println("Devuelve respuesta HTML: " + htmlResponse);
-		httpExchange.sendResponseHeaders(200, htmlResponse.length());
-		System.out.println("Devuelve respuesta HTML: " + htmlResponse);
-		outputStream.write(htmlResponse.getBytes());
-		outputStream.flush();
-		outputStream.close();*/
+		
 
 	}
 	// FIN BLOQUE RESPONSE
@@ -504,34 +495,7 @@ public class GestorHTTP implements HttpHandler {
 	}
 	// FIN METODO CREAR CUENTA
 
-	//* MEJORA A FUTURO
-	// INICIO METODO CREAR ATRIBUTO
-	/*public static String newAttribute(String request) throws ClassNotFoundException, SQLException {
-		System.out.println(request);
-
-		JSONObject obj = new JSONObject(request);
-		int type = obj.getInt("type");
-		String name = obj.getString("name");
-		String description = obj.getString("description");
-		int dependent = obj.getInt("dependents");
-		String date = obj.getString("date");
-
-		System.out.println(type + " " + name + " " + description + " " + dependent + " " + date);
-
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://10.0.0.4/dailysense", "dailysense", "-a123456");
-		PreparedStatement psInsertar = con
-				.prepareStatement("INSERT INTO attributes (Type,Name,Description,Dependents,Date )VALUES (?,?,?,?,?)");
-		psInsertar.setInt(1, type);
-		psInsertar.setString(2, name);
-		psInsertar.setString(3, description);
-		psInsertar.setInt(4, dependent);
-		psInsertar.setString(5, date);
-		psInsertar.executeUpdate();
-		return "{ \"correct\" : \"OK\" }";
-	}*/
-
-	// FIN METODO CREAR ATRIBUTO
+	
 	// FIN METODOS POST
 
 	// INICIO METODOS PUT
@@ -557,32 +521,8 @@ public class GestorHTTP implements HttpHandler {
 	
 	// INICIO METODOS DELETE
 	
-	//* MEJORA A FUTURO
-	// INICIO DELETEOPERACION
-	/*public static String deleteOperacion(String param) throws ClassNotFoundException, SQLException {
-
-		// recibes como parametro la primera posicion tipo de requestParamValue
-
-		System.out.println("Entro a delete Operacion");
-
-		JSONObject obj = new JSONObject(param);
-		String op = obj.getString("op");
-		System.out.println(op);
-
-		String responseDelete = "";
-		switch (op) {
-
-		case "dependent":
-			responseDelete = String.valueOf(deleteDependent(param));
-			break;
-		case "attribute":
-			responseDelete = String.valueOf(deleteAttributes(param));
-			break;
-		}
-		System.out.println(responseDelete);
-		return responseDelete;
-	}*/
-	// FIN DELETEOPERACION
+	
+	
 
 	// INICIO DELETE DEPENDENT
 	public static String deleteDependent(String request) throws ClassNotFoundException, SQLException {
@@ -602,23 +542,147 @@ public class GestorHTTP implements HttpHandler {
 	}
 
 	// FIN DELETE DEPENDENT
-	
-	//* MEJORA A FUTURO
-	// INICIO DELETE ATTRIBUTE
-	/*public static int deleteAttributes(String request) throws ClassNotFoundException, SQLException {
-
-		System.out.println(request);
-
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/dailysense", "root", "");
-
-		JSONObject obj = new JSONObject(request);
-		int id = obj.getInt("id");
-		PreparedStatement psBorrar = con.prepareStatement("DELETE FROM attributes WHERE IdAttribute = " + id);
-		int resultadoBorrar = psBorrar.executeUpdate();
-
-		return resultadoBorrar;
-	}*/
-	// FIN DELETE ATTRIBUTE
 	// FIN METODOS DELETE
+	//-------------------------------------------------------------------------------------------------------------
+		//MEJORAS PROYECTO FINAL MANEL
+		
+		
+			// INICIO METODO CREAR ATRIBUTO
+			public static String newAttribute(String request) throws ClassNotFoundException, SQLException {
+				System.out.println(request);
+
+				JSONObject obj = new JSONObject(request);
+				int type = obj.getInt("type");
+				String name = obj.getString("name");
+				String description = obj.getString("description");
+				int dependent = obj.getInt("dependents");
+
+				System.out.println(type + " " + name + " " + description + " " + dependent);
+
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://10.0.0.4/dailysense", "dailysense", "-a123456");
+				PreparedStatement psInsertar = con
+						.prepareStatement("INSERT INTO attributes (Type,Name,Description,Dependents )VALUES (?,?,?,?)");
+				psInsertar.setInt(1, type);
+				psInsertar.setString(2, name);
+				psInsertar.setString(3, description);
+				psInsertar.setInt(4, dependent);
+				psInsertar.executeUpdate();
+				return "{ \"correct\" : \"OK\" }";
+			}
+
+			// FIN METODO CREAR ATRIBUTO
+		
+		// INICIO DELETE ATTRIBUTE
+		public static String deleteAttribute(String request) throws ClassNotFoundException, SQLException {
+
+			System.out.println(request);
+
+			JSONObject obj = new JSONObject(request);
+			int id = obj.getInt("id");
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/dailysense", "root", "");
+			PreparedStatement psBorrar = con.prepareStatement("DELETE FROM attributes WHERE IdAttribute = " + id);
+			int resultadoDelete = psBorrar.executeUpdate();
+			System.out.println(resultadoDelete);
+			
+			return "{ \"correct\" : \"OK\" }";
+		}
+		// FIN DELETE ATTRIBUTE
+		
+		// INICIO METODO getTasks
+			public static String getTasks(String request) throws ClassNotFoundException, SQLException {
+				//System.out.println(request); 
+
+				JSONObject obj = new JSONObject(request);
+				int idDependent = obj.getInt("id");
+				int tipo=2;
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://10.0.0.4/dailysense", "dailysense", "-a123456");
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT IdAttribute, Name, Description "
+												+ " FROM attributes WHERE Dependents = "+ idDependent+" AND Type = " +tipo);
+				JSONArray array = new JSONArray();
+				JSONObject objReturn = new JSONObject();
+
+				while (rs.next()) {
+					JSONObject objResult = new JSONObject();
+
+					objResult.put("IdAttribute", rs.getInt(1));
+					objResult.put("Name", rs.getString(2));
+					objResult.put("Description", rs.getString(3));
+			
+					array.put(objResult);
+				}
+
+				objReturn.put("array", array);
+				//System.out.println("Los datos recogidos para devolver son -> "+objReturn.toString());
+				return objReturn.toString();
+			}
+			// FIN METODO getTasks
+			
+			// INICIO METODO getReminders
+			public static String getReminders(String request) throws ClassNotFoundException, SQLException {
+				//System.out.println(request); 
+
+				JSONObject obj = new JSONObject(request);
+				int idDependent = obj.getInt("id");
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://10.0.0.4/dailysense", "dailysense", "-a123456");
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT IdAttribute, Type, Name, Description, Date "
+												+ " FROM attributes WHERE Dependents = "+ idDependent +"&& Type = " +1);
+				JSONArray array = new JSONArray();
+				JSONObject objReturn = new JSONObject();
+
+				while (rs.next()) {
+					JSONObject objResult = new JSONObject();
+
+					objResult.put("IdAttribute", rs.getInt(1));
+					objResult.put("Type", rs.getString(2));
+					objResult.put("Name", rs.getString(3));
+					objResult.put("Description", rs.getString(4));
+					objResult.put("Date", rs.getString(5));
+			
+					array.put(objResult);
+				}
+
+				objReturn.put("array", array);
+				//System.out.println("Los datos recogidos para devolver son -> "+objReturn.toString());
+				return objReturn.toString();
+			}
+			// FIN METODO getReminders
+			
+			// INICIO METODO getPills
+			public static String getPills(String request) throws ClassNotFoundException, SQLException {
+				//System.out.println(request); 
+
+				JSONObject obj = new JSONObject(request);
+				int idDependent = obj.getInt("id");
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://10.0.0.4/dailysense", "dailysense", "-a123456");
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT IdAttribute, Type, Name, Description, Date "
+													+ " FROM attributes WHERE Dependents = "+ idDependent +"&& Type = " +3);
+				JSONArray array = new JSONArray();
+				JSONObject objReturn = new JSONObject();
+
+				while (rs.next()) {
+					JSONObject objResult = new JSONObject();
+
+					objResult.put("IdAttribute", rs.getInt(1));
+					objResult.put("Type", rs.getString(2));
+					objResult.put("Name", rs.getString(3));
+					objResult.put("Description", rs.getString(4));
+					objResult.put("Date", rs.getString(5));
+			
+					array.put(objResult);
+				}
+
+				objReturn.put("array", array);
+				//System.out.println("Los datos recogidos para devolver son -> "+objReturn.toString());
+				return objReturn.toString();
+			}
+			// FIN METODO getPills
 }
