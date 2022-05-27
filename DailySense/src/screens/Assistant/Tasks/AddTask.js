@@ -18,8 +18,8 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 import CardTask from './CardTask';
-
 import { TextInput, Button } from 'react-native-paper';
+import axios from "axios";
 
 const colors = {
   themeColor: "#4263ec",
@@ -35,7 +35,7 @@ const AddTask = ({route, navigation}) => {
   const { IdDependent } = route.params;
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
-  const Type=2;
+  const type=2;
 
   
 
@@ -63,7 +63,7 @@ const AddTask = ({route, navigation}) => {
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "newAttribute", idDependent: IdDependent, type: Type, title: Title, description: Description
+      op: "newAttribute", idDependent: IdDependent, type: type, title: Title, description: Description
     })
 
     console.log(resultInser.data);

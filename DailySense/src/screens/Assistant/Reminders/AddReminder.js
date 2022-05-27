@@ -17,9 +17,10 @@ import {
   Alert
 } from 'react-native';
 
-import { arrayReminders } from '../../components/Utils';
-
+//import { arrayReminders } from '../../components/Utils';
+import { useNavigation } from '@react-navigation/native';
 import { Button, TextInput } from 'react-native-paper';
+import axios from "axios";
 
 const colors = {
   themeColor: "#4263ec",
@@ -35,20 +36,8 @@ const AddReminder = ({ route, navigation }) => {
   const [Title, setTitle] = React.useState("");
   const [Description, setDescription] = React.useState("");
   const [Time, setTime] = React.useState("");
-  const Type=1;
+  const type=1;
   
-
-  function creado() {
-
-    if (EnviaDatos()) {
-      Alert.alert("Alert Add", "Reminder added correctly", [{
-        text: "Ok",
-        onPress: () => navigation.navigate('Reminders', { id:IdDependent}),
-      }])
-    }
-
-  }
-
   function validar() {
     if (Title.length === 0 &&
       Description.length === 0 &&
@@ -86,7 +75,7 @@ const AddReminder = ({ route, navigation }) => {
   const postDatos = async () => {
 
     const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
-      op: "AddReminder", idDependent: IdDependent, type: Type, title: Title, description: Description, date: Time
+      op: "newAttribute", idDependent: IdDependent, type: type, title: Title, description: Description, date: Time
     })
 
     console.log(resultInser.data);

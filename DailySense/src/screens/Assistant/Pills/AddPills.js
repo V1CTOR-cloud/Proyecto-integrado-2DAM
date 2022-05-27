@@ -22,8 +22,10 @@ import {
 
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
+import { useNavigation } from '@react-navigation/native';
+import axios from "axios";
 
-import { arrayPills } from "../../components/Utils";
+//import { arrayPills } from "../../components/Utils";
 
 const colors = {
   themeColor: "#4263ec",
@@ -38,20 +40,9 @@ const AddPills = ({ navigation }) => {
   const { IdDependent } = route.params;
   const [Day, setDay] = React.useState("");
   const [Med, setMed] = React.useState("");
-  const Type=3;
+  const type=3;
 
 
-
-  function creado() {
-    if (validar()) {
-      //
-      Alert.alert("Alert Add", "Reminder added correctly", [{
-        text: "Ok",
-        onPress: () => navigation.navigate('Pills', { id:IdDependent}),
-      }])
-    }
-
-  }
 
   function validar() {
     if (Day.length == 0 && Med.length == 0) {
@@ -74,6 +65,35 @@ const AddPills = ({ navigation }) => {
         } else {
           return true;
         }
+      }
+    }
+  }
+
+  const postDatos = async () => {
+
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
+      op: "newAttribute", idDependent: IdDependent, type: type, title: Day, description: Med, date: Time
+    })
+
+    console.log(resultInser.data);
+    //setDatos(response.data);
+
+    return resultInser;
+
+  }
+
+  const addPill = async () => {
+    if (validar()) {
+      const resultat = await postDatos()
+
+      if (resultat.data.correct === "OK") {
+
+        Alert.alert("Added", "Pill added correctly")
+        navigation.navigate('Pills', { id:IdDependent})
+      } else {
+
+        resultat.log("Datos no es OK");
+
       }
     }
   }
@@ -124,7 +144,7 @@ const AddPills = ({ navigation }) => {
             mode='contained'
             color={colors.themeColor}
             style={styles.btn}
-            onPress={() => creado()}
+            onPress={() => addPill()}
             labelStyle={{ color: colors.white, width: '99%' }}
           >
             SAVE

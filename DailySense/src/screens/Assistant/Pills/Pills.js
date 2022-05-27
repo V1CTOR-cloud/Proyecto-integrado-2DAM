@@ -36,11 +36,17 @@ const colors = {
 const Pills = ({ route, navigation }) => {
 
   const isFocused = useIsFocused();
-  const {IdDependent} = route.params;
+  const {id} = route.params;
   const [pillsAsociades, setPillsAsociades] = React.useState([]);
 
   const obtinPillsAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinPills", id: IdDependent })
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getPills", id: id }).then(response => {
+      
+      console.log("FUNCIONA");
+    
+    }).catch(function (error) {
+      console.log(error);
+    });
 
     console.log(JSON.stringify(resultInser.data));
     setPillsAsociades(resultInser.data.array);
@@ -64,7 +70,7 @@ const Pills = ({ route, navigation }) => {
         <ScrollView>
         {pillsAsociades.map((element, pos) => {
             return (<CardPills key={pos} id={element.IdAtribute} name={element.Name} 
-              descrition={element.Description} date={element.Date}></CardPills>);
+              descrition={element.Description} ></CardPills>);
           })}
 
           {/* {arrayPills.map((element, pos) => {

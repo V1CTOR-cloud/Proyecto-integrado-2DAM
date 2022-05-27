@@ -38,11 +38,17 @@ const colors = {
 const Reminders = ({ route, navigation }) => {
 
   const isFocused = useIsFocused();
-  const {IdDependent} = route.params;
+  const {id} = route.params;
   const [remindersAsociades, setRemindersAsociades] = React.useState([]);
 
   const obtinRemindersAsociades = async () => {
-    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "obtinReminder", id: IdDependent })
+    const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "getReminders", id: id }).then(response => {
+      
+      console.log("FUNCIONA");
+    
+    }).catch(function (error) {
+      console.log(error);
+    });
     console.log(JSON.stringify(resultInser.data));
     setRemindersAsociades(resultInser.data.array);
   }

@@ -12,7 +12,7 @@ import {
 
 
 import { useNavigation } from '@react-navigation/native';
-import { arrayPills } from "../../components/Utils";
+//import { arrayPills } from "../../components/Utils";
 
 const colors = {
     themeColor: "#4263ec",
@@ -81,14 +81,14 @@ const CardPills = (props) => {
             display: dis,
         }}>
             <View style={styles.header}>
-                <Text style={styles.h1}>{props.day} </Text>
+                <Text style={styles.h1}>{props.description} </Text>
             </View>
             <View style={styles.body}>
                 <Text style={styles.h2}>
                     Medication:
                 </Text>
                 <Text style={styles.h3}>
-                    {props.med}
+                    {props.name}
                 </Text>
             </View>
             <View style={styles.footer}>
